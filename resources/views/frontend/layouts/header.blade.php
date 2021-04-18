@@ -93,7 +93,7 @@
             </form>
           </div>
         </div>
-        <div class="col-12 col-md">
+        <div class="col d-none d-md-block">
           <div class="menu-area bg-dark">
             <!-- Main Menu -->
             <nav class="navbar navbar-expand-lg">
