@@ -263,9 +263,7 @@ big {
 	font-size: 14px;
 	color: #666;
 }
-.container{
-	max-width:1170px;
-}
+
 .overlay{
 	position:relative
 }
@@ -1874,4 +1872,16 @@ object {
   -webkit-transform-origin:bottom left;
   transform-origin:bottom left
  }
+}
+
+@media(min-width: 1360px){
+  .container{
+    max-width: 1300px;
+  }
+}
+
+@media(min-width: 1500){
+  .container{
+    max-width: 1440px;
+  }
 }
