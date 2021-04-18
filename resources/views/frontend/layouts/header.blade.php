@@ -56,7 +56,7 @@
           <!--/ End Logo -->
 
         </div>
-        <div class="col d-md-none">
+        <div class="col d-md-none" style="min-height: 30px">
           <!-- Search Form -->
           <div class="search-top">
             <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
@@ -94,7 +94,7 @@
           </div>
         </div>
         <div class="col d-none d-md-block">
-          <div class="menu-area bg-dark">
+          <div class="menu-area">
             <!-- Main Menu -->
             <nav class="navbar navbar-expand-lg">
               <div class="navbar-collapse">
