@@ -44,7 +44,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
         $this->validate($request,[
             'title'=>'string|required',
             'summary'=>'string|required',
@@ -76,6 +75,13 @@ class ProductController extends Controller
         }
         else{
             $data['size']='';
+        }
+        $ram=$request->input('ram');
+        if($ram){
+            $data['ram']=implode(',',$ram);
+        }
+        else{
+            $data['ram']='';
         }
         // return $size;
         // return $data;

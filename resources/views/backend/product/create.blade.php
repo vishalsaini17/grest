@@ -74,13 +74,30 @@
           @enderror
         </div>
         <div class="form-group">
-          <label for="size">Size</label>
+          <label for="size">Storage</label>
           <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
               <option value="">--Select any size--</option>
-              <option value="S">Small (S)</option>
-              <option value="M">Medium (M)</option>
-              <option value="L">Large (L)</option>
-              <option value="XL">Extra Large (XL)</option>
+              <option value="4">4 GB</option>
+              <option value="8">8 GB</option>
+              <option value="16">16 GB</option>
+              <option value="32">32 GB</option>
+              <option value="64">64 GB</option>
+              <option value="128">128 GB</option>
+              <option value="256">256 GB</option>
+              <option value="512">512 GB</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="size">RAM</label>
+          <select name="ram[]" class="form-control selectpicker"  multiple data-live-search="true">
+              <option value="">--Select any size--</option>
+              <option value="1">1 GB</option>
+              <option value="2">2 GB</option>
+              <option value="4">4 GB</option>
+              <option value="8">8 GB</option>
+              <option value="16">16 GB</option>
+              <option value="32">32 GB</option>
+              <option value="64">64 GB</option>
           </select>
         </div>
 
