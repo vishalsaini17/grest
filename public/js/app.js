@@ -55977,13 +55977,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! /home/sachin/Desktop/grest/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/sachin/Desktop/grest/resources/sass/app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\Users\Raghav\Desktop\New folder\grest\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Raghav\Desktop\New folder\grest\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> a0f946763a190458cb75682a416d02a2cd075469
 
 
 /***/ })
