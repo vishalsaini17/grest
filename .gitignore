@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/frontend/css/app.css
+/public/frontend/css/app.css.map
 /vendor
 .env
 .env.backup
