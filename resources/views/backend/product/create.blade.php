@@ -89,7 +89,7 @@
         </div>
         <div class="col-12 col-md-6 form-group">
           <label for="size" class="col-form-label">Storage</label>
-          <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
+          <select name="size[]" class="form-control selectpicker"  data-live-search="true">
               <option value="">--Select any size--</option>
               <option value="4">4 GB</option>
               <option value="8">8 GB</option>
@@ -103,7 +103,7 @@
         </div>
         <div class="col-12 col-md-6 form-group">
           <label for="size" class="col-form-label">RAM</label>
-          <select name="ram[]" class="form-control selectpicker"  multiple data-live-search="true">
+          <select name="ram[]" class="form-control selectpicker"   data-live-search="true">
               <option value="">--Select any size--</option>
               <option value="1">1 GB</option>
               <option value="2">2 GB</option>

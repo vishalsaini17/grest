@@ -2,6 +2,8 @@
 
 @section('main-content')
 
+
+
 <div class="card">
     <h5 class="card-header">Edit Product</h5>
     <div class="card-body">
@@ -79,7 +81,7 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        <div class="col-12 col-md-6 form-group">
+        {{-- <div class="col-12 col-md-6 form-group">
           <label for="size">Size</label>
           <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
               <option value="">--Select any size--</option>
@@ -94,7 +96,38 @@
               <option value="XL"  @if( in_array( "XL",$data ) ) selected @endif>Extra Large</option>
               @endforeach
           </select>
+        </div> --}}
+
+        <div class="col-12 col-md-6 form-group">
+          <label for="size" class="col-form-label">Storage</label>
+          <select name="size[]" class="form-control selectpicker" data-live-search="true">
+              <option value="">--Select any size--</option>
+              <option value="4" @if($product->size == '4') selected @endif>4 GB</option>
+              <option value="8" @if($product->size == '8') selected @endif>8 GB</option>
+              <option value="16" @if($product->size == '16') selected @endif>16 GB</option>
+              <option value="32" @if($product->size == '32') selected @endif>32 GB</option>
+              <option value="64" @if($product->size == '64') selected @endif>64 GB</option>
+              <option value="128" @if($product->size == '128') selected @endif>128 GB</option>
+              <option value="256" @if($product->size == '256') selected @endif>256 GB</option>
+              <option value="512" @if($product->size == '512') selected @endif>512 GB</option>
+          </select>
         </div>
+        <div class="col-12 col-md-6 form-group">
+          <label for="ram" class="col-form-label">RAM</label>
+          <select name="ram[]" class="form-control selectpicker"  data-live-search="true">
+              <option value="">--Select any size--</option>
+              <option value="1" @if($product->ram == '1') selected @endif>1 GB</option>
+              <option value="2" @if($product->ram == '2') selected @endif>2 GB</option>
+              <option value="4" @if($product->ram == '4') selected @endif>4 GB</option>
+              <option value="6" @if($product->ram == '6') selected @endif>6 GB</option>
+              <option value="8" @if($product->ram == '8') selected @endif>8 GB</option>
+              <option value="12" @if($product->ram == '12') selected @endif>12 GB</option>
+              <option value="16" @if($product->ram == '16') selected @endif>16 GB</option>
+              <option value="32" @if($product->ram == '32') selected @endif>32 GB</option>
+          </select>
+        </div>
+     
+
         <div class="col-12 col-md-6 form-group">
           <label for="brand_id">Brand</label>
           <select name="brand_id" class="form-control">
@@ -109,7 +142,7 @@
           <label for="condition">Condition</label>
           <select name="condition" class="form-control">
               <option value="">--Select Condition--</option>
-              <option value="Superb" {{(($product->condition=='superb')? 'selected':'')}}>Superb</option>
+              <option value="superb" {{(($product->condition=='superb')? 'selected':'')}}>Superb</option>
               <option value="better" {{(($product->condition=='better')? 'selected':'')}}>Better</option>
               <option value="good" {{(($product->condition=='good')? 'selected':'')}}>Good</option>
           </select>

@@ -44,6 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $this->validate($request,[
             'title'=>'string|required',
             'summary'=>'string|required',
@@ -56,7 +57,7 @@ class ProductController extends Controller
             'child_cat_id'=>'nullable|exists:categories,id',
             'is_featured'=>'sometimes|in:1',
             'status'=>'required|in:active,inactive',
-            'condition'=>'required|in:default,new,hot',
+            'condition'=>'required|in:superb,better,good',
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
@@ -114,7 +115,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         $brand=Brand::get();
         $product=Product::findOrFail($id);
         $category=Category::where('is_parent',1)->get();
@@ -147,11 +148,11 @@ class ProductController extends Controller
             'is_featured'=>'sometimes|in:1',
             'brand_id'=>'nullable|exists:brands,id',
             'status'=>'required|in:active,inactive',
-            'condition'=>'required|in:default,new,hot',
+            'condition'=>'required|in:superb,better,good',
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
-
+        
         $data=$request->all();
         $data['is_featured']=$request->input('is_featured',0);
         $size=$request->input('size');
@@ -160,6 +161,13 @@ class ProductController extends Controller
         }
         else{
             $data['size']='';
+        }
+        $ram=$request->input('ram');
+        if($ram){
+            $data['ram']=implode(',',$ram);
+        }
+        else{
+            $data['ram']='';
         }
         // return $data;
         $status=$product->fill($data)->save();
