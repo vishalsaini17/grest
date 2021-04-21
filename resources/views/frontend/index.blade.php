@@ -50,7 +50,7 @@
           <div class="col-12 col-md-5 text-right">
             <h1 class="wow fadeInDown">{{$banner->title}}</h1>
             <div>{!! html_entity_decode($banner->description) !!}</div>
-            <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
+            <a class="btn-light btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
 <!-- Start Small Banner  -->
 <section class="small-banner section">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-center">
       @php
       $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
       @endphp
@@ -124,7 +124,7 @@
               // dd($categories);
               @endphp
               @if($categories)
-              <button class="btn" style="background:black" data-filter="*">
+              <button class="btn-dark btn"  data-filter="*">
                 All Products
               </button>
               @foreach($categories as $key=>$cat)
@@ -201,13 +201,13 @@
     $featured=DB::table('products')->where('is_featured',1)->where('status','active')->orderBy('id','DESC')->limit(1)->get();
 @endphp --}}
 <!-- Start Midium Banner  -->
-<section class="midium-banner">
+<section class="medium-banner">
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
       @if($featured)
       @foreach($featured as $data)
       <!-- Single Banner  -->
-      <div class="col-lg-6 col-md-6 col-12">
+      <div class="col-12 col-md-6 col-lg-4">
         <div class="single-banner">
           @php
           $photo=explode(',',$data->photo);
@@ -234,7 +234,7 @@
     <div class="row">
       <div class="col-12">
         <div class="section-title">
-          <h2>Hot Item</h2>
+          <h2>Superb Items</h2>
         </div>
       </div>
     </div>
@@ -242,7 +242,7 @@
       <div class="col-12">
         <div class="owl-carousel popular-slider">
           @foreach($product_lists as $product)
-          @if($product->condition=='hot')
+          @if($product->condition=='superb')
           <!-- Start Single Product -->
           <div class="single-product">
             <div class="product-img">

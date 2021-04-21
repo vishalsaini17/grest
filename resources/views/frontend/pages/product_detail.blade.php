@@ -52,7 +52,9 @@
 													@endphp
 													@foreach($photo as $data)
 														<li data-thumb="{{$data}}" rel="adjustX:10, adjustY:">
-															<img src="{{$data}}" alt="{{$data}}">
+															<div class="position-relative" style="padding-top: 100%">
+																<img src="{{$data}}" alt="{{$data}}" style="position: absolute; left: 0; top: 0; height: 100%; object-fit: contain;"/>
+															</div>
 														</li>
 													@endforeach
 												</ul>
