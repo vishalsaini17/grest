@@ -159,7 +159,7 @@
                                 <form method="POST" action="{{route('subscribe')}}" class="form-inner">
                                     @csrf
                                     <input type="email" name="email" placeholder="Enter your email">
-                                    <button type="submit" class="btn " style="width: 100%">Submit</button>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%">Submit</button>
                                 </form>
                             </div>
                         </div>

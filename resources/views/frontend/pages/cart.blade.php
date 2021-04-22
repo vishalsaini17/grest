@@ -108,7 +108,7 @@
 									<form action="{{route('coupon-store')}}" method="POST">
 											@csrf
 											<input name="code" placeholder="Enter Your Coupon">
-											<button class="btn">Apply</button>
+											<button class="btn btn-primary">Apply</button>
 										</form>
 									</div>
 									{{-- <div class="checkbox">`
@@ -160,8 +160,8 @@
 										@endif
 									</ul>
 									<div class="button5">
-										<a href="{{route('checkout')}}" class="btn">Checkout</a>
-										<a href="{{route('product-grids')}}" class="btn">Continue shopping</a>
+										<a href="{{route('checkout')}}" class="btn btn-primary">Checkout</a>
+										<a href="{{route('product-grids')}}" class="btn btn-primary">Continue shopping</a>
 									</div>
 								</div>
 							</div>
@@ -316,7 +316,7 @@
 										<!--/ End Input Order -->
 									</div>
 									<div class="add-to-cart">
-										<a href="#" class="btn">Add to cart</a>
+										<a href="#" class="btn btn-primary">Add to cart</a>
 										<a href="#" class="btn min"><i class="ti-heart"></i></a>
 										<a href="#" class="btn min"><i class="fa fa-compress"></i></a>
 									</div>

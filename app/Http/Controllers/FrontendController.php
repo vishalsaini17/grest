@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Banner;
 use App\Models\Product;
 use App\Models\Category;
@@ -10,7 +11,7 @@ use App\Models\Post;
 use App\Models\Cart;
 use App\Models\Brand;
 use App\User;
-use Auth;
+// use Auth;
 use Session;
 use Newsletter;
 use DB;

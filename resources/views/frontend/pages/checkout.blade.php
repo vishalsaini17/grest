@@ -420,7 +420,7 @@
                                 <div class="single-widget get-button">
                                     <div class="content">
                                         <div class="button">
-                                            <button type="submit" class="btn">proceed to checkout</button>
+                                            <button type="submit" class="btn btn-primary">proceed to checkout</button>
                                         </div>
                                     </div>
                                 </div>
@@ -490,7 +490,7 @@
                             <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
                             <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
                                 <input name="EMAIL" placeholder="Your email address" required="" type="email">
-                                <button class="btn">Subscribe</button>
+                                <button class="btn btn-primary">Subscribe</button>
                             </form>
                         </div>
                         <!-- End Newsletter Inner -->

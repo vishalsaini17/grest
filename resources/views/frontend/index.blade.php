@@ -16,7 +16,7 @@
                                     <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
                                     <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
                                     <div class="button">
-                                        <a href="#" class="btn">Shop Now!</a>
+                                        <a href="#" class="btn btn-primary">Shop Now!</a>
                                     </div>
                                 </div>
                             </div>
@@ -57,14 +57,15 @@
     </div>
     @endforeach
   </div>
-  <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
+  {{-- Next and Previous Arrows --}}
+  {{-- <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
   <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
-  </a>
+  </a> --}}
 </section>
 @endif
 
@@ -72,7 +73,7 @@
 
 <!-- Start Small Banner  -->
 <section class="small-banner section">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row justify-content-center">
       @php
       $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
@@ -81,7 +82,7 @@
       @foreach($category_lists as $cat)
       @if($cat->is_parent==1)
       <!-- Single Banner  -->
-      <div class="col-lg-4 col-md-6 col-12">
+      <div class="col">
         <div class="single-banner">
           @if($cat->photo)
           <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
@@ -144,7 +145,7 @@
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
               <div class="single-product">
                 <div class="product-img">
-                  <a href="{{route('product-detail',$product->slug)}}">
+                  <a href="{{route('product-detail',$product->slug)}}" class="filter-anchor">
                     @php
                     $photo=explode(',',$product->photo);
                     // dd($photo);
@@ -152,13 +153,12 @@
                     <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                     <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                     @if($product->stock<=0) <span class="out-of-stock">Sale out</span>
-                      @elseif($product->condition=='new')
-                      <span class="new">New</span @elseif($product->condition=='hot')
-                      <span class="hot">Hot</span>
+                      @elseif($product->condition=='superb')
+                      <span class="new">Superb</span @elseif($product->condition=='better')
+                      <span class="hot">Good as new</span>
                       @else
                       <span class="price-dec">{{$product->discount}}% Off</span>
                       @endif
-
 
                   </a>
                   <div class="button-head">
@@ -172,13 +172,13 @@
                   </div>
                 </div>
                 <div class="product-content">
-                  <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
+                  <h3><a class="text-" href="{{route('product-detail',$product->slug)}}">{{$product->title}} | {{$product->ram}}GB | {{$product->size}}GB</a></h3>
                   <div class="product-price">
                     @php
                     $after_discount=($product->price-($product->price*$product->discount)/100);
                     @endphp
-                    <span>${{number_format($after_discount,2)}}</span>
-                    <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                    <span style="color: #ea2953">Rs. {{number_format($after_discount,2)}}</span>
+                    <small style="padding-left:4%; text-decoration: line-through;">Rs. {{number_format($product->price,2)}}</small>
                   </div>
                 </div>
               </div>
@@ -567,7 +567,7 @@
                   <!--/ End Input Order -->
                 </div>
                 <div class="add-to-cart">
-                  <button type="submit" class="btn">Add to cart</button>
+                  <button type="submit" class="btn btn-primary">Add to cart</button>
                   <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                 </div>
               </form>

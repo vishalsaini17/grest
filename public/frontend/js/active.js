@@ -324,10 +324,10 @@ window.onload = () => {
 	  Preloader JS
 	======================================*/ 	
 	//After 2s preloader is fadeOut
-	$('.preloader').delay(100).fadeOut(100);
-	 setTimeout(function() {
-	// //After 2s, the no-scroll class of the body will be removed
-	 $('body').removeClass('no-scroll');
-	}, 100); //Here you can change preloader time
+	// $('.preloader').delay(100).fadeOut(100);
+	//  setTimeout(function() {
+	// // //After 2s, the no-scroll class of the body will be removed
+	//  $('body').removeClass('no-scroll');
+	// }, 100); //Here you can change preloader time
 	 
 })(jQuery);

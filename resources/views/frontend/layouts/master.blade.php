@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
+	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 <head>
 	@include('frontend.layouts.head')	
 </head>
 <body class="js">
 	
-	<!-- Preloader -->
-	<div class="preloader">
+	<!-- Preloader Uncomment below and from Active.JS for preloader to work -->
+	{{-- <div class="preloader">
 		<div class="preloader-inner">
 			<div class="preloader-icon">
 				<span></span>
 				<span></span>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<!-- End Preloader -->
 	
 	@include('frontend.layouts.notification')

@@ -35,7 +35,7 @@ Version:1.0
 20. 404 Error CSS
 21. Footer CSS
 ========================================*/
-
+.btn-primary{background-color: $primary;color: #fff; border-radius: 6px ;}
 .color-plate {
   position: fixed;
   display: block;
@@ -230,6 +230,7 @@ Version:1.0
   z-index: 5;
   display: inline-block;
   padding: 13px 32px;
+  border-radius: 6px;
   text-transform: uppercase;
 
   &-dark{
@@ -1838,33 +1839,54 @@ Version:1.0
     overflow: hidden;
     position: relative;
 
+    // padding-top: 100%;
+    &:hover{
+
+      .content{
+        opacity: 1;
+        background: #000000a1;
+      }
+    }
+
     img {
       height: 100%;
       width: 100%;
+      // position: absolute;
+      // left: 0;
+      // top: 0;
+      // object-fit: contain;
       -webkit-transition: all 0.4s ease;
       -moz-transition: all 0.4s ease;
       transition: all 0.4s ease;
     }
 
     .content {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      padding-left: 35px;
-    }
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        font-size: xx-large;
+        display: grid;
+        place-content: center;
+        text-align: center;
+        transition: all 0.4s ease;
+  }
 
     h3 {
-      font-size: 22px;
+      font-size: inherit;
       font-weight: 700;
       text-transform: capitalize;
-      color: #333;
+      color: #fff;
 
       span {
         color: $primary;
       }
     }
 
+    
     p {
       font-size: 14px;
       color: $primary;
@@ -1874,18 +1896,19 @@ Version:1.0
     }
 
     a {
-      color: #333;
-      margin-top: 22px;
+      color: #f6f6f6;
+      margin-top: 1.5rem;
       display: block;
-      font-size: 12px;
+      font-size: inherit;
       font-weight: 500;
       display: inline-block;
       text-transform: uppercase;
-      border-bottom: 2px solid #333;
+      // border-bottom: 2px solid #333;
 
       &:hover {
         color: $primary;
-        border-color: $primary;
+        // border-color: $primary;
+        text-decoration: underline;
       }
     }
   }
@@ -1904,21 +1927,44 @@ Version:1.0
 
   .single-banner {
     position: relative;
+    padding-top: 100%;
+    &:hover{
+
+      img{
+        opacity: 0.6;
+      }
+      .content{
+        opacity: 1;
+        // background: #000000a1;
+      }
+    }
 
     img {
       height: 100%;
       width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      object-fit: contain;
       -webkit-transition: all 0.4s ease;
       -moz-transition: all 0.4s ease;
       transition: all 0.4s ease;
+      opacity: 1;
     }
 
     .content {
-      padding-left: 50px;
       position: absolute;
-      left: 0;
+      left: 50%;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      font-size: xx-large;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      transition: all 0.4s ease;
     }
 
     h3 {
@@ -2111,9 +2157,14 @@ Version:1.0
     a {
       display: block;
       position: relative;
+      padding-top: 100%;
 
       img {
-        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        object-fit: contain;
 
         &.hover-img {
           position: absolute;
@@ -2813,6 +2864,11 @@ Version:1.0
           line-height: 28px;
         }
 
+        .status{
+          color: $green-link;
+          text-transform: uppercase;
+        }
+
         .description {
           font-size: 14px;
           color: #555555;
@@ -2857,8 +2913,9 @@ Version:1.0
         font-weight: 600;
         margin-top: 15px;
 
-        s {
+        small {
           color: #333;
+          text-decoration: line-through;
         }
 
         span {
@@ -2966,12 +3023,12 @@ Version:1.0
 
             a {
               display: block;
-              height: 30px;
-              width: 36px;
-              border: 1px solid #eee;
+              border: 1px solid #12152e;
               text-align: center;
-              line-height: 30px;
-              font-size: 14px;
+              font-weight: 600;
+              border-radius: 6px;
+              padding: 0.5rem 1.25rem;
+              
 
               &:hover {
                 color: $primary;
@@ -2994,7 +3051,7 @@ Version:1.0
       }
 
       .input-group {
-        width: 151px;
+        width: 100px;
         display: inline-block;
       }
 
@@ -3064,14 +3121,20 @@ Version:1.0
         &:hover {
           color: #fff;
           background: $primary;
+          border-color: transparent
         }
 
         &.min {
           padding: 0 20px;
-          font-size: 17px;
+          font-size: 25px;
           position: relative;
-          top: 1px;
+          // top: 1px;
           line-height: 45px;
+          background-color: transparent;
+          color: $secondary;
+          &:hover{
+            color: $primary;
+          }
         }
       }
     }
@@ -5884,6 +5947,28 @@ Version:1.0
       }
     }
   }
+}
+
+// Scrollbar
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 /* Copyright */

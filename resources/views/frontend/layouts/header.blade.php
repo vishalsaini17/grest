@@ -87,7 +87,7 @@
                 @csrf
                 <input class="form-control" name="search" placeholder="Search Products Here....." type="search">
                 <div class="input-group-append">
-                  <button class="btn" type="submit"><i class="ti-search"></i></button>
+                  <button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>
                 </div>
               </div>
             </form>

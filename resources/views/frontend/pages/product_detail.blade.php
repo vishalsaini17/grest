@@ -67,7 +67,8 @@
 										<div class="product-des">
 											<!-- Description -->
 											<div class="short">
-												<h4>{{$product_detail->title}}</h4>
+												<h4>{{$product_detail->title}} (Carbon Black, {{$product_detail->ram}}GB RAM, {{$product_detail->size}}GB Storage)</h4>
+												<span class="status">{{$product_detail->condition}}</span>
 												<div class="rating-main">
 													<ul class="rating">
 														@php
@@ -86,7 +87,10 @@
                                                 @php 
                                                     $after_discount=($product_detail->price-(($product_detail->price*$product_detail->discount)/100));
                                                 @endphp
-												<p class="price"><span class="discount">${{number_format($after_discount,2)}}</span><s>${{number_format($product_detail->price,2)}}</s> </p>
+												<p class="price">
+													<span class="discount">Rs. {{number_format($after_discount,2)}}</span>
+													<small>Rs. {{number_format($product_detail->price,2)}}</small>
+												</p>
 												<p class="description">{!!($product_detail->summary)!!}</p>
 											</div>
 											<!--/ End Description -->
@@ -102,20 +106,28 @@
 											</div> --}}
 											<!--/ End Color -->
 											<!-- Size -->
-											@if($product_detail->size)
+											{{-- @if($product_detail->size)
 												<div class="size mt-4">
-													<h4>Size</h4>
+													<h4>Storage Size</h4>
 													<ul>
 														@php 
 															$sizes=explode(',',$product_detail->size);
 															// dd($sizes);
 														@endphp
 														@foreach($sizes as $size)
-														<li><a href="#" class="one">{{$size}}</a></li>
+														<li><a href="#" class="one p-1">{{$size}}GB</a></li>
 														@endforeach
 													</ul>
 												</div>
-											@endif
+											@endif --}}
+
+											<div class="size mt-4">
+												<h4>Storage Size</h4>
+												<ul>
+													<li><a href="#" class="one">{{$product_detail->ram}}GB + {{$product_detail->size}}GB</a></li>
+												</ul>
+											</div>
+
 											<!--/ End Size -->
 											<!-- Product Buy -->
 											<div class="product-buy">
@@ -141,7 +153,7 @@
 													<!--/ End Input Order -->
 													</div>
 													<div class="add-to-cart mt-4">
-														<button type="submit" class="btn">Add to cart</button>
+														<button type="submit" class="btn btn-primary">Add to cart</button>
 														<a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i class="ti-heart"></i></a>
 													</div>
 												</form>
@@ -229,7 +241,7 @@
 																		</div>
 																		<div class="col-lg-12 col-12">
 																			<div class="form-group button5">	
-																				<button type="submit" class="btn">Submit</button>
+																				<button type="submit" class="btn btn-primary">Submit</button>
 																			</div>
 																		</div>
 																	</div>
@@ -458,7 +470,7 @@
                                 <!--/ End Input Order -->
                             </div>
                             <div class="add-to-cart">
-                                <a href="#" class="btn">Add to cart</a>
+                                <a href="#" class="btn btn-primary">Add to cart</a>
                                 <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                 <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
                             </div>
