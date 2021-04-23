@@ -4657,8 +4657,32 @@ Version:1.0
 .about-us {
   background: #fff;
 
+  .hero-img{
+    color: white;
+    display: grid;
+    place-content: center;
+    padding: 200px 0;
+
+    h1{
+      font-size: 4.5rem;
+    }
+  }
+
   .about-content {
     padding-right: 50px;
+
+    .pipe-red-text-black {
+      color: red !important;
+      justify-content: space-evenly;
+      max-width: 60%;
+      font-size: 1.5rem;
+      margin-top: 3rem;
+      font-weight: 500;
+
+      span{
+        color: rgba(0,0,0,.6) !important;
+      }
+    }
 
     .story {
       display: block;
@@ -4683,10 +4707,11 @@ Version:1.0
       &::before {
         position: absolute;
         content: "";
-        left: 0;
+        left: 50%;
         bottom: -1px;
         height: 2px;
-        width: 60px;
+        width: 200px;
+        transform: translateX(-50%);
         background: $primary;
       }
 
@@ -5969,6 +5994,10 @@ Version:1.0
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+.card:hover {
+  box-shadow: 0px 5px 12px rgb(0 0 0 / 25%) !important
 }
 
 /* Copyright */

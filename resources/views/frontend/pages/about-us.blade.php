@@ -5,7 +5,7 @@
 @section('main-content')
 
 	<!-- Breadcrumbs -->
-	<div class="breadcrumbs">
+	{{-- <div class="breadcrumbs">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
@@ -18,34 +18,43 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<!-- End Breadcrumbs -->
 	
 	<!-- About Us -->
-	<section class="about-us section">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-12">
+	<section class="about-us section pt-0">
+		<div class="container-fluid p-0">
+    
+		<div class="hero-img" style="background:url('{{asset('frontend/img/help&support.png')}}'); background-repeat:no-repeat; background-size: cover;">
+				<h1 class="text-center">We believe in a greener planet</h1>
+			</div>
+		</div>
+			<div class="container mt-5">
+				<div class="row text-center mx-auto">
+					<div class="col-12">
 						<div class="about-content">
-							@php
+							{{-- @php
 								$settings=DB::table('settings')->get();
-							@endphp
-							<h3>Welcome To <span>Eshop</span></h3>
-							<p>@foreach($settings as $data) {{$data->description}} @endforeach</p>
-							<div class="button">
+							@endphp --}}
+							<h3>Welcome To <span>Grest</span></h3>
+							{{-- <p>@foreach($settings as $data) {{$data->description}} @endforeach</p> --}}
+							<p class="pipe-red-text-black text-center mx-auto d-flex"><span>Affordability</span>|<span>Availability</span>|<span>Accountability</span>|<span>Accessibility</span></p>
+							<p class="text-center mx-auto mt-3" style="max-width: 80%;">GREST is an electronics re-commerce company where consumers can buy pre-owned / refurbished certified devices with warranty and after sales services. Our mission is to democratise the refurbished goods as a mainstream category by focusing on <strong>Affordability</strong>, <strong>Availability</strong>, <strong>Accountability</strong> &amp; <strong>Accessibility</strong></p>
+							<div class="button mt-5">
 								<a href="{{route('blog')}}" class="btn btn-primary">Our Blog</a>
 								<a href="{{route('contact')}}" class="btn primary">Contact Us</a>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-6 col-12">
+					{{-- Preset Image --}}
+					{{-- <div class="col-lg-6 col-12">
 						<div class="about-img overlay">
-							{{-- <div class="button">
+							<div class="button">
 								<a href="https://www.youtube.com/watch?v=nh2aYrGMrIE" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
-							</div> --}}
+							</div>
 							<img src="@foreach($settings as $data) {{$data->photo}} @endforeach" alt="@foreach($settings as $data) {{$data->photo}} @endforeach">
 						</div>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 	</section>

@@ -18,6 +18,12 @@
         <span>Dashboard</span></a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('home')}}" target="_blank">
+        <i class="fas fa-fw fa-home"></i>
+        <span>Go back to website</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 

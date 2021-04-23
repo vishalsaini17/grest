@@ -268,11 +268,11 @@
             <div class="product-content">
               <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
               <div class="product-price">
-                <span class="old">${{number_format($product->price,2)}}</span>
+                <span class="old">Rs. {{number_format($product->price,2)}}</span>
                 @php
                 $after_discount=($product->price-($product->price*$product->discount)/100)
                 @endphp
-                <span>${{number_format($after_discount,2)}}</span>
+                <span>Rs. {{number_format($after_discount,2)}}</span>
               </div>
             </div>
           </div>
@@ -320,7 +320,7 @@
                 <div class="col-lg-6 col-md-6 col-12 no-padding">
                   <div class="content">
                     <h4 class="title"><a href="#">{{$product->title}}</a></h4>
-                    <p class="price with-discount">${{number_format($product->discount,2)}}</p>
+                    <p class="price with-discount">Rs. {{number_format($product->price-($product->price*$product->discount)/100)}}</p>
                   </div>
                 </div>
               </div>
@@ -359,7 +359,7 @@
       @php
       $after_discount=($product->price-($product->price*$product->discount)/100)
       @endphp
-      <h1 class="price">${{number_format($after_discount)}} <s>${{number_format($data->price)}}</s></h1>
+      <h1 class="price">Rs. {{number_format($after_discount)}} <s>Rs. {{number_format($data->price)}}</s></h1>
       <div class="coming-time">
         <div class="clearfix" data-countdown="2021/02/30"></div>
       </div>
@@ -515,7 +515,7 @@
               @php
               $after_discount=($product->price-($product->price*$product->discount)/100);
               @endphp
-              <h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small> ${{number_format($after_discount,2)}} </h3>
+              <h3><small><del class="text-muted">Rs. {{number_format($product->price,2)}}</del></small> Rs. {{number_format($after_discount,2)}} </h3>
               <div class="quickview-peragraph">
                 <p>{!! html_entity_decode($product->summary) !!}</p>
               </div>

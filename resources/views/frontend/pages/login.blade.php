@@ -51,10 +51,10 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group login-btn">
+                                    <div class="form-group login-btn d-flex justify-content-between align-items-sm-center">
                                         <button class="btn btn-primary" type="submit">Login</button>
-                                        <a href="{{route('register.form')}}" class="btn btn-primary">Register</a>
-                                        OR
+                                        <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Register</a>
+                                        <span style="font-size: large">OR</span>
                                         <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
                                         <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
                                         <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
