@@ -123,6 +123,40 @@ window.onload = () => {
 				},
 			}
 		});
+
+		$('.brand-carousel').owlCarousel({
+			loop: true,
+			margin:10,
+			items:8,
+			dots:false,
+			nav:true,
+			mouseDrag:true,
+			autoplay:true,
+			autoplayTimeout:3000,
+			autoplayHoverPause:true,
+			navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+			responsiveClass: true,
+			responsive:{
+				1680:{
+					items:7
+				},
+				991:{
+					items:6
+				},
+				767:{
+					items:4
+				},
+				300:{
+					items:3
+				},  
+				0:{
+					items:2
+				}  
+			}
+		});
+
+		// $(".owl-prev").html('<i class="ti-angle-left"></i>');
+		// $(".owl-next").html('<i class="ti-angle-right"></i>');
 		
 		/*=======================
 		  Popular Slider JS

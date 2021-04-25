@@ -61,6 +61,7 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
+        // dd($request);
 
         $data=$request->all();
         $slug=Str::slug($request->title);
@@ -84,6 +85,7 @@ class ProductController extends Controller
         else{
             $data['ram']='';
         }
+        $request->input('color');
         // return $size;
         // return $data;
         $status=Product::create($data);
@@ -169,6 +171,7 @@ class ProductController extends Controller
         else{
             $data['ram']='';
         }
+        $color=$request->input('color');
         // return $data;
         $status=$product->fill($data)->save();
         if($status){

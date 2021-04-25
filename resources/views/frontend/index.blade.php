@@ -57,6 +57,8 @@
     </div>
     @endforeach
   </div>
+
+  
   {{-- Next and Previous Arrows --}}
   {{-- <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -68,6 +70,39 @@
   </a> --}}
 </section>
 @endif
+
+<div class="container brand-container">
+  <div class="top-brands">
+      <!-- <div class="container"> -->
+    <div class="owl-carousel brand-carousel owl-theme text-center">
+      <div class="item">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/mi.svg')}}" alt="Mi Phone"></a></figure>
+      </div>
+      <div class="item">
+        <figure><a hrsef=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/oneplus.svg')}}" alt="One Plus Phone" style="padding-top:2px;width:100%"></a></figure>
+      </div>
+      <div class="item" style="margin-top:5px; margin-left:10px">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/samsung.svg')}}" alt="Samsung Phone"></a></figure>
+      </div>
+      <div class="item">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/apple.svg')}}" alt="Apple Phone" style="padding-top:5px;"></a></figure>
+      </div>
+      <div class="item">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/vivo.svg')}}" alt="Vivo Phone"></a></figure>
+      </div>
+      <div class="item" style="margin-top:3px; margin-left:20px">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/nokia.svg')}}" alt="Nokia Phone"></a></figure>
+      </div>
+      <div class="item">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/motorola.svg')}}" alt="Motorola Phone"></a></figure>
+      </div>
+      <div class="item" style="margin-top:8px; margin-left: 10px">
+        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/oppo.svg')}}" alt="Oppo Phone"></a></figure>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>
 
 <!--/ End Slider Area -->
 
@@ -469,20 +504,20 @@
               <div class="quickview-slider-active">
                 @php
                 $photo=explode(',',$product->photo);
-                // dd($photo);
+                // dd($photo); 
                 @endphp
-                @foreach($photo as $data)
+                {{-- @foreach($photo as $data) --}}
                 <div class="single-slider">
-                  <img src="{{$data}}" alt="{{$data}}">
+                  <img src="{{$photo[0]}}" alt="">
                 </div>
-                @endforeach
+                {{-- @endforeach --}}
               </div>
             </div>
             <!-- End Product slider -->
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <div class="quickview-content">
-              <h2>{{$product->title}}</h2>
+              <h2>{{$product->title}} ({{($product->color)? $product->color.',' : ''}} {{$product->ram}} GB RAM, {{$product->size}} GB Storage)</h2>
               <div class="quickview-ratting-review">
                 <div class="quickview-ratting-wrap">
                   <div class="quickview-ratting">
@@ -781,6 +816,10 @@ function requestFullScreen(el) {
   }
   return false
 }
+
+// $(document).ready(function(){
+//   $(".owl-carousel").owlCarousel();
+// });
 </script>
 
 @endpush

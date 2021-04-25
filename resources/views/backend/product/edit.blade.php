@@ -11,7 +11,7 @@
         @csrf 
         @method('PATCH')
         <div class="form-row">
-        <div class="col-10 form-group">
+        <div class="col-md-8 col-10 form-group">
           <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
           <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{$product->title}}" class="form-control">
           @error('title')
@@ -19,9 +19,17 @@
           @enderror
         </div>
         
-        <div class="col-2 form-group">
-          <label for="is_featured">Is Featured</label><br>
-          <input type="checkbox" name='is_featured' id='is_featured' value='{{$product->is_featured}}' {{(($product->is_featured) ? 'checked' : '')}}> Yes                        
+        <div class="col-1 form-group">
+          <label for="is_featured" class="col-form-label">Is Featured</label><br>
+          <input type="checkbox" class="mt-3 mx-auto" name='is_featured' id='is_featured' value='{{$product->is_featured}}' {{(($product->is_featured) ? 'checked' : '')}}> Yes                        
+        </div>
+
+        <div class="col-12 col-md-3 form-group">
+          <label for="inputColor" class="col-form-label">Color <span class="text-danger">*</span></label>
+          <input id="inputColor" type="text" name="color" placeholder="Enter color"  value="{{$product->color}}" class="form-control">
+          @error('color')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
         </div>
 
         <div class="col-12 col-md-6 form-group">

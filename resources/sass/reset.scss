@@ -1786,9 +1786,9 @@ embed, iframe, object {
 
 .modal {
   .product-gallery .single-slider {
-    width: 100%;
-    height: 100%;
-    display: block;
+    width: 80%;
+    margin: auto;
+    padding: 1rem 2rem;
   }
 
   .owl-nav {
