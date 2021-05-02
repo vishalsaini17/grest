@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','E-SHOP || HOME PAGE')
+@section('title','Grest || HOME PAGE')
 @section('main-content')
 <!-- Slider Area -->
 {{--

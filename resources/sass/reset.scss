@@ -197,6 +197,8 @@ body, button, input, select, optgroup, textarea {
   line-height: 24px;
 }
 
+// i{ font-family: 'FontAwesome' }
+
 p {
   color: #757575;
   margin: 0;
@@ -1014,7 +1016,17 @@ a {
 --------------------------------------------------------------*/
 
 .sticky {
-  display: block;
+  position: fixed;
+  top: -56px;
+  left: 0;
+  width: 100%;
+  padding: 10px 0 5px 0;
+  z-index: 999;
+  animation-name: header-sticky;
+  animation-duration: .5s;
+  animation-timing-function: ease-out;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+
 }
 
 .hentry {
@@ -1788,7 +1800,7 @@ embed, iframe, object {
   .product-gallery .single-slider {
     width: 80%;
     margin: auto;
-    padding: 1rem 2rem;
+    padding: 1rem 2rem; 
   }
 
   .owl-nav {

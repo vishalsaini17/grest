@@ -150,7 +150,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
 
 
-
+Route::get('/manage', 'HomeController@manage');
 
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){

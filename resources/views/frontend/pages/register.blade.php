@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || Register Page')
+@section('title','Grest || Register Page')
 
 @section('main-content')
 	<!-- Breadcrumbs -->
@@ -46,6 +46,15 @@
                                         <label>Your Email<span>*</span></label>
                                         <input type="text" name="email" placeholder="" required="required" value="{{old('email')}}">
                                         @error('email')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Your Mobile Number<span>*</span></label>
+                                        <input type="text" name="phone" placeholder="" required="required" value="{{old('phone')}}">
+                                        @error('phone')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>

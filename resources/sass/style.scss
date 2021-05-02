@@ -5938,7 +5938,7 @@ Version:1.0
       padding: 10px 28px;
 
       &:hover {
-        color: #fff;
+        color: #ffffff;
         background: $primary;
         border-color: transparent;
       }
@@ -5946,6 +5946,29 @@ Version:1.0
   }
 }
 
+.profile-page{
+  .my-profile-nav{
+    ul{
+      list-style: none;
+      background: #fff;
+      padding: 20px 15px;
+
+      li{
+        display: inline-block;
+        margin: 0 15px;
+
+        a{
+          color: #12152e;
+          font-size: 18px;
+        }
+
+        a:active {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
 /*=============================
 	/End 404 Error CSS
 ===============================*/
@@ -5973,7 +5996,9 @@ Version:1.0
     .logo {
       margin-bottom: 20px;
 
-      img {}
+      img {
+        max-width: 50%;
+      }
     }
 
     .text {

@@ -375,9 +375,12 @@ class FrontendController extends Controller
     }
     public function registerSubmit(Request $request){
         // return $request->all();
+        // dd($request);
+
         $this->validate($request,[
             'name'=>'string|required|min:2',
             'email'=>'string|required|unique:users,email',
+            'phone'=>'string|required|min:10',
             'password'=>'required|min:6|confirmed',
         ]);
         $data=$request->all();
@@ -397,9 +400,12 @@ class FrontendController extends Controller
         return User::create([
             'name'=>$data['name'],
             'email'=>$data['email'],
+            'phone'=>$data['phone'],
             'password'=>Hash::make($data['password']),
             'status'=>'active'
             ]);
+        // dd($data);
+
     }
     // Reset password
     public function showResetForm(){

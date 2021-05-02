@@ -53,13 +53,22 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                       </div>
+
+
+                      <div class="form-group">
+                        <label for="phone" class="col-form-label">Contact Number</label>
+                      <input id="phone" disabled type="phone" name="phone" placeholder=""  value="{{$profile->phone}}" class="form-control">
+                      @error('phone')
+                      <span class="text-danger">{{$message}}</span>
+                      @enderror
+                    </div>
               
                       <div class="form-group">
                       <label for="inputPhoto" class="col-form-label">Photo</label>
                       <div class="input-group">
                           <span class="input-group-btn">
                               <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                              <i class="fa fa-picture-o"></i> Choose
+                                <i class="fas fa-images"></i>Choose
                               </a>
                           </span>
                           <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$profile->photo}}">
@@ -80,7 +89,7 @@
                             @enderror
                         </div> --}}
 
-                        <button type="submit" class="btn btn-success btn-sm">Update</button>
+                        <button type="submit" class="btn btn-success ">Update</button>
                 </form>
             </div>
         </div>

@@ -33,6 +33,15 @@ class HomeController extends Controller
         return view('user.index');
     }
 
+    public function manage(){
+        $profile=Auth()->user();
+        // echo 'at manage page';
+        // return redirect('view', 'frontend.pages.manage');
+        // return redirect()->route('frontend.pages.manage');
+        return view('frontend.pages.manage')->with('profile',$profile);
+
+    }
+
     public function profile(){
         $profile=Auth()->user();
         // return $profile;
