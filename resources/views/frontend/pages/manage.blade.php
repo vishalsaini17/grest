@@ -47,7 +47,50 @@
               <div class="delivery-info">
                 <h4 class="heading">Delivery Address</h4>
                 <div class="address-boxes row">
-                  
+                  <!-- Fetching Saved addresses -->
+                  <div class="col-md-6">
+                    <address class="old-adds add-box">
+                      <ul>
+                        <li><p>Harsh</p></li>
+                        <li><p>+91 9990941900</p></li>
+                        <li class="my-2"><span>H.no 294 Ohm General Store, Chhoti Mata Mandir Road, Behind Sheetla mata Mandir, Gurugram Village, 122001</span></li>
+                        <li>
+                          <form action="#" method="post" class="d-flex align-items-center">
+                            <input type="hidden" name="defaultAddress">
+                            <input type="checkbox" name="is_default" class="mr-2">
+                            Default Address
+                            <a href="#" class="ml-auto text-uppercase mx-1 text-info">Edit</a>
+                            <a href="#" class="text-danger text-uppercase mx-1">Delete</a>
+                          </form>
+                        </li>
+                      </ul>
+                    </address>
+                  </div> 
+                  <!-- Saved address End -->
+                  <!-- Sample address -->
+                  {{-- <div class="col-md-6">
+                    <address class="old-adds add-box">
+                      <ul>
+                        <li><p>Harsh</p></li>
+                        <li><p>+91 9990941900</p></li>
+                        <li class="my-2"><span>H.no 294 Ohm General Store, Chhoti Mata Mandir Road, Behind Sheetla mata Mandir, Gurugram Village, 122001</span></li>
+                        <li>
+                          <option class="d-inline-block" value="default">Default Address</option>
+                          <a href="#" class="text-danger">Delete</a>
+                          <a href="#" class="text-success">Edit</a>
+                        </li>
+                      </ul>
+                    </address>
+                  </div> --}}
+
+                  <!-- Add New address Box -->
+                  <div class="col-md-6">
+                    <div class="new-add add-box">
+                      <a class="" href="#" data-toggle="" data-target="" type="button"> <i class="fa fa-plus-circle d-block mb-2"></i> Add a new delivery address</a>           
+                    </div>
+                  </div>
+                  <!-- New address Box Ends -->
+
                 </div>
               </div>
             </div>

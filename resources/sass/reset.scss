@@ -1015,19 +1015,19 @@ a {
 ## Posts and pages
 --------------------------------------------------------------*/
 
-.sticky {
-  position: fixed;
-  top: -56px;
-  left: 0;
-  width: 100%;
-  padding: 10px 0 5px 0;
-  z-index: 999;
-  animation-name: header-sticky;
-  animation-duration: .5s;
-  animation-timing-function: ease-out;
-  box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
-
-}
+// Sticky Navbar on scroll
+// .sticky {
+//   position: fixed;
+//   top: -56px;
+//   left: 0;
+//   width: 100%;
+//   padding: 10px 0 5px 0;
+//   z-index: 999;
+//   animation-name: header-sticky;
+//   animation-duration: .5s;
+//   animation-timing-function: ease-out;
+//   box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+// }
 
 .hentry {
   margin: 0 0 1.5em;
@@ -1975,7 +1975,7 @@ embed, iframe, object {
 
         /* display: block; */
 
-        i {}
+        // i {}
 
         &:hover {
           color: #F7941D;

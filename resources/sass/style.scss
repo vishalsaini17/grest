@@ -5968,6 +5968,42 @@ Version:1.0
       }
     }
   }
+
+  .my-profile-details{
+    .delivery-info{
+      .add-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 1rem;
+        border: 1px solid #3333335c;
+        border-radius: 0.5rem;
+        min-height: 193px;
+        margin: 0.75rem 0;
+        
+        p{
+          font-weight: 700;
+          color: #333;
+
+        }
+        span{
+          color: #888a96;
+          font-size: 0.85rem;
+          margin-top: 0.6rem;
+          display: block;
+        }
+      }
+      .new-add{
+        a{
+          text-align: center;
+        }
+        i{
+          font-size: 3rem;
+          color: #3333335c;
+        }
+      }
+    }
+  }
 }
 /*=============================
 	/End 404 Error CSS
