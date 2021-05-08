@@ -151,10 +151,17 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
 
 Route::get('/manage', 'HomeController@manage');
+Route::get('/addAddress', 'HomeController@addAddress');
+Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
+// Route::get('/manage', 'HomeController@addAddress')->name('add.address');
 
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/','HomeController@index')->name('user');
+    // manage 
+    // Route::get('/manage', 'HomeController@manage');
+    // Route::get('/addAddress', 'HomeController@addAddress');
+    // Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
      // Profile
      Route::get('/profile','HomeController@profile')->name('user-profile');
      Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');

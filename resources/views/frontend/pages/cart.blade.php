@@ -44,7 +44,7 @@
 											@php 
 											$photo=explode(',',$cart->product['photo']);
 											@endphp
-											<td class="image" data-title="No"><img src="{{$photo[0]}}" alt="{{$photo[0]}}"></td>
+											<td class="image" data-title="No"><img data-toggle="modal" data-target="#quickViewModal" src="{{$photo[0]}}" alt="{{$photo[0]}}"></td>
 											<td class="product-des" data-title="Description">
 												<p class="product-name"><a href="{{route('product-detail',$cart->product['slug'])}}" target="_blank">{{$cart->product['title']}}</a></p>
 												<p class="product-des">{!!($cart['summary']) !!}</p>
@@ -223,10 +223,12 @@
 	@include('frontend.layouts.newsletter')
 	<!-- End Shop Newsletter -->
 	
-	
+	{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		Launch demo modal
+	</button> --}}
 	
 	<!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="quickViewModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

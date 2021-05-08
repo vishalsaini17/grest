@@ -7,8 +7,10 @@ use App\User;
 use App\Models\Order;
 use App\Models\ProductReview;
 use App\Models\PostComment;
+use App\Models\Address;
 use App\Rules\MatchOldPassword;
 use Hash;
+use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 
 class HomeController extends Controller
 {
@@ -35,12 +37,53 @@ class HomeController extends Controller
 
     public function manage(){
         $profile=Auth()->user();
-        // echo 'at manage page';
-        // return redirect('view', 'frontend.pages.manage');
-        // return redirect()->route('frontend.pages.manage');
-        return view('frontend.pages.manage')->with('profile',$profile);
+
+        $address = Address::all()->where('user_id', auth()->user()->id);
+
+        
+        return view('frontend.pages.manage')->with('profile',$profile)
+                                            ->with('address', $address);
+    }
+
+    public function addAddress(Request $req){
+        $profile=Auth()->user();
+        $address = Address::all();
+
+        // dd($req);
+        // if(isset($req)){
+        $add = new Address;
+        $add->name = $req->name;
+        $add->phone = $req->phone;
+        $add->address = $req->address;
+        $add->is_default = '0';
+        $add->user_id = $req->user_id;
+
+        $add->save();
+
+        // setDefaultAddress($req->user_id, $req->name);
+
+            
+        return redirect('manage');
 
     }
+
+    // private function updateDefaultAddress(addressID){
+
+    // }
+
+     function setDefaultAddress($userid, $addressid){
+        echo 'helo';
+    }
+
+    public function deleteAdd($id){
+        
+        Address::find($id)->delete();
+        
+        return redirect('manage');
+    }
+
+
+
 
     public function profile(){
         $profile=Auth()->user();

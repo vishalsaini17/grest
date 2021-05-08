@@ -121,6 +121,8 @@
 	<script src="{{asset('frontend/js/isotope/isotope.pkgd.min.js')}}"></script>
 	<!-- Easing JS -->
 	<script src="{{asset('frontend/js/easing.js')}}"></script>
+	<!-- Floating Placeholder JS -->
+	<script src="{{asset('frontend/js/jquery.placeholder.label.min.js')}}"></script>
 
 	<!-- Active JS -->
 	<script src="{{asset('frontend/js/active.js')}}"></script>
@@ -151,4 +153,40 @@
 
 			});
 		});
+
+		
+		// FLoat Placeholder Settings 
+		$(document).ready(function (){
+			$('input[placeholder]').placeholderLabel({
+
+				// placeholder color
+				placeholderColor: "#898989", 
+
+				// label color
+				labelColor: "#EC2752",
+
+				// size of label
+				labelSize: "16px",
+
+				// font style
+				fontStyle: "normal", 
+
+				// uses border color
+				useBorderColor: false, 
+
+				// displayed in the input
+				inInput: true, 
+
+				// time to move
+				timeMove: 300 
+				
+			});
+			$('textarea[placeholder]').placeholderLabel({
+				labelColor: "#EC2752",
+
+			});
+
+
+		})
+
 	  </script>
