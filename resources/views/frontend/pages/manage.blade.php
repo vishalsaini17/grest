@@ -58,16 +58,19 @@
                         <li class="aPhone"><p>+91 {{$a->phone}}</p></li>
                         <li class="my-2 aAddress"><span>{{$a->address}} <p class="aPin d-inline">122001</p></span></li>
                         <li>
-                          <form action="#" method="post" class="d-flex align-items-center">
-                            <input type="hidden" name="defaultAddress">
-                            <input type="hidden" name="user_id" value="{{$profile->user_id}}">
-                            <input type="checkbox" name="is_default" class="mr-2">
+                          <form action="/set-default-address" method="post" class="d-flex align-items-center">
+                            @csrf
+                            <input type="hidden" name="defaultAddress" value="{{$a->id}}">
+                            <input type="hidden" name="user_id" value="{{$profile->id}}">
+                            <input type="checkbox" onclick="this.form.submit()" {{($a->is_default == 1)? 'checked': ''}} name="is_default" class="mr-2">
                             Default Address
+                            {{-- <input type="submit" value="Submit"> --}}
                             <a href="#" data-toggle="modal" data-target="#addAddressModal" class="ml-auto text-uppercase mx-1 text-info">Edit</a>
                             {{-- <a href="{{"deleteAdd/".$a->id}}" class="text-danger text-uppercase mx-1">Delete</a> --}}
                             <a href="#" onclick="delAddress({{$a->id}})" id="deleteMe" class="text-danger text-uppercase mx-1">Delete</a>
                           </form>
                         </li>
+                        
                       </ul>
                     </address>
                   </div> 

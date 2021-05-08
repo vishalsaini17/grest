@@ -49,7 +49,7 @@ class HomeController extends Controller
         $profile=Auth()->user();
         $address = Address::all();
 
-        // dd($req);
+        // dd($req->is_default);
         // if(isset($req)){
         $add = new Address;
         $add->name = $req->name;
@@ -60,20 +60,47 @@ class HomeController extends Controller
 
         $add->save();
 
-        // setDefaultAddress($req->user_id, $req->name);
-        
+        // dd($add);
 
+        if($req->is_default == 1){
+            // dd($req->id);
+            HomeController::updateDefaultAddress($add->id);
+        }
             
         return redirect('manage');
 
     }
 
-    // private function updateDefaultAddress(addressID){
+    static function updateDefaultAddress($addressid){
+    //    dd("if passed, $addressid");
+        $address = Address::all()->where('user_id', auth()->user()->id);
+        // dd($address);
+        foreach($address as $a){
+            $a->is_default = 0;
+            $a->save();
+        }
+        $updatedAdd = $address->where('id', $addressid);
+        // dd($update);
+        foreach($updatedAdd as $a){
+            $a->is_default = 1;
+            $a->save(); 
+        }
+        return redirect('manage');
 
-    // }
 
-     function setDefaultAddress($userid, $addressid){
-        echo 'helo';
+        // dd($updatedAdd);
+
+        
+    }
+
+    public function setDefaultAddress(Request $req){
+        // dd($req);
+        $addID = $req->defaultAddress;
+        // $userid = $req->user_id;
+        HomeController::updateDefaultAddress($addID);
+
+        return redirect('manage');
+
     }
 
     public function deleteAdd($id){
