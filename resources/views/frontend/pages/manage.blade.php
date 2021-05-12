@@ -70,7 +70,7 @@
                             {{-- <input type="submit" value="Submit"> --}}
                             <a href="#" data-toggle="modal" onclick="updateAddress()" data-target="#editAddressModal" class="ml-auto text-uppercase mx-1 editBtn text-info">Edit</a>
                             {{-- <a href="{{"deleteAdd/".$a->id}}" class="text-danger text-uppercase mx-1">Delete</a> --}}
-                            <a href="#" onclick="delAddress({{$a->id}})" id="deleteMe" class="text-danger text-uppercase mx-1">Delete</a>
+                            <a href="javascript:;" onclick="delAddress({{$a->id}})" id="deleteMe" class="text-danger text-uppercase mx-1">Delete</a>
                           </form>
                         </li>
                         
@@ -246,18 +246,19 @@
 
         var z = confirm("Do you want to delete this ?");
         if (z == true) {
-          window.location.assign(`deleteAdd/${id}`); 
-          // $.ajax({
-          //   url: `deleteAdd/${id}`,
-          //   type: "POST",
-          //   success: function(data){
-          //     $(`address[value="${id}"]`).remove()
-          //   },
-          //   error: function (xhr, ajaxOptions, thrownError) {
-          //   alert(xhr.status);
-          //   alert(thrownError);
-          // }
-          // })
+          debugger
+          // window.location.assign(`deleteAdd/${id}`); 
+          $.ajax({
+            url: `deleteAdd/${id}`,
+            type: "get",
+            success: function(data){
+              $(`address[data-address-id=${id}]`).parent().remove()
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+          }
+          })
         }
 
       }
