@@ -272,8 +272,6 @@ Version:1.0
     background: #222;
     border-radius: 0;
     font-size: 18px;
-    -webkit-transition: all 500ms ease;
-    -moz-transition: all 500ms ease;
     transition: all 500ms ease;
     display: block;
     color: #fff;
@@ -301,8 +299,6 @@ Version:1.0
 
 .header {
   .logo {
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
 
@@ -331,29 +327,25 @@ Version:1.0
 
     .dropdown {
       background: #fff;
-      width: 220px;
+      // width: 220px;
       position: absolute;
       top: 100%;
       z-index: 999;
-      -webkit-box-shadow: 0px 3px 5px #3333334d;
-      -moz-box-shadow: 0px 3px 5px #3333334d;
       box-shadow: 0px 3px 5px #3333334d;
       transform-origin: 0 0 0;
-      transform: scaleY(0.2);
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
+      // transform: scaleY(0.2);
       transition: all 0.3s ease 0s;
       opacity: 0;
       visibility: hidden;
       padding: 10px;
-      left: 0;
+      // left: 0;
       margin: 0;
     }
 
     &:hover .dropdown {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0px);
+      // transform: translateY(0px);
     }
 
     .dropdown {
@@ -839,10 +831,11 @@ Version:1.0
 
       input {
         height: 40px;
-        background: transparent;
+        background: #f1f3f5;
         color: #666;
         border-radius: 0;
         border: none;
+        box-shadow: none;
         font-size: 14px;
         font-weight: 400;
         padding: 0 25px 0 20px;
@@ -854,7 +847,7 @@ Version:1.0
         color: #fff;
         background: #333333;
         border: none;
-        padding: 10px 20px;
+        padding: 6.5px 20px;
         border-radius: 0 5px 5px 0;
         -webkit-transition: all 0.4s ease;
         -moz-transition: all 0.4s ease;
@@ -5982,6 +5975,21 @@ Version:1.0
 
         ul{
           width: 100%;
+
+          input[type="checkbox"]{
+            height: 17px;
+            width: 17px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover{
+              height: 20px;
+              width: 20px;
+            }
+          }
+          a{
+            font-weight: 600;
+          }
         }
         
         p{
@@ -5989,12 +5997,14 @@ Version:1.0
           color: #333;
 
         }
-        span{
-          color: #888a96;
-          font-size: 0.85rem;
-          margin-top: 0.6rem;
-          display: block;
-          min-height: 4.75rem;
+        .aAddress{
+          span{
+            color: #888a96;
+            font-size: 0.85rem;
+            margin-top: 0.6rem;
+            display: block;
+            min-height: 4.75rem;
+          }
         }
       }
       .new-add{
@@ -6011,6 +6021,13 @@ Version:1.0
       }
     }
   }
+}
+
+.floating-Placeholder:focus{
+  box-shadow: 0 0 0 0.2rem #ea295369 !important;
+  border-color: transparent !important;
+  transition: all 0.3s ease-in-out;
+
 }
 /*=============================
 	/End 404 Error CSS

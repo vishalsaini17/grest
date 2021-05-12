@@ -98,7 +98,7 @@
 	<!-- Bootstrap JS -->
 	<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
 	<!-- Color JS -->
-	<script src="{{asset('frontend/js/colors.js')}}"></script>
+	{{-- <script src="{{asset('frontend/js/colors.js')}}"></script> --}}
 	<!-- Slicknav JS -->
 	<script src="{{asset('frontend/js/slicknav.min.js')}}"></script>
 	<!-- Owl Carousel JS -->
@@ -157,7 +157,7 @@
 		
 		// FLoat Placeholder Settings 
 		$(document).ready(function (){
-			$('input[placeholder]').placeholderLabel({
+			$('.floating-Placeholder').placeholderLabel({
 
 				// placeholder color
 				placeholderColor: "#898989", 
@@ -166,7 +166,7 @@
 				labelColor: "#EC2752",
 
 				// size of label
-				labelSize: "16px",
+				labelSize: "14px",
 
 				// font style
 				fontStyle: "normal", 
@@ -181,12 +181,35 @@
 				timeMove: 300 
 				
 			});
-			$('textarea[placeholder]').placeholderLabel({
-				labelColor: "#EC2752",
-
-			});
-
-
+			
 		})
+
+		// Ignore innerChild Function
+		$.fn.ignore = function(sel){
+			return this.clone().find(sel||">*").remove().end()
+		}
+
+		// Custom Code
+		$('.editBtn').click(function(){
+      var name = $(this).parents('li').siblings('.aName').find('p').html()
+      var phone = $(this).parents('li').siblings('.aPhone').find('p').ignore('span').html()
+      var address = $(this).parents('li').siblings('.aAddress').find('span').ignore('p').text()
+      var pincode = $(this).parents('li').siblings('.aAddress').find('p').html()
+			var addressID = $(this).siblings('input[name="address_id"]').val()
+
+
+			var modal = $('#editAddressModal')
+			modal.find('input[name="name"]').val(name)
+			modal.find('input[name="phone"]').val(phone)
+			modal.find('textarea[name="address"]').val(address)
+			modal.find('input[name="address_id"]').val(addressID)
+			var modalPincode = modal.find('input[name="pincode"]')
+			if(pincode === 'No Pincode available'){
+				modalPincode.val('')
+			}else {
+				modalPincode.val(pincode)
+			}
+
+    })
 
 	  </script>

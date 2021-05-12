@@ -1,5 +1,8 @@
 @extends('frontend.layouts.master')
 
+@section('title', 'Manage')
+    
+
 @section('main-content')
 
 <div class="container-fluid profile-page" style="background-color: #F1F3F5">
@@ -7,7 +10,7 @@
     {{-- <h1>User Manage page</h1> --}}
       <nav class="my-profile-nav row justify-content-center">
         <ul class="sub-menu col-9 d-flex">
-          <li><a href="#">My Profile</a></li>
+          <li><a href="{{route('manage')}}">My Profile</a></li>
           <li><a href="#">My Orders</a></li>
         </ul>
         <ul>
@@ -55,17 +58,17 @@
                     <address class="old-adds add-box" data-address-ID="{{$a->id}}">
                       <ul>
                         <li class="aName"><p>{{$a->name}}</p></li>
-                        <li class="aPhone"><p>+91 {{$a->phone}}</p></li>
-                        <li class="my-2 aAddress"><span>{{$a->address}} <p class="aPin d-inline">122001</p></span></li>
+                        <li class="aPhone"><p><span>+91 </span>{{$a->phone}}</p></li>
+                        <li class="my-2 aAddress"><span>{{$a->address}} <p class="aPin d-inline">{{($a->pincode != null)? $a->pincode : 'No Pincode available' }}</p></span></li>
                         <li>
                           <form action="/set-default-address" method="post" class="d-flex align-items-center">
                             @csrf
-                            <input type="hidden" name="defaultAddress" value="{{$a->id}}">
+                            <input type="hidden" name="address_id" value="{{$a->id}}">
                             <input type="hidden" name="user_id" value="{{$profile->id}}">
                             <input type="checkbox" onclick="this.form.submit()" {{($a->is_default == 1)? 'checked': ''}} name="is_default" class="mr-2">
                             Default Address
                             {{-- <input type="submit" value="Submit"> --}}
-                            <a href="#" data-toggle="modal" data-target="#addAddressModal" class="ml-auto text-uppercase mx-1 text-info">Edit</a>
+                            <a href="#" data-toggle="modal" onclick="updateAddress()" data-target="#editAddressModal" class="ml-auto text-uppercase mx-1 editBtn text-info">Edit</a>
                             {{-- <a href="{{"deleteAdd/".$a->id}}" class="text-danger text-uppercase mx-1">Delete</a> --}}
                             <a href="#" onclick="delAddress({{$a->id}})" id="deleteMe" class="text-danger text-uppercase mx-1">Delete</a>
                           </form>
@@ -132,30 +135,32 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/addAddress" class="">
+        <form action="/addAddress" class="row">
           @csrf
-          <div class="form-group">
-            <input type="name" name="name" required placeholder="Enter Name" class="form-control">
+          <div class="form-group col-lg-6 col-12">
+            <input type="name" name="name" required placeholder="Enter Name" class="form-control floating-Placeholder">
           </div>
-          <div class="form-group">
-            <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control">
+          <div class="form-group col-lg-6 col-12">
+            <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control floating-Placeholder">
           </div>
-          <div class="form-group">
-            <textarea type="textarea" name="address" required placeholder="Enter address" class="form-control"></textarea>
+          <div class="form-group col-lg-12">
+            <textarea type="textarea" name="address" required placeholder="Enter address" class="form-control floating-Placeholder"></textarea>
           </div>
-          <div class="row">
-            <div class="col-6 d-flex justify-content-around">
-              <span class="font-bold">Make this Address default?</span>
+          <div class="col-lg-12 form-group">
+            <div class="d-flex justify-content-around">
+              <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control floating-placeholder">
+              <span class="font-bold w-100 text-right" style="margin: 0.5rem 2rem">Make this Address default?</span>
               <select type="radio" class="mb-0" name="is_default" >
                 <option value="1">Yes</option>
                 <option value="0">No</option>
               </select>
                 <input type="hidden" name="user_id" value="{{$profile->id}}">
             </div>
-            <div class="col-4 ml-auto text-center">
-              <input type="submit" value="Submit" class="btn btn-lg btn-success">
-              <input type="reset" value="Reset" class="btn btn-lg btn-secondary">
-            </div>
+            
+          </div>
+          <div class="form-group col-6 mx-auto text-center">
+            <input type="submit" value="Submit" class="btn btn-lg btn-success mx-3">
+            <input type="reset" value="Reset" class="btn btn-lg btn-secondary mx-3">
           </div>
         </form>
       </div>
@@ -165,41 +170,46 @@
 <!-- Add Address Modal Ends -->
 
 <!--Update Address Modal -->
-<div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel" aria-hidden="true">
   <div class="modal-dialog inputFileds" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Address</h5>
+        <h5 class="modal-title" id="editAddressModalLabel">Update Address</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="/updateAddress" class="">
+        <form action="/updateAddress" class="row">
           @csrf
           <input type="hidden" name="id" value="">
-          <div class="form-group">
-            <input type="name" name="name" required placeholder="Enter Name" class="form-control">
+          <div class="form-group col-lg-6 col-12">
+            <label for="name">Name</label>
+            <input type="text" name="name" required placeholder="Enter Name" class="form-control">
           </div>
-          <div class="form-group">
+          <div class="form-group col-lg-6 col-12">
+            <label for="name">Mobile Number</label>
             <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control">
           </div>
-          <div class="form-group">
-            <textarea type="textarea" name="address" required placeholder="Enter address" class="form-control"></textarea>
+          <div class="form-group col-lg-12">
+            <textarea type="text" name="address" required placeholder="Enter address" class="form-control"></textarea>
           </div>
-          <div class="row">
-            <div class="col-6 d-flex justify-content-around">
-              <span class="font-bold">Make this Address default?</span>
+          <div class="col-lg-12 form-group">
+            <div class="d-flex justify-content-around">
+              <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control">
+              <span class="font-bold w-100 text-right" style="margin: .5rem 2rem;">Make this Address default?</span>
               <select type="radio" class="mb-0" name="is_default" >
                 <option value="1">Yes</option>
                 <option value="0">No</option>
               </select>
                 <input type="hidden" name="user_id" value="{{$profile->id}}">
+                <input type="hidden" name="address_id" value="">
             </div>
-            <div class="col-4 ml-auto text-center">
-              <input type="submit" value="Submit" class="btn btn-lg btn-success">
-              <input type="reset" value="Reset" class="btn btn-lg btn-secondary">
-            </div>
+            
+          </div>
+          <div class="form-group col-6 mx-auto text-center">
+            <input type="submit" value="Update" class="btn btn-lg btn-success mx-3">
+            <input type="reset" value="Reset" class="btn btn-lg btn-secondary mx-3">
           </div>
         </form>
       </div>
@@ -227,27 +237,35 @@
   </div>
 </div>
 
-<script>
-  function delAddress(id){
 
-    var z = confirm("Do you want to delete this ?");
-    if (z == true) {
-      window.location.assign(`deleteAdd/${id}`); 
-      // $.ajax({
-      //   url: `deleteAdd/${id}`,
-      //   type: "POST",
-      //   success: function(data){
-      //     $(`address[value="${id}"]`).remove()
-      //   },
-      //   error: function (xhr, ajaxOptions, thrownError) {
-      //   alert(xhr.status);
-      //   alert(thrownError);
-      // }
-      // })
-    }
+@endsection
 
-  }
+@section('script')
+    <script>
+      function delAddress(id){
 
-</script>
+        var z = confirm("Do you want to delete this ?");
+        if (z == true) {
+          window.location.assign(`deleteAdd/${id}`); 
+          // $.ajax({
+          //   url: `deleteAdd/${id}`,
+          //   type: "POST",
+          //   success: function(data){
+          //     $(`address[value="${id}"]`).remove()
+          //   },
+          //   error: function (xhr, ajaxOptions, thrownError) {
+          //   alert(xhr.status);
+          //   alert(thrownError);
+          // }
+          // })
+        }
 
+      }
+
+      function updateAddress(){
+        
+      }
+
+
+    </script>
 @endsection

@@ -15,7 +15,9 @@ class address extends Model
      * @var array
      */
 
-    protected $fillable=['id','user_id','name','is_default','phone','address','status'];
+    protected $fillable=[
+        'id','user_id','name','is_default','phone','address','status','pincode'
+        ];
 
     // public static function getAddress(){
     //     return Address::all();
