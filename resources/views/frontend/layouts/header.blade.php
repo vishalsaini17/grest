@@ -48,6 +48,7 @@
         <div class="col-5 col-md-3 col-lg-2">
           <!-- Logo -->
           <div class="logo">
+            <h1>hola</h1>
             @php
             $settings=DB::table('settings')->get();
             @endphp
