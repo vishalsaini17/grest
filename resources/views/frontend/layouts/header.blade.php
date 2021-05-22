@@ -1,23 +1,24 @@
 <header class="header shop">
   <!-- Topbar -->
   <div class="topbar">
-    <div class="container">
+    <div class="container-lg">
       <div class="row">
-        <div class="col-lg-6 col-md-12 col-12">
+        <div class="col-6">
           <!-- Top Left -->
           <div class="top-left">
             <ul class="list-main">
               @php
               $settings=DB::table('settings')->get();
-
+              // dd($settings[0]->phone);
               @endphp
-              <li><i class="ti-headphone-alt"></i>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
-              <li><i class="ti-email"></i> @foreach($settings as $data) {{$data->email}} @endforeach</li>
+              <li><i class="ti-headphone-alt"></i><a href="tel:{{$settings[0]->phone}}">{{$settings[0]->phone}}</a></li>
+              <li><i class="ti-email"></i><a href="mailto:{{$settings[0]->email}}">{{$settings[0]->email}}</a></li>
+            
             </ul>
           </div>
           <!--/ End Top Left -->
         </div>
-        <div class="col-lg-6 col-md-12 col-12">
+        <div class="col-6">
           <!-- Top Right -->
           <div class="right-content">
             <ul class="list-main">
@@ -32,7 +33,7 @@
               <li><i class="ti-power-off"></i> <a href="" data-target="#logoutModal" data-toggle="modal">Logout</a></li>
 
               @else
-              <li><i class="ti-power-off"></i><a href="{{route('login.form')}}">Login /</a> <a href="{{route('register.form')}}">Register</a></li>
+              <li><i class="ti-power-off"></i><a href="{{route('login.form')}}">Login</a>&nbsp/&nbsp<a href="{{route('register.form')}}">Register</a></li>
               @endauth
             </ul>
           </div>

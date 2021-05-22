@@ -3,6 +3,8 @@
 @section('title','E-Shop || Login Page')
 
 @section('main-content')
+
+<div id="fb-root"></div>
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -55,8 +57,9 @@
                                         <button class="btn btn-primary" type="submit">Login</button>
                                         <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Register</a>
                                         <span style="font-size: large">OR</span>
+                                        {{-- <div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true"></div> --}}
                                         <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
+                                        {{-- <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
                                         <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
 
                                     </div>

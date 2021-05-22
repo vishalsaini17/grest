@@ -14,8 +14,8 @@
 							@php
 								$settings=DB::table('settings')->get();
 							@endphp
-							<p class="text">@foreach($settings as $data) {{$data->short_des}} @endforeach</p>
-							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
+							<p class="text">{{$settings[0]->short_des}}</p>
+							<p class="call">Got Question? Call us 24x7<a href="tel:{{$settings[0]->phone}}" class="d-block mt-1">{{$settings[0]->phone}}</a></p>
 						</div>
 						<!-- End Single Widget -->
 					</div>
@@ -54,13 +54,13 @@
 							<!-- Single Widget -->
 							<div class="contact">
 								<ul>
-									<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->email}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
+									<li>{{$settings[0]->address}}</li>
+									<li><a href="tel:{{$settings[0]->phone}}">{{$settings[0]->phone}}</a></li>
+             		  <li><a href="mailto:{{$settings[0]->email}}">{{$settings[0]->email}}</a></li>
 								</ul>
 							</div>
 							<!-- End Single Widget -->
-							<div class="sharethis-inline-follow-buttons"></div>
+							{{-- <div class="sharethis-inline-follow-buttons"></div> --}}
 						</div>
 						<!-- End Single Widget -->
 					</div>

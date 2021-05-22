@@ -7,18 +7,19 @@ return [
      * You may use "log" or "null" to prevent calling the
      * API directly from your environment.
      */
-    'driver' => env('MAILCHIMP_DRIVER', 'api'),
+    // 'driver' => env('MAILCHIMP_DRIVER', 'api'),
 
     /*
      * The API key of a MailChimp account. You can find yours at
      * https://us10.admin.mailchimp.com/account/api-key-popup/.
      */
+    // *********** Put values in .ENV file, it'llbe automatically fetched here*************
     'apiKey' => env('MAILCHIMP_APIKEY'),
 
     /*
      * The listName to use when no listName has been specified in a method.
      */
-    'defaultListName' => 'subscribers',
+    'defaultListName' => 'Grest_Newsletter',
 
     /*
      * Here you can define properties of the lists.
@@ -32,7 +33,7 @@ return [
          * You can set it to any string you want and you can add
          * as many lists as you want.
          */
-        'subscribers' => [
+        'Grest_Newsletter' => [
 
             /*
              * A MailChimp list id. Check the MailChimp docs if you don't know

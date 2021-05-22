@@ -221,18 +221,14 @@ Version:1.0
 
 .btn {
   position: relative;
-  font-weight: 500;
-  font-size: 14px;
-  display: inline-block;
-  -webkit-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+  // font-weight: 500;
+  // font-size: 14px;
+  // transition: all 0.4s ease;
   z-index: 5;
-  display: inline-block;
   // padding: 13px 32px;
-  padding: 0.75rem 1rem;
+  // padding: 0.75rem 1rem;
   border-radius: 6px;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 
   &-dark{
     color: #fff;
@@ -241,6 +237,7 @@ Version:1.0
     &:hover {
       background: $primary;
       color: #fff;
+      box-shadow: #ea295385;
     }
   }
 
@@ -252,6 +249,7 @@ Version:1.0
     &:hover {
       background: $primary;
       color: #fff;
+      box-shadow: #ea295385;
     }
   }
 
@@ -505,7 +503,7 @@ Version:1.0
 
     .list-main li {
       display: inline-block;
-      color: #333;
+      color: #000;
       font-size: 13px;
       font-weight: 500;
       border-right: 1px solid #f0f0f0;
@@ -518,6 +516,7 @@ Version:1.0
         color: $primary;
         position: relative;
         top: 1px;
+
       }
 
       &:last-child {
@@ -526,7 +525,9 @@ Version:1.0
       }
 
       a {
-        color: #333;
+        color: inherit;
+        font-size: inherit;
+        display: inline-block;
 
         &:hover {
           color: $primary;
@@ -2159,11 +2160,26 @@ Version:1.0
   display: inline-block;
   width: 100%;
   border: none;
+  transition: all .3s ease-in-out;
+
+  .btn{
+    // box-shadow: none;
+    // margin: 0 1rem;
+
+    &:hover{
+      border: 1px solid #3333334d;
+    }
+  }
 
   .nav-item {
     margin-bottom: -1px;
     display: inline-block;
   }
+
+  // .how-active1{
+  //   background: $secondary;
+  //   color: white;
+  // }
 
   li {
     a {
@@ -2221,15 +2237,17 @@ Version:1.0
 
       img {
         position: absolute;
-        left: 0;
+        left: 50%;
         top: 0;
         height: 100%;
         object-fit: contain;
+        transform: translateX(-50%);
 
         &.hover-img {
           position: absolute;
-          left: 0;
+          left: 50%;
           top: 0;
+          transform: translatex(-50%);
           z-index: 1;
           opacity: 0;
           transition: opacity 0.5s ease, transform 2s cubic-bezier(0, 0, 0.44, 1.18), -webkit-transform 2s cubic-bezier(0, 0, 0.44, 1.18);
@@ -2237,6 +2255,8 @@ Version:1.0
       }
 
       span {
+        z-index: 2;
+
         &.price-dec {
           background-color: $primary;
           display: inline-block;
@@ -2385,7 +2405,7 @@ Version:1.0
           opacity: 1;
           color: #333;
           background: #fff;
-          margin-top: -12px;
+          margin-top: 40px;
         }
       }
 
@@ -4263,9 +4283,9 @@ Version:1.0
       .btn {
         display: inline-block;
         margin-right: 10px;
-        height: 46px;
+        // height: 46px;
         color: #fff;
-        line-height: 20px;
+        // line-height: 20px;
 
         &:hover {
           background: $primary;
@@ -6077,7 +6097,7 @@ Version:1.0
 
       a {
         color: $primary;
-        font-size: 20px;
+        font-size: 1.5rem;
         font-weight: 600;
       }
     }

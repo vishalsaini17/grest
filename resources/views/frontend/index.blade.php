@@ -71,7 +71,7 @@
 </section>
 @endif
 
-<div class="container brand-container">
+<div class="container brand-container d-none d-sm-block">
   <div class="top-brands">
       <!-- <div class="container"> -->
     <div class="owl-carousel brand-carousel owl-theme text-center">
@@ -117,7 +117,7 @@
       @foreach($category_lists as $cat)
       @if($cat->is_parent==1)
       <!-- Single Banner  -->
-      <div class="col">
+      <div class="col-sm">
         <div class="single-banner">
           @if($cat->photo)
           <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
@@ -160,12 +160,12 @@
               // dd($categories);
               @endphp
               @if($categories)
-              <button class="btn-dark btn"  data-filter="*">
+              <button class="btn-dark btn mx-lg-3 mx-md-3"  data-filter="*">
                 All Products
               </button>
               @foreach($categories as $key=>$cat)
 
-              <button class="btn" style="background:none;color:black;" data-filter=".{{$cat->id}}">
+              <button class="btn btn-outline-secondary mx-lg-3 mx-md-3"  data-filter=".{{$cat->id}}">
                 {{$cat->title}}
               </button>
               @endforeach
@@ -490,7 +490,7 @@
 <!-- Modal -->
 @if($product_lists)
 @foreach($product_lists as $key=>$product)
-<div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
+<div class="modal fade quickViewModal" id="{{$product->id}}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -606,10 +606,10 @@
                   <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                 </div>
               </form>
-              <div class="default-social">
+              {{-- <div class="default-social">
                 <!-- ShareThis BEGIN -->
                 <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -623,8 +623,8 @@
 @endsection
 
 @push('styles')
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
+{{-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script> --}}
+{{-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script> --}}
 <style>
 /* Banner Sliding */
 #Gslider{
@@ -788,8 +788,7 @@ $(isotopeButton).each(function() {
     $(this).addClass('how-active1');
   });
 });
-</script>
-<script>
+
 function cancelFullScreen(el) {
   var requestMethod = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullscreen;
   if (requestMethod) { // cancel full screen.

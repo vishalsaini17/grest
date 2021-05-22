@@ -40,9 +40,10 @@ return [
         'redirect' => 'https://www.grest.in/login/google/callback',
      ],
      'facebook' => [
-        'client_id' => '1494792524037846', //Facebook API
-        'client_secret' => '1bf13c2faf680f4ae2b97bdafa92c7d2', //Facebook Secret
-        'redirect' => 'https://www.grest.in/login/facebook/callback',
+        'client_id' => '136836768489519', //Facebook API
+        'client_secret' => 'e68b706f5ca9cd5e65bf0306a93d8641', //Facebook Secret
+        'redirect' => 'https://localhost:8000/login/facebook/callback',
      ],
 
 ];
+ 
