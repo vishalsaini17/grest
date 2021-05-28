@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PaytmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -201,3 +202,8 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+//Paytm Payment
+Route::post('paytm-payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment');
+Route::post('paytm-callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
+Route::get('paytm-purchase',[PaytmController::Class, 'paytmPurchase'])->name('paytm.purchase');
