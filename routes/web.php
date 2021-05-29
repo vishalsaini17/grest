@@ -204,6 +204,6 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
 //Paytm Payment
-Route::post('paytm-payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment');
+Route::get('paytm-payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
 Route::post('paytm-callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
 Route::get('paytm-purchase',[PaytmController::Class, 'paytmPurchase'])->name('paytm.purchase');
