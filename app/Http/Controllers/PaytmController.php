@@ -16,7 +16,7 @@ class PaytmController extends Controller {
     $payment->prepare([
       'order'         => rand(),
       'user'          => rand(10, 1000),
-      'mobile_number' => '123456789',
+      'mobile_number' => '8467849784',
       'email'         => 'paytmtest@gmail.com',
       'amount'        => '1',
       'callback_url'  => route('paytm.callback'),
