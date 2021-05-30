@@ -18,7 +18,6 @@
   </div>
   <!-- End Breadcrumbs -->
 
-	<x-general />
 
   <!-- Shopping Cart -->
   <div class="shopping-cart section">
