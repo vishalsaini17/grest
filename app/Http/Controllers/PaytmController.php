@@ -11,16 +11,20 @@ class PaytmController extends Controller {
    *
    * @return Response
    */
-  public function paytmPayment(Request $request) {
+  public function paytmPayment(Request $req) {
     $payment = PaytmWallet::with('receive');
+    $orderId = time() .$req->order_id . mt_rand() ;
+    // dd($orderId);
     $payment->prepare([
-      'order'         => rand(),
-      'user'          => rand(10, 1000),
-      'mobile_number' => '8467849784',
-      'email'         => 'paytmtest@gmail.com',
-      'amount'        => '1',
+      'order'         => $orderId,
+      'user'          => $req->user_id,
+      'mobile_number' => $req->phone,
+      'email'         => auth()->user()->email,
+      'amount'        => $req->amount,
       'callback_url'  => route('paytm.callback'),
     ]);
+    // dd($payment);
+
     return $payment->receive();
   }
 

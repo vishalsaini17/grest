@@ -7667,7 +7667,7 @@ Version:1.0
   color: #EA2953;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box {
+.delivery-info .add-box {
   display: flex;
   padding: 1rem 1rem;
   border: 1px solid #3333335c;
@@ -7676,32 +7676,32 @@ Version:1.0
   margin: 0.75rem 0;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box ul {
+.delivery-info .add-box ul {
   width: 100%;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box ul input[type=checkbox] {
+.delivery-info .add-box ul input[type=checkbox] {
   height: 17px;
   width: 17px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box ul input[type=checkbox]:hover {
+.delivery-info .add-box ul input[type=checkbox]:hover {
   height: 20px;
   width: 20px;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box ul a {
+.delivery-info .add-box ul a {
   font-weight: 600;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box p {
+.delivery-info .add-box p {
   font-weight: 700;
   color: #333;
 }
 
-.profile-page .my-profile-details .delivery-info .add-box .aAddress span {
+.delivery-info .add-box .aAddress span {
   color: #888a96;
   font-size: 0.85rem;
   margin-top: 0.6rem;
@@ -7709,16 +7709,16 @@ Version:1.0
   min-height: 4.75rem;
 }
 
-.profile-page .my-profile-details .delivery-info .new-add {
+.delivery-info .new-add {
   justify-content: center;
   align-items: center;
 }
 
-.profile-page .my-profile-details .delivery-info .new-add a {
+.delivery-info .new-add a {
   text-align: center;
 }
 
-.profile-page .my-profile-details .delivery-info .new-add i {
+.delivery-info .new-add i {
   font-size: 3rem;
   color: #3333335c;
 }

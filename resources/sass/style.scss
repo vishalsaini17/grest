@@ -5988,61 +5988,63 @@ Version:1.0
   }
 
   .my-profile-details{
-    .delivery-info{
-      .add-box{
-        display: flex;
-        padding: 1rem 1rem;
-        border: 1px solid #3333335c;
-        border-radius: 0.5rem;
-        min-height: 12.5rem;
-        margin: 0.75rem 0;
+    
+  }
+}
 
-        ul{
-          width: 100%;
+.delivery-info{
+  .add-box{
+    display: flex;
+    padding: 1rem 1rem;
+    border: 1px solid #3333335c;
+    border-radius: 0.5rem;
+    min-height: 12.5rem;
+    margin: 0.75rem 0;
 
-          input[type="checkbox"]{
-            height: 17px;
-            width: 17px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
+    ul{
+      width: 100%;
 
-            &:hover{
-              height: 20px;
-              width: 20px;
-            }
-          }
-          a{
-            font-weight: 600;
-          }
-        }
-        
-        p{
-          font-weight: 700;
-          color: #333;
+      input[type="checkbox"]{
+        height: 17px;
+        width: 17px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
 
-        }
-        .aAddress{
-          span{
-            color: #888a96;
-            font-size: 0.85rem;
-            margin-top: 0.6rem;
-            display: block;
-            min-height: 4.75rem;
-          }
+        &:hover{
+          height: 20px;
+          width: 20px;
         }
       }
-      .new-add{
-        justify-content: center;
-        align-items: center;
-
-        a{
-          text-align: center;
-        }
-        i{
-          font-size: 3rem;
-          color: #3333335c;
-        }
+      a{
+        font-weight: 600;
       }
+    }
+    
+    p{
+      font-weight: 700;
+      color: #333;
+
+    }
+    .aAddress{
+      span{
+        color: #888a96;
+        font-size: 0.85rem;
+        margin-top: 0.6rem;
+        display: block;
+        min-height: 4.75rem;
+      }
+    }
+  }
+  .new-add{
+    justify-content: center;
+    align-items: center;
+
+    a{
+      text-align: center;
+    }
+    i{
+      font-size: 3rem;
+      color: #3333335c;
     }
   }
 }

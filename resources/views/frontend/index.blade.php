@@ -212,8 +212,8 @@
                     @php
                     $after_discount=($product->price-($product->price*$product->discount)/100);
                     @endphp
-                    <span style="color: #ea2953">Rs. {{number_format($after_discount,2)}}</span>
-                    <small style="padding-left:4%; text-decoration: line-through;">Rs. {{number_format($product->price,2)}}</small>
+                    <span style="color: #ea2953">Rs. {{number_format($after_discount)}}</span>
+                    <small style="padding-left:4%; text-decoration: line-through;">Rs. {{number_format($product->price)}}</small>
                   </div>
                 </div>
               </div>
@@ -303,11 +303,11 @@
             <div class="product-content">
               <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
               <div class="product-price">
-                <span class="old">Rs. {{number_format($product->price,2)}}</span>
+                <span class="old">Rs. {{number_format($product->price)}}</span>
                 @php
                 $after_discount=($product->price-($product->price*$product->discount)/100)
                 @endphp
-                <span>Rs. {{number_format($after_discount,2)}}</span>
+                <span>Rs. {{number_format($after_discount)}}</span>
               </div>
             </div>
           </div>
@@ -550,7 +550,7 @@
               @php
               $after_discount=($product->price-($product->price*$product->discount)/100);
               @endphp
-              <h3><small><del class="text-muted">Rs. {{number_format($product->price,2)}}</del></small> Rs. {{number_format($after_discount,2)}} </h3>
+              <h3><small><del class="text-muted">Rs. {{number_format($product->price)}}</del></small> Rs. {{number_format($after_discount)}} </h3>
               <div class="quickview-peragraph">
                 <p>{!! html_entity_decode($product->summary) !!}</p>
               </div>

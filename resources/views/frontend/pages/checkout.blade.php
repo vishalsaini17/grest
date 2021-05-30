@@ -24,12 +24,13 @@
   <!-- Start Checkout -->
   <section class="shop checkout section">
     <div class="container">
-      <form class="form" method="POST" action="{{ route('cart.order') }}">
-        @csrf
+      {{-- <form class="form" method="POST" action="{{ route('cart.order') }}" id="checkout-payment"> --}}
+      <form class="form" method="POST" action="{{ route('paytm.payment') }}" id="checkout-payment">
         <div class="row">
           <div class="col-lg-8 col-12">
             <div class="checkout-form">
               <h2>Make Your Checkout Here</h2>
+              <x-addresses title="Select Address" />
               {{-- <p>Please register in order to checkout more quickly</p> --}}
               <!-- Form -->
               {{-- <div class="row">
@@ -360,8 +361,8 @@
                 <h2>CART TOTALS</h2>
                 <div class="content">
                   <ul>
-                    <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>Rs. {{ number_format(Helper::totalCartPrice(), 2) }}</span></li>
-                    <li class="shipping">
+                    <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>Rs. {{ number_format(Helper::totalCartPrice()) }}</span></li>
+                    {{-- <li class="shipping">
                       Shipping Cost
                       @if (count(Helper::shipping()) > 0 && Helper::cartCount() > 0)
                         <select name="shipping" class="nice-select">
@@ -373,10 +374,12 @@
                       @else
                         <span>Free</span>
                       @endif
-                    </li>
+                    </li> --}}
+
+                    {{-- @dd(Helper::totalCartPrice()); --}}
 
                     @if (session('coupon'))
-                      <li class="coupon_price" data-price="{{ session('coupon')['value'] }}">You Save<span>Rs. {{ number_format(session('coupon')['value'], 2) }}</span></li>
+                      <li class="coupon_price" data-price="{{ session('coupon')['value'] }}">You Save<span>Rs. {{ number_format(session('coupon')['value']) }}</span></li>
                     @endif
                     @php
                       $total_amount = Helper::totalCartPrice();
@@ -384,10 +387,11 @@
                           $total_amount = $total_amount - session('coupon')['value'];
                       }
                     @endphp
+                    <input type="hidden" name="amount" value="{{round($total_amount)}}">
                     @if (session('coupon'))
-                      <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount, 2) }}</span></li>
+                      <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount) }}</span></li>
                     @else
-                      <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount, 2) }}</span></li>
+                      <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount) }}</span></li>
                     @endif
                   </ul>
                 </div>
@@ -400,8 +404,8 @@
                   <div class="checkbox">
                     {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
                     <form-group>
-                      <input name="payment_method" type="radio" value="cod"> <label> Cash On Delivery</label><br>
-                      <input name="payment_method" type="radio" value="paypal"> <label> PayPal</label>
+                       <label><input name="payment_method" type="radio" value="paytm" data-url="/paytm-payment" checked> Pay Online</label><br>
+                       <label><input name="payment_method" type="radio" value="cod" data-url="" > Cash On Delivery</label>
                     </form-group>
 
                   </div>
@@ -560,8 +564,7 @@
     });
     $('select.nice-select').niceSelect();
 
-  </script>
-  <script>
+
     function showMe(box) {
       var checkbox = document.getElementById('shipping').style.display;
       // alert(checkbox);
@@ -575,8 +578,7 @@
       document.getElementById(box).style.display = vis;
     }
 
-  </script>
-  <script>
+
     $(document).ready(function() {
       $('.shipping select[name=shipping]').change(function() {
         let cost = parseFloat($(this).find('option:selected').data('price')) || 0;
@@ -584,6 +586,11 @@
         let coupon = parseFloat($('.coupon_price').data('price')) || 0;
         // alert(coupon);
         $('#order_total_price span').text('$' + (subtotal + cost - coupon).toFixed(2));
+      });
+
+      $('input[name="payment_method"]').change(function(){
+        let paymentMethod = $(this).val();
+        $("#checkout-payment").attr('action', $(this).data('url'))
       });
 
     });

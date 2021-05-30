@@ -5,6 +5,7 @@
 
 @section('main-content')
 
+
 <div class="container-fluid profile-page" style="background-color: #F1F3F5">
   <div class="container py-5">
       <nav class="my-profile-nav row justify-content-center">
@@ -42,10 +43,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-7 col-md-6 col-sm-10 col-10 bg-white mx-3 p-3">
+            <div class="col-lg-7 col-md-6 col-sm-10 col-10">
 
-              @yield('manage-content')
-              
+              {{-- @yield('manage-content') --}}
+              <x-addresses title="livery Address" />
             </div>
           </div>
         </div>
@@ -170,34 +171,4 @@
 
 
 
-@endsection
-
-@section('script')
-    <script>
-      function delAddress(id){
-
-        var z = confirm("Do you want to delete this ?");
-        if (z == true) {
-          // window.location.assign(`deleteAdd/${id}`); 
-          $.ajax({
-            url: `deleteAdd/${id}`,
-            type: "get",
-            success: function(data){
-              $(`address[data-address-id=${id}]`).parent().remove()
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status);
-            alert(thrownError);
-          }
-          })
-        }
-
-      }
-
-      function updateAddress(){
-        
-      }
-
-
-    </script>
 @endsection

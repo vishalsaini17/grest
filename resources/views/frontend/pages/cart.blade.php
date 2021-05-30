@@ -35,12 +35,13 @@
                 <th class="text-center">TOTAL</th>
                 <th class="text-center"><i class="ti-trash remove-icon"></i></th>
               </tr>
-            </thead>
+            </thead>            
             <tbody id="cart_item_list">
               <form action="{{ route('cart.update') }}" method="POST">
                 @csrf
                 @if (Helper::getAllProductFromCart())
                   @foreach (Helper::getAllProductFromCart() as $key => $cart)
+                  {{-- @dd($cart); --}}
                     <tr>
                       @php
                         $photo = explode(',', $cart->product['photo']);
