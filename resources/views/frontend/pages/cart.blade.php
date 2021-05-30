@@ -22,7 +22,7 @@
 	<div class="shopping-cart section">
 		<div class="container">
 			<div class="row">
-				<div class="col-12">
+				<div class="col-8">
 					<!-- Shopping Summery -->
 					<table class="table shopping-summery">
 						<thead>
@@ -50,6 +50,9 @@
 												<p class="product-des">{!!($cart['summary']) !!}</p>
 											</td>
 											<td class="price" data-title="Price"><span>₹{{number_format($cart['price'],2)}}</span></td>
+											@php
+													// dd($cart);
+											@endphp
 											<td class="qty" data-title="Qty"><!-- Input Order -->
 												<div class="input-group">
 													<div class="button minus">
@@ -67,7 +70,7 @@
 												</div>
 												<!--/ End Input Order -->
 											</td>
-											<td class="total-amount cart_single_price" data-title="Total"><span class="money">${{$cart['amount']}}</span></td>
+											<td class="total-amount cart_single_price" data-title="Total"><span class="money">₹ {{number_format($cart['price'],2)}}</span></td>
 											
 											<td class="action" data-title="Remove"><a href="{{route('cart-delete',$cart->id)}}"><i class="ti-trash remove-icon"></i></a></td>
 										</tr>
@@ -79,7 +82,7 @@
 										<td></td>
 										<td></td>
 										<td class="float-right">
-											<button class="btn float-right" type="submit">Update</button>
+											<button class="btn btn-info float-right" type="submit">Update</button>
 										</td>
 									</track>
 								@else 
@@ -104,13 +107,13 @@
 						<div class="row">
 							<div class="col-lg-8 col-md-5 col-12">
 								<div class="left">
-									<div class="coupon">
+									{{-- <div class="coupon">
 									<form action="{{route('coupon-store')}}" method="POST">
 											@csrf
 											<input name="code" placeholder="Enter Your Coupon">
 											<button class="btn btn-primary">Apply</button>
 										</form>
-									</div>
+									</div> --}}
 									{{-- <div class="checkbox">`
 										@php 
 											$shipping=DB::table('shippings')->where('status','active')->limit(1)->get();
@@ -131,7 +134,7 @@
 														<select name="shipping" class="nice-select">
 															<option value="">Select</option>
 															@foreach(Helper::shipping() as $shipping)
-															<option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ${{$shipping->price}}</option>
+															<option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ₹ {{$shipping->price}}</option>
 															@endforeach
 														</select>
 													</div>
@@ -144,6 +147,16 @@
 										</div>
 										 --}}
 										 {{-- {{dd(Session::get('coupon')['value'])}} --}}
+										 <div class="coupon mb-3">
+											<form action="{{route('coupon-store')}}" class="input-group" method="POST">
+													@csrf
+													<input name="code" class="form-control" placeholder="Enter Your Coupon">
+													<div class="input-group-append">
+														<button class="btn btn-outline-secondary" type="button" id="button-addon2">Apply</button>
+													</div>
+													{{-- <button class="btn btn-primary">Apply</button> --}}
+												</form>
+											</div>
 										@if(session()->has('coupon'))
 										<li class="coupon_price" data-price="{{Session::get('coupon')['value']}}">You Save<span>₹{{number_format(Session::get('coupon')['value'],2)}}</span></li>
 										@endif
@@ -156,12 +169,12 @@
 										@if(session()->has('coupon'))
 											<li class="last" id="order_total_price">You Pay<span>₹{{number_format($total_amount,2)}}</span></li>
 										@else
-											<li class="last" id="order_total_price">You Pay<span>₹{{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">You Pay<span>₹{{number_format($total_amount,0)}}</span></li>
 										@endif
 									</ul>
-									<div class="button5">
-										<a href="{{route('checkout')}}" class="btn btn-primary">Checkout</a>
-										<a href="{{route('product-grids')}}" class="btn btn-primary">Continue shopping</a>
+									<div class="button5 d-flex justify-content-between">
+										<a href="{{route('product-grids')}}" class="btn btn-success">Continue shopping</a>
+										<a href="{{route('checkout')}}" class="btn btn-primary checkout-btn">Checkout</a>
 									</div>
 								</div>
 							</div>
@@ -400,8 +413,14 @@
 				// alert(coupon);
 				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
 			});
-
 		});
+
+		$(document).ready(function(){
+			if($(".order_subtotal span").text() == '₹0.00'){
+				$('.checkout-btn').addClass('disabled-link')
+			}
+		});
+
 
 	</script>
 
