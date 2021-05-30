@@ -41,7 +41,7 @@ class HomeController extends Controller
         $address = Address::all()->where('user_id', auth()->user()->id);
 
         
-        return view('frontend.pages.manage')->with('profile',$profile)
+        return view('frontend.pages.address')->with('profile',$profile)
                                             ->with('address', $address);
     }
 
