@@ -89,9 +89,9 @@ Route::resource('/comment','PostCommentController');
 // Coupon
 Route::post('/coupon-store','CouponController@couponStore')->name('coupon-store');
 // Payment
-Route::get('payment', 'PayPalController@payment')->name('payment');
-Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
-Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+// Route::get('payment', 'PayPalController@payment')->name('payment');
+// Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+// Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 
 
 
@@ -207,3 +207,5 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::post('paytm/payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
 Route::post('paytm/callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
 Route::get('paytm/purchase',[PaytmController::Class, 'paytmPurchase'])->name('paytm.purchase');
+Route::view('paytm/success-page','paytm.paytm-success-page')->name('paytm.success');
+Route::view('paytm/fail-page','paytm.paytm-fail')->name('paytm.fail');

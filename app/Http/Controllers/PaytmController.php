@@ -41,13 +41,13 @@ class PaytmController extends Controller {
 
     if ($transaction->isSuccessful()) {
       //Transaction Successful
-      return view('paytm.paytm-success-page');
+      return view('paytm.success');
     } else if ($transaction->isFailed()) {
       //Transaction Failed
-      return view('paytm.paytm-fail');
+      return view('paytm.fail');
     } else if ($transaction->isOpen()) {
       //Transaction Open/Processing
-      return view('paytm.paytm-fail');
+      return view('paytm.fail');
     }
     $transaction->getResponseMessage(); //Get Response Message If Available
     //get important parameters via public methods
