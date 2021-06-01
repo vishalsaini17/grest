@@ -197,15 +197,16 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');
     Route::post('change-password', 'HomeController@changPasswordStore')->name('change.password');
 
+
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-//Paytm Payment
-Route::post('paytm/payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
-Route::post('paytm/callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
-Route::get('paytm/purchase',[PaytmController::Class, 'paytmPurchase'])->name('paytm.purchase');
-Route::view('paytm/success-page','paytm.paytm-success-page')->name('paytm.success');
-Route::view('paytm/fail-page','paytm.paytm-fail')->name('paytm.fail');
+    //Paytm Payment
+    Route::post('paytm/payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
+    Route::post('paytm/callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
+    Route::get('payment/purchase',[paymentController::Class, 'paymentPurchase'])->name('payment.purchase');
+    // Route::view('payment/success-page','payment.payment-success-page')->name('payment.success');
+    // Route::view('payment/fail-page','payment.payment-fail')->name('payment.fail');

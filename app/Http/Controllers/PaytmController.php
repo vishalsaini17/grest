@@ -35,24 +35,24 @@ class PaytmController extends Controller {
    */
   public function paytmCallback() {
     $transaction = PaytmWallet::with('receive');
-
     $response = $transaction->response(); // To get raw response as array
     //Check out response parameters sent by paytm here -> http://paywithpaytm.com/developer/paytm_api_doc?target=interpreting-response-sent-by-paytm
-
-    if ($transaction->isSuccessful()) {
-      //Transaction Successful
-      return view('paytm.success');
-    } else if ($transaction->isFailed()) {
-      //Transaction Failed
-      return view('paytm.fail');
-    } else if ($transaction->isOpen()) {
-      //Transaction Open/Processing
-      return view('paytm.fail');
-    }
     $transaction->getResponseMessage(); //Get Response Message If Available
     //get important parameters via public methods
     $transaction->getOrderId(); // Get order id
     $transaction->getTransactionId(); // Get transaction id
+
+    if ($transaction->isSuccessful()) {
+      //Transaction Successful
+      return view('payment.payment-success-page');
+    } else if ($transaction->isFailed()) {
+      //Transaction Failed
+      return view('payment.payment-fail');
+    } else if ($transaction->isOpen()) {
+      //Transaction Open/Processing
+      return view('payment.payment-fail');
+    }
+
   }
 
   /**
@@ -61,6 +61,6 @@ class PaytmController extends Controller {
    * @return Object
    */
   public function paytmPurchase() {
-    return view('paytm.payment-page');
+    return view('payment.payment-page');
   }
 }

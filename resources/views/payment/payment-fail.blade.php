@@ -15,10 +15,10 @@
 
 <body>
   <div id="app">
-    <div class="alert alert-success alert-dismissible fade" role="alert">
+    <div class="alert alert-danger alert-dismissible" role="alert">
       <strong>Your Payment Has been failed</strong>
     </div>
-    <a href="{{route('paytm.purchase')}}">Check the demo again</a>
+    <a href="{{route('payment.purchase')}}">Check the demo again</a>
   </div>
 </body>
 
