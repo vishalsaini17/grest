@@ -18,7 +18,7 @@
     <div class="alert alert-success alert-dismissible" role="alert">
       <strong>Payment Has been Successfully Received</strong>
     </div>
-    <a href="{{route('paytm.purchase')}}">Check the demo helo again</a>
+    <a href="{{route('payment.purchase')}}">Check the demo again</a>
   </div>
 </body>
 

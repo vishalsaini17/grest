@@ -44,7 +44,7 @@ class PaytmController extends Controller {
 
     if ($transaction->isSuccessful()) {
       //Transaction Successful
-      return view('payment.payment-success-page');
+      return view('payment.payment-success');
     } else if ($transaction->isFailed()) {
       //Transaction Failed
       return view('payment.payment-fail');
