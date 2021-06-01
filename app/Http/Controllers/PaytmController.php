@@ -60,7 +60,7 @@ class PaytmController extends Controller {
    *
    * @return Object
    */
-  public function paytmPurchase() {
+  public function purchasePage() {
     return view('payment.payment-page');
   }
 }
