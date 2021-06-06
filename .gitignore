@@ -4,7 +4,13 @@
 .env
 .env.backup
 .phpunit.result.cache
+.htaccess
+.ftpquota
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+Codeignitor.zip
+public/error_log
+public/img
+public/storage
