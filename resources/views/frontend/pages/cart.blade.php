@@ -150,10 +150,12 @@
                         @csrf
                         <input name="code" class="form-control" placeholder="Enter Your Coupon">
                         <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Apply</button>
+                          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Apply</button>
                         </div>
                         {{-- <button class="btn btn-primary">Apply</button> --}}
                       </form>
+                      <span class="text-danger font-xxl">*</span>
+                      <small>You can Apply only ne coupon at a time.</small>
                     </div>
                     @if (session()->has('coupon'))
                       <li class="coupon_price" data-price="{{ Session::get('coupon')['value'] }}">You Save<span>₹ {{ number_format(Session::get('coupon')['value']) }}</span></li>
