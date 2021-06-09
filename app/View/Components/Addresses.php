@@ -15,10 +15,12 @@ class Addresses extends Component
      * @return void
      */
     public $title;
+    public $type;
     public $address;
-    public function __construct($title)
+    public function __construct($title, $type)
     {
         $this->title = $title;
+        $this->type = $type;
     }
 
     /**
@@ -30,6 +32,7 @@ class Addresses extends Component
     {
         $this->address = Address::all()->where('user_id', auth()->user()->id);
         
-        return view('components.addresses');
+        return view('components.addressComponent');
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 use PaytmWallet;
 
 class PaytmController extends Controller {
@@ -11,16 +12,34 @@ class PaytmController extends Controller {
    *
    * @return Response
    */
+  // public function getData(){
+
+  // }
+
+
   public function paytmPayment(Request $req) {
+  // dd(session('orderId'));
+    $data = Order::where('id', session('orderId'))->first();
+
+    // dd($data);
+
     $payment = PaytmWallet::with('receive');
-    $orderId = time() .$req->order_id . mt_rand() ;
-    // dd($orderId);
+    // $orderId = time() .$req->order_id . mt_rand() ;
+    // $payment->prepare([
+    //   'order'         => $data->order_number,
+    //   'user'          => $data->user_id,
+    //   'mobile_number' => $data->phone,
+    //   'email'         => $data->email,
+    //   'amount'        => $data->total_amount,
+    //   'callback_url'  => route('paytm.callback'),
+    // ]);
+
     $payment->prepare([
-      'order'         => $orderId,
-      'user'          => $req->user_id,
-      'mobile_number' => $req->phone,
-      'email'         => auth()->user()->email,
-      'amount'        => $req->amount,
+      'order'         => 'abcxeztesting',
+      'user'          => 1,
+      'mobile_number' => 1234567890,
+      'email'         => 'abc@xyz.com',
+      'amount'        => 2,
       'callback_url'  => route('paytm.callback'),
     ]);
     // dd($payment);
@@ -44,7 +63,8 @@ class PaytmController extends Controller {
 
     if ($transaction->isSuccessful()) {
       //Transaction Successful
-      return view('payment.payment-success');
+      request()->session()->flash('success','Your order has been placed. please wait.');
+      return view('cart');
     } else if ($transaction->isFailed()) {
       //Transaction Failed
       return view('payment.payment-fail');

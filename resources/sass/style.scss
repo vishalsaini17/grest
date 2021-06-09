@@ -3952,37 +3952,39 @@ Version:1.0
     }
   }
 
-  .right {
-    background: #fff;
-    padding: 2rem 1rem;
+  
+}
 
-    ul li {
+.right {
+  background: #fff;
+  padding: 2rem 1rem;
+
+  ul li {
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 12px;
+
+    &.last {
+      padding-top: 12px;
+      border-top: 1px solid #c8c8c8;
+      color: #333;
       font-size: 15px;
       font-weight: 400;
-      color: #333;
-      margin-bottom: 12px;
-
-      &.last {
-        padding-top: 12px;
-        border-top: 1px solid #c8c8c8;
-        color: #333;
-        font-size: 15px;
-        font-weight: 400;
-      }
-
-      span {
-        display: inline-block;
-        float: right;
-      }
     }
 
-    .button5 .btn {
-      margin-top: 10px;
-      line-height: 18px;
-      color: #fff;
-      padding: 0.75rem;
-      transition: color 0.3s, background-color 0.3s ease;
+    span {
+      display: inline-block;
+      float: right;
     }
+  }
+
+  .button5 .btn {
+    margin-top: 10px;
+    line-height: 18px;
+    color: #fff;
+    padding: 0.75rem;
+    transition: color 0.3s, background-color 0.3s ease;
   }
 }
 
@@ -6011,8 +6013,7 @@ Version:1.0
         transition: all 0.3s ease-in-out;
 
         &:hover{
-          height: 20px;
-          width: 20px;
+          transform: scale(1.2);
         }
       }
       a{

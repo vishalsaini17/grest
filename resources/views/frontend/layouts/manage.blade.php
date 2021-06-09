@@ -46,7 +46,11 @@
             <div class="col-lg-7 col-md-6 col-sm-10 col-10">
 
               {{-- @yield('manage-content') --}}
-              <x-addresses title="livery Address" />
+
+              <!-- *************** Blade Component ************-->
+              <x-addresses title="Delivery Address" type="address"/>
+
+
             </div>
           </div>
         </div>
@@ -74,101 +78,6 @@
     </div>
   </div>
 </div> --}}
-
-<!--Add Address Modal -->
-<div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog inputFileds" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Address</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/addAddress" class="row">
-          @csrf
-          <div class="form-group col-lg-6 col-12">
-            <input type="name" name="name" required placeholder="Enter Name" class="form-control floating-Placeholder">
-          </div>
-          <div class="form-group col-lg-6 col-12">
-            <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control floating-Placeholder">
-          </div>
-          <div class="form-group col-lg-12">
-            <textarea type="textarea" name="address" required placeholder="Enter address" class="form-control floating-Placeholder"></textarea>
-          </div>
-          <div class="col-lg-12 form-group">
-            <div class="d-flex justify-content-around">
-              <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control floating-placeholder">
-              <span class="font-bold w-100 text-right" style="margin: 0.5rem 2rem">Make this Address default?</span>
-              <select type="radio" class="mb-0" name="is_default" >
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-                <input type="hidden" name="user_id" value="{{$profile->id}}">
-            </div>
-            
-          </div>
-          <div class="form-group col-6 mx-auto text-center">
-            <input type="submit" value="Submit" class="btn btn-lg btn-success mx-3">
-            <input type="reset" value="Reset" class="btn btn-lg btn-secondary mx-3">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Add Address Modal Ends -->
-
-<!--Edit Address Modal -->
-<div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel" aria-hidden="true">
-  <div class="modal-dialog inputFileds" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editAddressModalLabel">Update Address</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/updateAddress" class="row">
-          @csrf
-          <input type="hidden" name="id" value="">
-          <div class="form-group col-lg-6 col-12">
-            <label for="name">Name</label>
-            <input type="text" name="name" required placeholder="Enter Name" class="form-control">
-          </div>
-          <div class="form-group col-lg-6 col-12">
-            <label for="name">Mobile Number</label>
-            <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control">
-          </div>
-          <div class="form-group col-lg-12">
-            <textarea type="text" name="address" required placeholder="Enter address" class="form-control"></textarea>
-          </div>
-          <div class="col-lg-12 form-group">
-            <div class="d-flex justify-content-around">
-              <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control">
-              <span class="font-bold w-100 text-right" style="margin: .5rem 2rem;">Make this Address default?</span>
-              <select type="radio" class="mb-0" name="is_default" >
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-                <input type="hidden" name="user_id" value="{{$profile->id}}">
-                <input type="hidden" name="address_id" value="">
-            </div>
-            
-          </div>
-          <div class="form-group col-6 mx-auto text-center">
-            <input type="submit" value="Update" class="btn btn-lg btn-success mx-3">
-            <input type="reset" value="Reset" class="btn btn-lg btn-secondary mx-3">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Edit Address Modal Ends -->
-
 
 
 @endsection

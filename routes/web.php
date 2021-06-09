@@ -151,23 +151,23 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 });
 
 // Route::post('/runCmd', 'AdminController@runCMD');
-Route::post('/runCmd', function(Request $request){
-    $artisan = Artisan::call($request->cmd);
-    $output = Artisan::output();
-    return $output;
-});
+// Route::post('/runCmd', function(Request $request){
+//     $artisan = Artisan::call($request->cmd);
+//     $output = Artisan::output();
+//     return $output;
+// });
 
-Route::post('/terminal', function(Request $request){
-    $cmd = $request->terminal;
-    echo system($cmd);
-});
+// Route::post('/terminal', function(Request $request){
+//     $cmd = $request->terminal;
+//     echo system($cmd);
+// });
 
 
 // New Profile Manage Pages
 Route::get('/manage', 'HomeController@manage')->name('manage');
 Route::get('/addAddress', 'HomeController@addAddress');
 Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
-Route::post('/set-default-address', 'HomeController@setDefaultAddress');
+Route::get('/set-default-address/{addId}', 'HomeController@setDefaultAddress');
 Route::get('/updateAddress', 'HomeController@updateAddress');
 
 
@@ -205,8 +205,8 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
     //Paytm Payment
-    Route::post('paytm/payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
+    Route::get('paytm/payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
     Route::post('paytm/callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
     Route::view('payment/purchase', 'payment.payment-page')->name('payment.purchase');
-    // Route::view('payment/success-page','payment.payment-success-page')->name('payment.success');
+    // Route::view('payment/success-page','home')->name('payment.success');
     // Route::view('payment/fail-page','payment.payment-fail')->name('payment.fail');

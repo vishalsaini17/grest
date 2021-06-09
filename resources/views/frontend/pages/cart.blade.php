@@ -59,7 +59,7 @@
                         <!-- Input Order -->
                         <div class="input-group">
                           <div class="button minus">
-                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[{{ $key }}]">
+                            <button type="button" class="btn btn-primary btn-number" {{($cart->quantity == 1)? 'disabled': ''}} data-type="minus" data-field="quant[{{ $key }}]">
                               <i class="ti-minus"></i>
                             </button>
                           </div>
@@ -98,15 +98,76 @@
           </table>
           <!--/ End Shopping Summery -->
         </div>
+        <div class="col-lg-4 col-md-7 col-12">
+          <div class="right">
+            <ul>
+              <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>₹ {{ number_format(Helper::totalCartPrice()) }}</span></li>
+              {{-- <div id="shipping" style="display:none;">
+                <li class="shipping">
+                  Shipping {{session('shipping_price')}}
+                  @if (count(Helper::shipping()) > 0 && Helper::cartCount() > 0)
+                    <div class="form-select">
+                      <select name="shipping" class="nice-select">
+                        <option value="">Select</option>
+                        @foreach (Helper::shipping() as $shipping)
+                        <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ₹ {{$shipping->price}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  @else 
+                    <div class="form-select">
+                      <span>Free</span>
+                    </div>
+                  @endif
+                </li>
+              </div> --}}
+              {{-- {{dd(Session::get('coupon')['value'])}} --}}
+              <div class="coupon mb-3">
+                <form action="{{ route('coupon-store') }}" class="input-group" method="POST">
+                  @csrf
+                  <input name="code" class="form-control" placeholder="Enter Your Coupon">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">{{(session()->has('coupon')? 'Update': 'Apply')}}</button>
+                  </div>
+                  {{-- <button class="btn btn-primary">Apply</button> --}}
+                </form>
+                <h5 class="text-danger d-inline">*</h5>
+                <small>You can Apply only ne coupon at a time.</small>
+              </div>
+              @if (session()->has('coupon'))
+                <li class="coupon_price" data-price="{{ Session::get('coupon')['value'] }}">You Save<span>₹ {{ number_format(Session::get('coupon')['value']) }}</span></li>
+              @endif
+              @php
+                $total_amount = Helper::totalCartPrice();
+                if (session()->has('coupon')) {
+                    $total_amount = $total_amount - Session::get('coupon')['value'];
+                }
+              @endphp
+              @if (session()->has('coupon'))
+                <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 0) }}</span></li>
+              @else
+                <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 0) }}</span></li>
+              @endif
+            </ul>
+            <div class="button5 d-flex justify-content-between">
+              <a href="{{ route('product-grids') }}" class="btn btn-success">Continue shopping</a>
+              <a href="{{ route('checkout') }}" class="btn btn-primary checkout-btn">Checkout</a>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-12">
           <!-- Total Amount -->
           <div class="total-amount">
             <div class="row">
-              <div class="col-lg-8 col-md-5 col-12">
+              <div id="app" class="col-12 d-none">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <strong>Payment Has been Successfully Received</strong>
+                </div>
+              {{-- <div class="col-lg-8 col-md-5 col-12">
                 <div class="left">
-                  {{-- <div class="coupon">
+                  <div class="coupon">
 									<form action="{{route('coupon-store')}}" method="POST">
 											@csrf
 											<input name="code" placeholder="Enter Your Coupon">
@@ -118,66 +179,10 @@
 											$shipping=DB::table('shippings')->where('status','active')->limit(1)->get();
 										@endphp
 										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');"> Shipping</label>
-									</div> --}}
+									</div> 
                 </div>
-              </div>
-              <div class="col-lg-4 col-md-7 col-12">
-                <div class="right">
-                  <ul>
-                    <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>₹ {{ number_format(Helper::totalCartPrice(), 2) }}</span></li>
-                    {{-- <div id="shipping" style="display:none;">
-											<li class="shipping">
-												Shipping {{session('shipping_price')}}
-												@if (count(Helper::shipping()) > 0 && Helper::cartCount() > 0)
-													<div class="form-select">
-														<select name="shipping" class="nice-select">
-															<option value="">Select</option>
-															@foreach (Helper::shipping() as $shipping)
-															<option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ₹ {{$shipping->price}}</option>
-															@endforeach
-														</select>
-													</div>
-												@else 
-													<div class="form-select">
-														<span>Free</span>
-													</div>
-												@endif
-											</li>
-										</div> --}}
-                    {{-- {{dd(Session::get('coupon')['value'])}} --}}
-                    <div class="coupon mb-3">
-                      <form action="{{ route('coupon-store') }}" class="input-group" method="POST">
-                        @csrf
-                        <input name="code" class="form-control" placeholder="Enter Your Coupon">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Apply</button>
-                        </div>
-                        {{-- <button class="btn btn-primary">Apply</button> --}}
-                      </form>
-                      <span class="text-danger font-xxl">*</span>
-                      <small>You can Apply only ne coupon at a time.</small>
-                    </div>
-                    @if (session()->has('coupon'))
-                      <li class="coupon_price" data-price="{{ Session::get('coupon')['value'] }}">You Save<span>₹ {{ number_format(Session::get('coupon')['value']) }}</span></li>
-                    @endif
-                    @php
-                      $total_amount = Helper::totalCartPrice();
-                      if (session()->has('coupon')) {
-                          $total_amount = $total_amount - Session::get('coupon')['value'];
-                      }
-                    @endphp
-                    @if (session()->has('coupon'))
-                      <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 2) }}</span></li>
-                    @else
-                      <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 0) }}</span></li>
-                    @endif
-                  </ul>
-                  <div class="button5 d-flex justify-content-between">
-                    <a href="{{ route('product-grids') }}" class="btn btn-success">Continue shopping</a>
-                    <a href="{{ route('checkout') }}" class="btn btn-primary checkout-btn">Checkout</a>
-                  </div>
-                </div>
-              </div>
+              </div> --}}
+              
             </div>
           </div>
           <!--/ End Total Amount -->
@@ -187,50 +192,7 @@
   </div>
   <!--/ End Shopping Cart -->
 
-  <!-- Start Shop Services Area  -->
-  <section class="shop-services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-rocket"></i>
-            <h4>Free shiping</h4>
-            <p>Orders over $100</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-reload"></i>
-            <h4>Free Return</h4>
-            <p>Within 30 days returns</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-lock"></i>
-            <h4>Sucure Payment</h4>
-            <p>100% secure payment</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-tag"></i>
-            <h4>Best Peice</h4>
-            <p>Guaranteed price</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Shop Newsletter -->
+  <x-shop-service-comp />
 
   <!-- Start Shop Newsletter  -->
   @include('frontend.layouts.newsletter')
@@ -317,7 +279,7 @@
                   <!-- Input Order -->
                   <div class="input-group">
                     <div class="button minus">
-                      <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                      <button type="button" class="btn btn-primary btn-number" disabled data-type="minus" data-field="quant[1]">
                         <i class="ti-minus"></i>
                       </button>
                     </div>
@@ -427,7 +389,7 @@
     });
 
     $(document).ready(function() {
-      if ($(".order_subtotal span").text() == '₹0.00') {
+      if ($(".order_subtotal span").text() == '₹0') {
         $('.checkout-btn').addClass('disabled-link')
       }
     });

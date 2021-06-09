@@ -42,8 +42,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){   
+
+        // dd('start');
         $this->validate($request,[
             'first_name'=>'string|required',
             'last_name'=>'string|required',
@@ -54,14 +55,15 @@ class OrderController extends Controller
             'post_code'=>'string|nullable',
             'email'=>'string|required'
         ]);
-        // return $request->all();
+            // $data= $request->all();
 
+            // dd($data);
         if(empty(Cart::where('user_id',auth()->user()->id)->where('order_id',null)->first())){
             request()->session()->flash('error','Cart is Empty !');
             return back();
         }
-        // $cart=Cart::get();
-        // // return $cart;
+        // $cart=Cart::where('user_id',auth()->user()->id)->get();
+        // dd($cart);
         // $cart_index='ORD-'.strtoupper(uniqid());
         // $sub_total=0;
         // foreach($cart as $cart_item){
@@ -87,12 +89,12 @@ class OrderController extends Controller
         //             $total_prod+=$cart_items['quantity'];
         //         }
         // }
-
+        //     dd('order-creating');
         $order=new Order();
         $order_data=$request->all();
         $order_data['order_number']='ORD-'.strtoupper(Str::random(10));
         $order_data['user_id']=$request->user()->id;
-        $order_data['shipping_id']=$request->shipping;
+        $order_data['shipping_id']='5'; // Default value $request->shipping;
         $shipping=Shipping::where('id',$order_data['shipping_id'])->pluck('price');
         // return session('coupon')['value'];
         $order_data['sub_total']=Helper::totalCartPrice();
@@ -116,10 +118,10 @@ class OrderController extends Controller
                 $order_data['total_amount']=Helper::totalCartPrice();
             }
         }
-        // return $order_data['total_amount'];
+        //  dd($order_data['total_amount']);
         $order_data['status']="new";
-        if(request('payment_method')=='paypal'){
-            $order_data['payment_method']='paypal';
+        if(request('payment_method')=='paypal' || request('payment_method')=='paytm'){
+            $order_data['payment_method']=request('payment_method');
             $order_data['payment_status']='paid';
         }
         else{
@@ -137,8 +139,11 @@ class OrderController extends Controller
             'fas'=>'fa-file-alt'
         ];
         Notification::send($users, new StatusNotification($details));
-        if(request('payment_method')=='paypal'){
-            return redirect()->route('payment')->with(['id'=>$order->id]);
+        if(request('payment_method')=='paytm'){
+            session()->put('orderId', $order->id);
+            // dd(Session('orderId'));
+            return redirect()->route('paytm.payment'); //->with(['id'=>$order->id]);
+            // Session::put('orderId', $order->id);
         }
         else{
             session()->forget('cart');

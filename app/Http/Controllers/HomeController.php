@@ -110,9 +110,9 @@ class HomeController extends Controller
         
     }
 
-    public function setDefaultAddress(Request $req){
-        // dd($req);
-        $addID = $req->address_id;
+    public function setDefaultAddress($addID){
+        // dd($addID);
+        // $addID = $req->address_id;
         // $userid = $req->user_id;
         HomeController::updateDefaultAddress($addID);
 

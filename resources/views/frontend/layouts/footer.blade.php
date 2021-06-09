@@ -208,32 +208,4 @@
 			
 		})
 
-		// Ignore innerChild Function
-		$.fn.ignore = function(sel){
-			return this.clone().find(sel||">*").remove().end()
-		}
-
-		// Custom Code
-		$('.editBtn').click(function(){
-      var name = $(this).parents('li').siblings('.aName').find('p').html()
-      var phone = $(this).parents('li').siblings('.aPhone').find('p').ignore('span').html()
-      var address = $(this).parents('li').siblings('.aAddress').find('span').ignore('p').text()
-      var pincode = $(this).parents('li').siblings('.aAddress').find('p').html()
-			var addressID = $(this).siblings('input[name="address_id"]').val()
-
-
-			var modal = $('#editAddressModal')
-			modal.find('input[name="name"]').val(name)
-			modal.find('input[name="phone"]').val(phone)
-			modal.find('textarea[name="address"]').val(address)
-			modal.find('input[name="address_id"]').val(addressID)
-			var modalPincode = modal.find('input[name="pincode"]')
-			if(pincode === 'No Pincode available'){
-				modalPincode.val('')
-			}else {
-				modalPincode.val(pincode)
-			}
-
-    })
-
 	  </script>

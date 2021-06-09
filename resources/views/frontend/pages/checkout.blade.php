@@ -25,12 +25,11 @@
   <section class="shop checkout section">
     <div class="container">
       {{-- <form class="form" method="POST" action="{{ route('cart.order') }}" id="checkout-payment"> --}}
-      <form class="form" method="POST" action="{{ route('paytm.payment') }}" id="checkout-payment">
         <div class="row">
           <div class="col-lg-8 col-12">
             <div class="checkout-form">
               <h2>Make Your Checkout Here</h2>
-              <x-addresses title="Select Address" />
+              <x-addresses title="Select Address" type="selectAdd" />
               {{-- <p>Please register in order to checkout more quickly</p> --}}
               <!-- Form -->
               {{-- <div class="row">
@@ -354,7 +353,10 @@
               <!--/ End Form -->
             </div>
           </div>
+          
           <div class="col-lg-4 col-12">
+            <form class="form" method="POST" action="{{ route('cart.order') }}" id="checkout-payment">
+              @csrf
             <div class="order-details">
               <!-- Order Widget -->
               <div class="single-widget">
@@ -422,7 +424,14 @@
               <!-- Button Widget -->
               <div class="single-widget get-button">
                 <div class="content">
-                  <div class="button">
+                  <div class="button proceedToCheckoutBtn">
+                    <input type="hidden" name="first_name" value="" class="fname">
+                    <input type="hidden" name="last_name" value="" class="lname">
+                    <input type="hidden" name="address1" value="" class="address">
+                    <input type="hidden" name="phone" value="" class="phone">
+                    <input type="hidden" name="post_code" value="" class="post_code">
+                    <input type="hidden" name="address_id" value="" class="address_id">
+                    <input type="hidden" name="email" value="{{auth()->user()->email}}" class="email">
                     <button type="submit" class="btn btn-primary">proceed to checkout</button>
                   </div>
                 </div>
@@ -436,50 +445,7 @@
   </section>
   <!--/ End Checkout -->
 
-  <!-- Start Shop Services Area  -->
-  <section class="shop-services section home">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-rocket"></i>
-            <h4>Free shiping</h4>
-            <p>Orders over $100</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-reload"></i>
-            <h4>Free Return</h4>
-            <p>Within 30 days returns</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-lock"></i>
-            <h4>Sucure Payment</h4>
-            <p>100% secure payment</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Service -->
-          <div class="single-service">
-            <i class="ti-tag"></i>
-            <h4>Best Peice</h4>
-            <p>Guaranteed price</p>
-          </div>
-          <!-- End Single Service -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Shop Services -->
+  <x-shop-service-comp />
 
   <!-- Start Shop Newsletter  -->
   <section class="shop-newsletter section">
@@ -588,11 +554,57 @@
         $('#order_total_price span').text('$' + (subtotal + cost - coupon).toFixed(2));
       });
 
-      $('input[name="payment_method"]').change(function(){
-        let paymentMethod = $(this).val();
-        $("#checkout-payment").attr('action', $(this).data('url'))
-      });
+      // Change Post Address on CHange of Payment method
+      // $('input[name="payment_method"]').change(function(){
+      //   let paymentMethod = $(this).val();
+      //   $("#checkout-payment").attr('action', $(this).data('url'))
+      // });
 
+      //Set Address Values for Checkout proceedToCheckoutBtn
+      $.fn.ignore = function (sel) {
+        return this.clone().find(sel || ">*").remove().end()
+      }
+
+      $(':checkbox').click( function(){
+        var name = $(this).parents('li').siblings('.aName').find('p').html()
+        var fname = name.split(' ')[0]
+        var lname = (name.split(' ')[1] == undefined)? ' ': name.split(' ')[1]
+        var phone = $(this).parents('li').siblings('.aPhone').find('p').ignore('span').html()
+        var address = $(this).parents('li').siblings('.aAddress').find('span').ignore('p').text()
+        var pincode = $(this).parents('li').siblings('.aAddress').find('p').html()
+        var addressID = $(this).siblings('input[name="address_id"]').val()
+
+        var Btn = $('.proceedToCheckoutBtn')
+        Btn.find('input[name="first_name"]').val(fname)
+        Btn.find('input[name="last_name"]').val(lname)
+        Btn.find('input[name="phone"]').val(phone)
+        Btn.find('input[name="address1"]').val(address)
+        Btn.find('input[name="post_code"]').val(pincode)
+        Btn.find('input[name="address_id"]').val(addressID)
+      })
+
+      // function setChckoutValues(){
+      //   // var checked = $('[name=is_default]:checked')
+      //   var name = $(this).parents('li').siblings('.aName').find('p').html()
+      //   var fname = name.split(' ')[0]
+      //   var lname = (name.split(' ')[1] == undefined)? ' ': name.split(' ')[1]
+      //   var phone = $(this).parents('li').siblings('.aPhone').find('p').ignore('span').html()
+      //   var address = $(this).parents('li').siblings('.aAddress').find('span').ignore('p').text()
+      //   var pincode = $(this).parents('li').siblings('.aAddress').find('p').html()
+      //   var addressID = $(this).siblings('input[name="address_id"]').val()
+        
+      //   // console.log(name, phone, address, pincode, addressID)
+      //   var Btn = $('.proceedToCheckoutBtn')
+      //   Btn.find('input[name="first_name"]').val(fname)
+      //   Btn.find('input[name="last_name"]').val(lname)
+      //   Btn.find('input[name="phone"]').val(phone)
+      //   Btn.find('input[name="address"]').val(address)
+      //   Btn.find('input[name="post_code"]').val(pincode)
+      //   Btn.find('input[name="address_id"]').val(addressID)
+         
+      //   // debugger
+      // }
+      // setChckoutValues()
     });
 
   </script>
