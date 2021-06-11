@@ -38,6 +38,7 @@ Route::get('/','FrontendController@home')->name('home');
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
+Route::get('/private-policy','FrontendController@privatePolicy')->name('private.policy');
 Route::get('/contact','FrontendController@contact')->name('contact');
 Route::post('/contact/message','MessageController@store')->name('contact.store');
 Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
@@ -211,8 +212,8 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
     //Paytm Payment
-    Route::get('paytm/payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment'); // method must be post
-    Route::post('paytm/callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
+    Route::get('paytm/payment',[PaytmController::class, 'paytmPayment'])->name('paytm.payment'); // method must be post
+    Route::post('paytm/callback',[PaytmController::class, 'paytmCallback'])->name('paytm.callback');
     Route::view('payment/purchase', 'payment.payment-page')->name('payment.purchase');
     // Route::view('payment/success-page','home')->name('payment.success');
     // Route::view('payment/fail-page','payment.payment-fail')->name('payment.fail');

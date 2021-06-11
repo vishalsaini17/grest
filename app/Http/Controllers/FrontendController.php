@@ -48,6 +48,9 @@ class FrontendController extends Controller
     public function aboutUs(){
         return view('frontend.pages.about-us');
     }
+    public function privatePolicy(){
+        return view('frontend.policies.private-policy');
+    }
 
     public function contact(){
         return view('frontend.pages.contact');
