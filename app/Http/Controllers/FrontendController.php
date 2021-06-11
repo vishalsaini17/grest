@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Banner;
 use App\Models\Product;
@@ -18,6 +20,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -385,12 +388,17 @@ class FrontendController extends Controller
             'password'=>'required|min:6|confirmed',
         ]);
         $data=$request->all();
-        // dd($data);
-        $check=$this->create($data);
-        Session::put('user',$data['email']);
-        if($check){
+        $user=$this->create($data);
+        // dd($user);
+        // Session::put('user',$data['email']);
+        $request->session()->put('user', $data['email']);
+        // dd(session('user'));
+        if($user){
             request()->session()->flash('success','Successfully registered');
+            Mail::to($data['email'])->send(new WelcomeMail());
+            Auth::login($user);
             return redirect()->route('home');
+            // return redirect()->route('email')->with('emailid', $data['email']);
         }
         else{
             request()->session()->flash('error','Please try again!');

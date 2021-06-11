@@ -33,7 +33,7 @@
       </address>
     </div> 
     @endforeach
-      @if ($type == 'address')
+      {{-- @if ($type == 'address') --}}
         <!-- Add New address Box -->
           <div class="col-md-6">
             <div class="new-add add-box">
@@ -41,7 +41,7 @@
             </div>
           </div>
         <!-- New address Box Ends -->
-      @endif
+      {{-- @endif --}}
     </div>
   </div>
 
@@ -63,7 +63,7 @@
             <input type="name" name="name" required placeholder="Enter Name" class="form-control floating-Placeholder">
           </div>
           <div class="form-group col-lg-6 col-12">
-            <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control floating-Placeholder">
+            <input type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" required placeholder=" Enter Mobile Number" name="phone" class="form-control floating-Placeholder">
           </div>
           <div class="form-group col-lg-12">
             <textarea type="textarea" name="address" required placeholder="Enter address" class="form-control floating-Placeholder"></textarea>

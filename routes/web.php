@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PaytmController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,7 @@ use App\Http\Controllers\PaytmController;
 |
 */
 
+// Auth::routes(['register'=>false, 'verify'=>true]);
 Auth::routes(['register'=>false]);
 
 Route::get('user/login','FrontendController@login')->name('login.form');
@@ -31,6 +33,7 @@ Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.re
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
 Route::get('/','FrontendController@home')->name('home');
+
 
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
@@ -196,6 +199,9 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     // Password Change
     Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');
     Route::post('change-password', 'HomeController@changPasswordStore')->name('change.password');
+
+    // Emails
+    Route::get('/email', 'MailController@welcome')->name('email');
 
 
 });

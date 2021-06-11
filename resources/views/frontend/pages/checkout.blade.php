@@ -407,7 +407,7 @@
                     {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
                     <form-group>
                        <label><input name="payment_method" type="radio" value="paytm" data-url="/paytm-payment" checked> Pay Online</label><br>
-                       <label><input name="payment_method" type="radio" value="cod" data-url="" > Cash On Delivery</label>
+                       <label><input name="payment_method" type="radio" disabled value="cod" data-url="" > <span class="text-muted">Cash On Delivery (cooming soon!)</span></label>
                     </form-group>
 
                   </div>
@@ -432,7 +432,7 @@
                     <input type="hidden" name="post_code" value="" class="post_code">
                     <input type="hidden" name="address_id" value="" class="address_id">
                     <input type="hidden" name="email" value="{{auth()->user()->email}}" class="email">
-                    <button type="submit" class="btn btn-primary">proceed to checkout</button>
+                    <button type="submit" onclick="setChckoutValues()" class="btn btn-primary">proceed to checkout</button>
                   </div>
                 </div>
               </div>
@@ -582,30 +582,27 @@
         Btn.find('input[name="post_code"]').val(pincode)
         Btn.find('input[name="address_id"]').val(addressID)
       })
-
-      // function setChckoutValues(){
-      //   // var checked = $('[name=is_default]:checked')
-      //   var name = $(this).parents('li').siblings('.aName').find('p').html()
-      //   var fname = name.split(' ')[0]
-      //   var lname = (name.split(' ')[1] == undefined)? ' ': name.split(' ')[1]
-      //   var phone = $(this).parents('li').siblings('.aPhone').find('p').ignore('span').html()
-      //   var address = $(this).parents('li').siblings('.aAddress').find('span').ignore('p').text()
-      //   var pincode = $(this).parents('li').siblings('.aAddress').find('p').html()
-      //   var addressID = $(this).siblings('input[name="address_id"]').val()
-        
-      //   // console.log(name, phone, address, pincode, addressID)
-      //   var Btn = $('.proceedToCheckoutBtn')
-      //   Btn.find('input[name="first_name"]').val(fname)
-      //   Btn.find('input[name="last_name"]').val(lname)
-      //   Btn.find('input[name="phone"]').val(phone)
-      //   Btn.find('input[name="address"]').val(address)
-      //   Btn.find('input[name="post_code"]').val(pincode)
-      //   Btn.find('input[name="address_id"]').val(addressID)
-         
-      //   // debugger
-      // }
-      // setChckoutValues()
     });
+
+      function setChckoutValues(){
+        var checked = $('[name=is_default]:checked')
+        var name = checked.parents('li').siblings('.aName').find('p').html()
+        var fname = name.split(' ')[0]
+        var lname = (name.split(' ')[1] == undefined)? ' ': name.split(' ')[1]
+        var phone = checked.parents('li').siblings('.aPhone').find('p').ignore('span').html()
+        var address = checked.parents('li').siblings('.aAddress').find('span').ignore('p').text()
+        var pincode = checked.parents('li').siblings('.aAddress').find('p').html()
+        var addressID = checked.siblings('input[name="address_id"]').val()
+        
+        var Btn = $('.proceedToCheckoutBtn')
+        Btn.find('input[name="first_name"]').val(fname)
+        Btn.find('input[name="last_name"]').val(lname)
+        Btn.find('input[name="phone"]').val(phone)
+        Btn.find('input[name="address1"]').val(address)
+        Btn.find('input[name="post_code"]').val(pincode)
+        Btn.find('input[name="address_id"]').val(addressID)
+         
+      }
 
   </script>
 

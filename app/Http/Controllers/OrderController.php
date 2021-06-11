@@ -44,8 +44,8 @@ class OrderController extends Controller
      */
     public function store(Request $request){   
 
-        // dd('start');
-        $this->validate($request,[
+        // dd($request);
+        $validation = $this->validate($request,[
             'first_name'=>'string|required',
             'last_name'=>'string|required',
             'address1'=>'string|required',
@@ -57,7 +57,7 @@ class OrderController extends Controller
         ]);
             // $data= $request->all();
 
-            // dd($data);
+            // dd($validation);
         if(empty(Cart::where('user_id',auth()->user()->id)->where('order_id',null)->first())){
             request()->session()->flash('error','Cart is Empty !');
             return back();
@@ -99,6 +99,7 @@ class OrderController extends Controller
         // return session('coupon')['value'];
         $order_data['sub_total']=Helper::totalCartPrice();
         $order_data['quantity']=Helper::cartCount();
+
         if(session('coupon')){
             $order_data['coupon']=session('coupon')['value'];
         }

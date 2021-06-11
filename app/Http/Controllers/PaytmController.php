@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Cart;
 use PaytmWallet;
 
 class PaytmController extends Controller {
@@ -24,24 +25,26 @@ class PaytmController extends Controller {
     // dd($data);
 
     $payment = PaytmWallet::with('receive');
-    // $orderId = time() .$req->order_id . mt_rand() ;
-    // $payment->prepare([
-    //   'order'         => $data->order_number,
-    //   'user'          => $data->user_id,
-    //   'mobile_number' => $data->phone,
-    //   'email'         => $data->email,
-    //   'amount'        => $data->total_amount,
-    //   'callback_url'  => route('paytm.callback'),
-    // ]);
-
+    // **********Actual***********
     $payment->prepare([
-      'order'         => 'abcxeztesting',
-      'user'          => 1,
-      'mobile_number' => 1234567890,
-      'email'         => 'abc@xyz.com',
-      'amount'        => 2,
+      'order'         => $data->order_number,
+      'user'          => $data->user_id,
+      'mobile_number' => $data->phone,
+      'email'         => $data->email,
+      'amount'        => $data->total_amount,
       'callback_url'  => route('paytm.callback'),
     ]);
+
+    // ************For testing***********
+    // $payment->prepare([
+    //   'order'         => 'abcxeztesting',
+    //   'user'          => 1,
+    //   'mobile_number' => 1234567890,
+    //   'email'         => 'abc@xyz.com',
+    //   'amount'        => 2,
+    //   'callback_url'  => route('paytm.callback'),
+    // ]);
+    
     // dd($payment);
 
     return $payment->receive();
@@ -53,6 +56,8 @@ class PaytmController extends Controller {
    * @return Object
    */
   public function paytmCallback() {
+    $data = Order::where('id', session('orderId'))->first();
+
     $transaction = PaytmWallet::with('receive');
     $response = $transaction->response(); // To get raw response as array
     //Check out response parameters sent by paytm here -> http://paywithpaytm.com/developer/paytm_api_doc?target=interpreting-response-sent-by-paytm
@@ -63,11 +68,21 @@ class PaytmController extends Controller {
 
     if ($transaction->isSuccessful()) {
       //Transaction Successful
-      request()->session()->flash('success','Your order has been placed. please wait.');
-      return view('cart');
+      // dd('transaction sucess');
+      request()->session()->flash('success','Your order has been placed.');
+      $cart = Cart::where('user_id', $data->user_id)->get();
+      foreach ($cart as $item) {
+        $item->delete();
+      }
+      $data = new \stdClass();
+      $data->payment_status = 'paid';
+      return redirect('user/');
     } else if ($transaction->isFailed()) {
       //Transaction Failed
-      return view('payment.payment-fail');
+      $data = new \stdClass();
+      $data->payment_status = 'Unpaid';
+      request()->session()->flash('error','Payment filed, please try again.');
+      return redirect('checkout');
     } else if ($transaction->isOpen()) {
       //Transaction Open/Processing
       return view('payment.payment-fail');
