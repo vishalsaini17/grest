@@ -58,7 +58,7 @@ class LoginController extends Controller
     {
         $userSocial =   Socialite::driver($provider)->stateless()->user();
         $searchUser =   User::where(['email' => $userSocial->getEmail()])->first();
-        // dd($users);
+        dd($userSocial);
         if($searchUser){
             Auth::login($searchUser);
             return redirect('/')->with('success','You are login from '.$provider);
@@ -68,6 +68,7 @@ class LoginController extends Controller
                 'email'         => $userSocial->getEmail(),
                 'image'         => $userSocial->getAvatar(),
                 'provider_id'   => $userSocial->getId(),
+                // 'user_id'       => ,
                 'provider'      => $provider,
             ]);
             Auth::login($user);

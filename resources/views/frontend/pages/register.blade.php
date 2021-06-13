@@ -83,8 +83,8 @@
                                         <a href="{{route('login.form')}}" class="btn btn-primary">Login</a>
                                         <span style="font-size: large">OR</span>
                                         <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
+                                        {{-- <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
+                                        {{-- <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a> --}}
                                     </div>
                                 </div>
                             </div>
