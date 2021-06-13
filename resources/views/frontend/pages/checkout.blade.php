@@ -29,6 +29,19 @@
           <div class="col-lg-8 col-12">
             <div class="checkout-form">
               <h2>Make Your Checkout Here</h2>
+              {{-- ***********Blade Componant************ --}}
+                    @error('last_name')
+                      <span class='text-danger'>{{ $message }}</span>
+                    @enderror
+                    @error('post_code')
+                      <span class='text-danger'>{{ $message }}</span>
+                    @enderror
+                    @error('email')
+                      <span class='text-danger'>{{ $message }}</span>
+                    @enderror
+                    @error('address1')
+                      <span class='text-danger'>{{ $message }}</span>
+                    @enderror
               <x-addresses title="Select Address" type="selectAdd" />
               {{-- <p>Please register in order to checkout more quickly</p> --}}
               <!-- Form -->
@@ -353,6 +366,7 @@
               <!--/ End Form -->
             </div>
           </div>
+
           
           <div class="col-lg-4 col-12">
             <form class="form" method="POST" action="{{ route('cart.order') }}" id="checkout-payment">

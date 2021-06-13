@@ -8,8 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 // use Socialite;
 use App\User;
-use Auth;
-use Laravel\Socialite\Facades\Socialite; //as FacadesSocialite;
+use Illuminate\Support\Facades\Auth;
+// use Auth;
+use Laravel\Socialite\Facades\Socialite; // as FacadesSocialite;
 
 class LoginController extends Controller
 {
@@ -56,10 +57,10 @@ class LoginController extends Controller
     public function Callback($provider)
     {
         $userSocial =   Socialite::driver($provider)->stateless()->user();
-        $users      =   User::where(['email' => $userSocial->getEmail()])->first();
+        $searchUser =   User::where(['email' => $userSocial->getEmail()])->first();
         // dd($users);
-        if($users){
-            Auth::login($users);
+        if($searchUser){
+            Auth::login($searchUser);
             return redirect('/')->with('success','You are login from '.$provider);
         }else{
             $user = User::create([
@@ -69,6 +70,7 @@ class LoginController extends Controller
                 'provider_id'   => $userSocial->getId(),
                 'provider'      => $provider,
             ]);
+            Auth::login($user);
          return redirect()->route('home');
         }
     }

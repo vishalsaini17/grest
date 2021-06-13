@@ -30,9 +30,10 @@ return [
     'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
   ],
   'github'       => [
-    'client_id'     => '24fbd0edd46019058da7', //Github API
-    'client_secret' => '4500e6ab7a9bb70608600fbdee37969276bb0685', //Github Secret
-    'redirect'      => 'https://www.grest.in/login/github/callback',
+    'client_id'     => '59a235c0dfccb493e9a4', //Github API
+    'client_secret' => 'cd300a9726f38e1b0b454c318e3c69e8d1a5eab9', //Github Secret
+    // 'redirect'      => 'https://www.grest.in/login/github/callback',
+    'redirect'      => 'https://localhost:8000/login/github/callback',
   ],
   'google'       => [
     'client_id'     => '122886334250-fsfd8ugugkr0hjrkakukbgnnruomjn95.apps.googleusercontent.com', //Google API

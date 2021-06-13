@@ -38,7 +38,7 @@
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Name<span>*</span></label>
-												<input name="name" id="name" type="text" placeholder="Enter your name">
+												<input name="name" id="name" value="{{auth()->user()->name ?? ''}}" type="text" placeholder="Enter your name">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
@@ -50,13 +50,13 @@
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Email<span>*</span></label>
-												<input name="email" type="email" id="email" value="{{auth()->user()->email}}" placeholder="Enter email address">
+												<input name="email" type="email" id="email" value="{{auth()->user()->email ?? ''}}" placeholder="Enter email address">
 											</div>	
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Phone<span>*</span></label>
-												<input id="phone" name="phone" type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" value="{{auth()->user()->phone}}" placeholder="Enter your phone">
+												<input id="phone" name="phone" type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" value="{{auth()->user()->phone ?? ''}}" placeholder="Enter your phone">
 											</div>	
 										</div>
 										<div class="col-12">
