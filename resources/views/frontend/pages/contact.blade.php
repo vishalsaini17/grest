@@ -29,6 +29,7 @@
 									@php
 										$settings=DB::table('settings')->get();
 									@endphp
+									@dd(auth()->user())
 									<h4>Get in touch</h4>
 									<h3>Write us a message @auth @else<span style="font-size:12px;" class="text-danger">[You need to login first]</span>@endauth</h3>
 								</div>
