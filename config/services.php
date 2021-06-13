@@ -47,7 +47,7 @@ return [
     'facebook'    => [
       'client_id'     => env('FACEBOOK_CLIENT_ID'),
       'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-      'redirect'      => 'http://localhost:8000/login/facebook/callback',
+      'redirect'      => 'https://www.grest.in/login/facebook/callback',
   ],
 
   'paytm-wallet' => [
