@@ -39,10 +39,15 @@ return [
     'client_secret' => 'eyuwbzXGBgbebzPXNiqSOods', //Google Secret
     'redirect'      => 'https://www.grest.in/login/google/callback',
   ],
-  'facebook'     => [
-    'client_id'     => '136836768489519', //Facebook API
-    'client_secret' => 'e68b706f5ca9cd5e65bf0306a93d8641', //Facebook Secret
-    'redirect'      => 'https://localhost:8000/login/facebook/callback',
+  // 'facebook'     => [
+  //   'client_id'     => '136836768489519', //Facebook API
+  //   'client_secret' => 'e68b706f5ca9cd5e65bf0306a93d8641', //Facebook Secret
+  //   'redirect'      => 'https://localhost:8000/login/facebook/callback',
+  // ],
+    'facebook'    => [
+      'client_id'     => env('FACEBOOK_CLIENT_ID'),
+      'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+      'redirect'      => 'http://localhost:8000/login/facebook/callback',
   ],
 
   'paytm-wallet' => [
