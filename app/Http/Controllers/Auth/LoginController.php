@@ -58,9 +58,9 @@ class LoginController extends Controller
     {
         $userSocial =   Socialite::driver($provider)->stateless()->user();
         $searchUser =   User::where(['email' => $userSocial->getEmail()])->first();
-        dd($userSocial);
+        // dd($userSocial);
         if($searchUser){
-            Auth::login($searchUser);
+            Auth::attempt($searchUser);
             return redirect('/')->with('success','You are login from '.$provider);
         }else{
             $user = User::create([
