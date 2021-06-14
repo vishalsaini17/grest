@@ -55,7 +55,7 @@ class LoginController extends Controller
     }
  
     public function Callback($provider){
-        dd($provider);
+        // dd($provider);
         $userSocial =   Socialite::driver($provider)->stateless()->user();
         $searchUser =   User::where(['email' => $userSocial->getEmail()])->first();
         // dd($userSocial);
