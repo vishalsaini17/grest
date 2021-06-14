@@ -78,7 +78,7 @@
                                         {{-- <div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true"></div> --}}
                                         <a href="{{route('login.redirect','facebook')}}" class="btn btn-lg px-3 btn-facebook"><i class="fa fa-facebook"></i></a>
                                         {{-- <a href="{{route('login.redirect' ,'github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
-                                        {{-- <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a> --}}
+                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
                                     </div>
                                     <div class="checkbox">
                                         <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>

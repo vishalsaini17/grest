@@ -36,9 +36,9 @@ return [
     'redirect'      => 'https://localhost:8000/login/github/callback',
   ],
   'google'       => [
-    'client_id'     => '122886334250-fsfd8ugugkr0hjrkakukbgnnruomjn95.apps.googleusercontent.com', //Google API
-    'client_secret' => 'eyuwbzXGBgbebzPXNiqSOods', //Google Secret
-    'redirect'      => 'https://www.grest.in/login/google/callback',
+    'client_id'     => '96620334621-piqerdfktup24cbakqbeba70316ndq6a.apps.googleusercontent.com', //Google API
+    'client_secret' => 'hai1OorhJFCez4Xg5tgwtIeW', //Google Secret
+    'redirect'      => 'https://localhost:8000/login/google/callback',
   ],
   // 'facebook'     => [
   //   'client_id'     => '136836768489519', //Facebook API
