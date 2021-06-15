@@ -64,7 +64,8 @@ class HomeController extends Controller
             HomeController::updateDefaultAddress($add->id);
         }
             
-        return redirect('manage');
+        // return redirect('manage');
+        return redirect()->back();
 
     }
 

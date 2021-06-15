@@ -121,14 +121,14 @@ class OrderController extends Controller
         }
         //  dd($order_data['total_amount']);
         $order_data['status']="new";
-        if(request('payment_method')=='paypal' || request('payment_method')=='paytm'){
-            $order_data['payment_method']=request('payment_method');
-            $order_data['payment_status']='paid';
-        }
-        else{
-            $order_data['payment_method']='cod';
-            $order_data['payment_status']='Unpaid';
-        }
+        // if(request('payment_method')=='paypal' || request('payment_method')=='paytm'){
+        //     $order_data['payment_method']=request('payment_method');
+        //     $order_data['payment_status']='paid';
+        // }
+        // else{
+        //     $order_data['payment_method']='cod';
+        //     $order_data['payment_status']='Unpaid';
+        // }
         $order->fill($order_data);
         $status=$order->save();
         if($order)
