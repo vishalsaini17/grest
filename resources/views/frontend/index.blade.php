@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Grest || HOME PAGE')
+@section('title',' HOME PAGE')
 @section('main-content')
 <!-- Slider Area -->
 {{--
@@ -187,10 +187,11 @@
                     @endphp
                     <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                     <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                    @if($product->stock<=0) <span class="out-of-stock">Sale out</span>
+                    @if($product->stock<=0) <span class="out-of-stock">Sold out</span>
                       @elseif($product->condition=='superb')
-                      <span class="new">Superb</span @elseif($product->condition=='better')
-                      <span class="hot">Good as new</span>
+                      <span class="hot">Superb</span> 
+                      @elseif($product->condition=='better')
+                      <span class="new">Good as new</span>
                       @else
                       <span class="price-dec">{{$product->discount}}% Off</span>
                       @endif
@@ -322,7 +323,7 @@
 <!-- End Most Popular Area -->
 
 <!-- Start Shop Home List  -->
-<section class="shop-home-list section">
+<section class="shop-home-list d-none section">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-12">
@@ -407,8 +408,8 @@
 </section>
 <!-- /End Cowndown Area -->
 @endforeach --}}
-<!-- Start Shop Blog  -->
-<section class="shop-blog section">
+<!-- Start Shop Blog ************Hidden**************  -->
+<section class="shop-blog d-none section">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -441,48 +442,7 @@
 <!-- End Shop Blog  -->
 
 <!-- Start Shop Services Area -->
-<section class="shop-services section home">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-rocket"></i>
-          <h4>Free shiping</h4>
-          <p>Orders over $100</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-reload"></i>
-          <h4>Free Return</h4>
-          <p>Within 30 days returns</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-lock"></i>
-          <h4>Sucure Payment</h4>
-          <p>100% secure payment</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-tag"></i>
-          <h4>Best Peice</h4>
-          <p>Guaranteed price</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-    </div>
-  </div>
-</section>
+<x-shop-service-comp />
 <!-- End Shop Services Area -->
 
 @include('frontend.layouts.newsletter')

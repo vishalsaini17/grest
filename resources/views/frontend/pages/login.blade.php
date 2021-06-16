@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-Shop || Login Page')
+@section('title',' Login Page')
 
 @section('main-content')
 
@@ -21,24 +21,6 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-    <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '136836768489519',
-            xfbml      : true,
-            version    : 'v11.0'
-          });
-          FB.AppEvents.logPageView();
-        };
-      
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "https://connect.facebook.net/en_US/sdk.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
             
     <!-- Shop Login -->
     <section class="shop login section">
@@ -71,14 +53,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group login-btn d-flex justify-content-around align-items-sm-center">
-                                        <button class="btn btn-lg btn-primary" type="submit">Login</button>
+                                    <div class="form-group login-btn d-sm-flex justify-content-around align-items-center">
+                                        <button class="btn btn-primary" type="submit">Login</button>
                                         <span style="font-size: large">OR</span>
-                                        <a href="{{route('register.form')}}" class="btn btn-lg" style="background-color: #007bff;">Register</a>
+                                        <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Register</a>
                                         {{-- <div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true"></div> --}}
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-lg px-3 btn-facebook"><i class="fa fa-facebook"></i></a>
+                                        <a href="{{route('login.redirect','facebook')}}" class="btn px-3 btn-facebook"><i class="fa fa-facebook mr-2"></i> Login with Facebook</a>
                                         {{-- <a href="{{route('login.redirect' ,'github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
+                                        {{-- <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a> --}}
                                     </div>
                                     <div class="checkbox">
                                         <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>

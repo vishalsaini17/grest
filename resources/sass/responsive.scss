@@ -594,7 +594,8 @@ Version:1.0
 
   .header {
     &.shop .right-bar {
-      display: none;
+      display: fixed;
+      right: 10px;
     }
 
     .middle-inner {
@@ -1512,9 +1513,9 @@ Version:1.0
   }
 
   .header.shop {
-    .right-bar {
-      display: none;
-    }
+    // .right-bar {
+    //   display: none;
+    // }
 
     .search-top {
       display: block;
@@ -1587,7 +1588,7 @@ Version:1.0
         color: #333;
 
         &:hover {
-          color: #fff;
+          // color: #fff;
           text-decoration: underline;
         }
       }

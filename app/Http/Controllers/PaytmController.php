@@ -76,6 +76,7 @@ class PaytmController extends Controller {
       }
       $data = new \stdClass();
       $data->payment_status = 'paid';
+      session()->forget('coupon');
       return redirect('user/');
     } else if ($transaction->isFailed()) {
       //Transaction Failed

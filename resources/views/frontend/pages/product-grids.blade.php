@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Grest || PRODUCT PAGE')
+@section('title',' PRODUCT PAGE')
 
 @section('main-content')
 	<!-- Breadcrumbs -->

@@ -20,20 +20,34 @@
         </div>
         <div class="col-6">
           <!-- Top Right -->
-          <div class="right-content">
+          <div class="right-content float-md-right">
             <ul class="list-main">
-              <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Track Order</a></li>
+              <li><a href="{{route('order.track')}}"><i class="ti-location-pin"></i> Track Order</a></li>
               {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
               @auth
-              @if(Auth::user()->role=='admin')
-              <li><i class="ti-user"></i> <a href="{{route('admin')}}" target="_blank">Dashboard</a></li>
-              @else
-              <li><i class="ti-user"></i> <a href="{{route('user')}}" target="_blank">Dashboard</a></li>
-              @endif
-              <li><i class="ti-power-off"></i> <a href="" data-target="#logoutModal" data-toggle="modal">Logout</a></li>
+              {{-- @if(Auth::check()) --}}
+              {{-- <li><a href="{{route('admin')}}" target="_blank"><i class="ti-user"></i> Dashboard</a></li> --}}
+                <li>
+                  <div class="dropdown show text-black">
+                    <a class="btn btn-sm btn-hollow-secondary dropdown-toggle dropdown-toggle-split" href="#" role="button" id="my-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="ti-user"></i> {{Auth::user()->name}}
+                    </a>
+                    
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item text-capitalize" href="{{(Auth::user()->role=='admin')? route('admin') : route('user')}}">{{Auth::user()->role}} Dashboard</a>
+                      <a class="dropdown-item" href="{{route('manage')}}">Manage</a>
+                      <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>
+                    </div>
+                  </div>
+                </li>
+              {{-- @else --}}
+              {{-- <li><a href="{{route('user')}}" target="_blank"><i class="ti-user"></i> Dashboard</a></li> --}}
+              {{-- @endif --}}
+              {{-- <li><a href="" data-target="#logoutModal" data-toggle="modal"><i class="ti-power-off"></i> Logout</a></li> --}}
 
               @else
-              <li><i class="ti-power-off"></i><a href="{{route('login.form')}}">Login</a>&nbsp/&nbsp<a href="{{route('register.form')}}">Register</a></li>
+              <li><a href="{{route('login.form')}}"><i class="ti-power-off"></i> Login</a>&nbsp/&nbsp<a href="{{route('register.form')}}">Register</a></li>
+              {{-- @endif --}}
               @endauth
             </ul>
           </div>
@@ -105,7 +119,7 @@
                     <li class="{{Request::path()=='about-us' ? 'active' : ''}}"><a href="{{route('about-us')}}">About Us</a></li>
                     <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif"><a href="{{route('product-grids')}}">Products</a><span class="new">New</span></li>
                     {{Helper::getHeaderCategory()}}
-                    <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li>
+                    {{-- <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li> --}}
 
                     <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a href="{{route('contact')}}">Contact Us</a></li>
                   </ul>

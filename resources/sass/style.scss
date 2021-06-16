@@ -497,9 +497,9 @@ Version:1.0
       }
     }
 
-    .right-content {
-      float: right;
-    }
+    // .right-content {
+    //   float: right;
+    // }
 
     .list-main li {
       display: inline-block;
@@ -1262,6 +1262,27 @@ Version:1.0
       }
     }
   }
+}
+
+.obj-fit-parent{
+  // padding-top: 100%;
+  flex: 0 0 25%;
+  max-width: 25%;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  img{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    object-fit: contain;
+    transform: translateX(-50%);
+  }
+}
+.flex-column{
+  flex: 0 0 750%;
+  max-width: 75%;
 }
 
 /* Topbar Left Nav */
@@ -2217,6 +2238,50 @@ Version:1.0
       color: #fff;
       border-color: transparent;
     }
+  }
+}
+
+.condition{
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #ffc107;
+  &-S{
+    color: #2cc95b;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+  &-B{
+    color: #17a2b8;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+}
+
+.condition-pill{
+    display: inline-block !important;
+    border-radius: 5px;
+    background: #ffc107;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+  &-S{
+    display: inline-block !important;
+    border-radius: 5px;
+    background: #2cc95b;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+  }
+  &-B{
+    display: inline-block !important;
+    border-radius: 5px;
+    background: #17a2b8;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
   }
 }
 
@@ -3785,8 +3850,8 @@ Version:1.0
 }
 
 .shopping-cart {
-  tbody .qty .input-group {
-    width: 175px;
+  .qty.input-group {
+    width: 105px;
     display: inline-block;
   }
 
@@ -3794,7 +3859,7 @@ Version:1.0
     .button {
       display: inline-block;
       position: absolute;
-      top: 0;
+      top: -43%;
 
       &.minus {
         left: 0;
@@ -3829,7 +3894,7 @@ Version:1.0
       border: 1px solid #eceded;
       width: 100%;
       text-align: center;
-      height: 47px;
+      // height: 47px;
       border-radius: 0;
       overflow: hidden;
       padding: 0px 45px;
@@ -3982,7 +4047,10 @@ Version:1.0
   .button5 .btn {
     margin-top: 10px;
     line-height: 18px;
+    border-radius: 0;
+    font-size: 1rem;
     color: #fff;
+    font-weight: 600;
     padding: 0.75rem;
     transition: color 0.3s, background-color 0.3s ease;
   }

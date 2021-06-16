@@ -23,9 +23,63 @@
   <div class="shopping-cart section">
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col-8 col-md-8 col-sm-12">
           <!-- Shopping Summery -->
-          <table class="table shopping-summery">
+          <div class="shopping-summary">
+            <div class="row">
+              <div class="col-12">
+                <h4 class="pt-2 pl-3 pb-1 text-white bg-primary">Cart Items</h4>
+                <form action="{{ route('cart.update') }}" method="POST">
+                  @csrf
+                  @foreach (Helper::getAllProductFromCart() as $key => $cart)
+                  {{-- @dd(Helper::getAllProductFromCart()) --}}
+                  {{-- @dd($cart->product['summary']) --}}
+                  {{-- @dump($product) --}}
+                  @php
+                    $photo = explode(',', $cart->product['photo']);
+                  @endphp
+
+                  <ul class="list-group my-2">
+                    <div class="list-group-item list-group-item-action d-flex align-items-center">
+                      <div class="obj-fit-parent" style="width: 150px;">
+                        <img src="{{ $photo[0] }}" class="img-fluid" alt="quixote">
+                      </div>   
+                      <div class="flex-column">
+                        <h5 class="product-name card-title"><a href="{{ route('product-detail', $cart->product['slug']) }}" target="_blank">{{ $cart->product['title'] }}</a></h5>
+                        <ul>
+                          <li>{!!$cart->product['summary']!!}</li>
+                          <li>Cosmatic condition: <span class="badge badge-info badge-pill">{{$cart->product['condition']}}</span></li>
+                        </ul>
+                        <div class="input-group qty d-inline-block">
+                          <span class="button minus">
+                            <button type="button" class="btn btn-primary btn-number" {{($cart->quantity == 1)? 'disabled': ''}} data-type="minus" data-field="quant[{{ $key }}]">
+                              <i class="ti-minus"></i>
+                            </button>
+                          </span>
+                          <input type="text" name="quant[{{ $key }}]" class="input-number text-center" data-min="1" data-max="100" value="{{ $cart->quantity }}">
+                          <input type="hidden" name="qty_id[]" value="{{ $cart->id }}">
+                          <span class="button plus">
+                            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[{{ $key }}]">
+                              <i class="ti-plus"></i>
+                            </button>
+                          </span>
+                        </div>
+                        <a href="{{ route('cart-delete', $cart->id) }}" class="mx-4"><i class="fa fa-trash fa-2x"></i></a>
+                        <button class="btn btn-info float-md-right d-inline-block" type="submit">Update</button>
+                        <h5 class="ml-auto my-2">₹ {{ number_format($cart->quantity * $cart['price']) }}</h5>
+                      </div>
+                    </div>
+                  </ul>
+
+                  @endforeach
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+
+          <table class="table d-none shopping-summery">
             <thead>
               <tr class="main-hading">
                 <th>PRODUCT</th>
@@ -39,7 +93,7 @@
             <tbody id="cart_item_list">
               <form action="{{ route('cart.update') }}" method="POST">
                 @csrf
-                @if (Helper::getAllProductFromCart())
+                @if (Helper::totalCartPrice() != 0)
                   @foreach (Helper::getAllProductFromCart() as $key => $cart)
                   {{-- @dd($cart); --}}
                     <tr>
@@ -85,7 +139,7 @@
                   </track>
                 @else
                   <tr>
-                    <td class="text-center">
+                    <td class="text-center" colspan="6">
                       There are no any carts available. <a href="{{ route('product-grids') }}" style="color:blue;">Continue shopping</a>
 
                     </td>
@@ -98,7 +152,9 @@
           </table>
           <!--/ End Shopping Summery -->
         </div>
-        <div class="col-lg-4 col-md-7 col-12">
+        <div class="col-lg-4 col-md-4 col-12">
+          @if (Helper::totalCartPrice() != 0)
+          <h4 class="pt-2 pl-3 pb-1 text-white bg-primary">Cart Totals</h4>
           <div class="right">
             <ul>
               <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>₹ {{ number_format(Helper::totalCartPrice()) }}</span></li>
@@ -122,18 +178,19 @@
                 </li>
               </div> --}}
               {{-- {{dd(Session::get('coupon')['value'])}} --}}
-              <div class="coupon mb-3">
-                <form action="{{ route('coupon-store') }}" class="input-group" method="POST">
-                  @csrf
-                  <input name="code" class="form-control" placeholder="Enter Your Coupon">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">{{(session()->has('coupon')? 'Update': 'Apply')}}</button>
-                  </div>
-                  {{-- <button class="btn btn-primary">Apply</button> --}}
-                </form>
-                <h5 class="text-danger d-inline">*</h5>
-                <small>You can Apply only ne coupon at a time.</small>
-              </div>
+                <div class="coupon mb-3">
+                  <form action="{{ route('coupon-store') }}" class="input-group" method="POST">
+                    @csrf
+                    <input name="code" class="form-control" placeholder="Enter Your Coupon">
+                    <div class="input-group-append">
+                      <button class="btn btn-success" type="submit" id="button-addon2">{{(session()->has('coupon')? 'Update': 'Apply')}}</button>
+                    </div>
+                    {{-- <button class="btn btn-primary">Apply</button> --}}
+                  </form>
+                  <h5 class="text-danger d-inline">*</h5>
+                  <small>You can Apply only one coupon at a time.</small>
+                </div>
+
               @if (session()->has('coupon'))
                 <li class="coupon_price" data-price="{{ Session::get('coupon')['value'] }}">You Save<span>₹ {{ number_format(Session::get('coupon')['value']) }}</span></li>
               @endif
@@ -149,11 +206,13 @@
                 <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 0) }}</span></li>
               @endif
             </ul>
-            <div class="button5 d-flex justify-content-between">
-              <a href="{{ route('product-grids') }}" class="btn btn-success">Continue shopping</a>
-              <a href="{{ route('checkout') }}" class="btn btn-primary checkout-btn">Checkout</a>
+            <div class="button5">
+              <a href="{{ route('checkout') }}" class="btn w-100 {{(Helper::totalCartPrice() == 0)? 'disabled-link' : ''}} btn-primary checkout-btn">Checkout</a>
+              <a href="{{ route('product-grids') }}" class="btn btn-secondary">Continue shopping</a>
             </div>
           </div>
+          @endif
+
         </div>
       </div>
       <div class="row">
@@ -162,9 +221,6 @@
           <div class="total-amount">
             <div class="row">
               <div id="app" class="col-12 d-none">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <strong>Payment Has been Successfully Received</strong>
-                </div>
               {{-- <div class="col-lg-8 col-md-5 col-12">
                 <div class="left">
                   <div class="coupon">
@@ -180,8 +236,8 @@
 										@endphp
 										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');"> Shipping</label>
 									</div> 
-                </div>
-              </div> --}}
+                </div> --}}
+              </div>
               
             </div>
           </div>
@@ -389,7 +445,7 @@
     });
 
     $(document).ready(function() {
-      if ($(".order_subtotal span").text() == '₹0') {
+      if ($(".order_subtotal span").text() == 0) {
         $('.checkout-btn').addClass('disabled-link')
       }
     });

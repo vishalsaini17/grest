@@ -54,7 +54,7 @@ Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
 Route::get('/cart',function(){
     return view('frontend.pages.cart');
-})->name('cart');
+})->name('cart')->middleware('user');
 Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user');
 // Wishlist
 Route::get('/wishlist',function(){

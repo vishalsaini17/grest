@@ -42,7 +42,7 @@
 								<li><a href="#">Money-back</a></li>
 								<li><a href="#">Returns</a></li>
 								<li><a href="#">Shipping</a></li>
-								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="{{route('private.policy')}}">Privacy Policy</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -78,7 +78,7 @@
 							</div>
 						</div>
 						<div class="col-lg-6 col-12">
-							<div class="right">
+							<div class="float-right">
 								<img src="{{asset('backend/img/payments.png')}}" alt="#">
 							</div>
 						</div>

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Grest || Register Page')
+@section('title',' Register Page')
 
 @section('main-content')
 	<!-- Breadcrumbs -->
@@ -78,11 +78,12 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="  d-flex justify-content-between align-items-sm-center">
+                                    <div class="d-sm-flex justify-content-between align-items-center text-center">
                                     <button  class="btn btn-info" style="background-color: #007bff;" type="submit">Register</button>
+                                    <span class="my-3 d-sm-inline-block" style="font-size: large">OR</span>
                                         <a href="{{route('login.form')}}" class="btn btn-primary">Login</a>
-                                        <span style="font-size: large">OR</span>
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
+                                        {{-- <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a> --}}
+                                        <a href="{{route('login.redirect','facebook')}}" class="btn px-3 btn-facebook"><i class="fa fa-facebook mr-2"></i> Login with Facebook</a>
                                         {{-- <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
                                         {{-- <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a> --}}
                                     </div>

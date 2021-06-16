@@ -73,7 +73,6 @@ class LoginController extends Controller
                 // 'user_id'       => ,
                 'provider'      => $provider,
             ]);
-            $user()->save;
             Auth::login($user);
             session()->put('user', $user['email']);
 

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Grest || Private Policy')
+@section('title',' Private Policy')
 
 @section('main-content')
 		<section class="private-policy">

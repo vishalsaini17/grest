@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Grest || PRODUCT PAGE')
+@section('title',' PRODUCT PAGE')
 
 @section('main-content')
 	
@@ -119,7 +119,7 @@
                                                 @php
                                                     $org=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <p class="price"><del class="text-muted">Rs. {{number_format($product->price,2)}}</del>   Rs. {{number_format($org,2)}}  </p>                                                
+                                                <p class="price"><del class="text-muted">Rs. {{number_format($product->price)}}</del>   Rs. {{number_format($org)}}  </p>                                                
                                             </div>
                                         </div>
                                         <!-- End Single Post -->
@@ -212,14 +212,15 @@
 																@php
 																	$after_discount=($product->price-($product->price*$product->discount)/100);
 																@endphp
-																<span>Rs. {{number_format($after_discount,2)}}</span>
-																<del>Rs. {{number_format($product->price,2)}}</del>
+																<h3 class="title d-inline-block"><a href="{{route('product-detail',$product->slug)}}"><?= $product->title.' ('.$product->ram.'GB Ram, '.$product->size.'GB Storage)' ?></a></h3>
+																<span class="{{($product->condition == 'superb') ? 'condition-pill-S' : (($product->condition == 'better') ? 'condition-pill-B' : 'condition-pill')}}">{{$product->condition}}</span><br>
+																<span class="d-inline-block">Rs. {{number_format($after_discount)}}</span>
+																<del class="text-muted"><small>Rs. {{number_format($product->price)}}</small></del>
 															</div>
-															<h3 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
 														{{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
 														</div>
 														<p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
-														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a>
+														<a href="{{route('add-to-cart',$product->slug)}}" class="btn cart" data-id="{{$product->id}}">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -305,7 +306,7 @@
 												@php
 													$after_discount=($product->price-($product->price*$product->discount)/100);
 												@endphp
-												<h3><small><del class="text-muted">Rs. {{number_format($product->price,2)}}</del></small>    Rs. {{number_format($after_discount,2)}}  </h3>
+												<h3><small><del class="text-muted">Rs. {{number_format($product->price)}}</del></small>    Rs. {{number_format($after_discount)}}  </h3>
 												<div class="quickview-peragraph">
 													<p>{!! html_entity_decode($product->summary) !!}</p>
 												</div>

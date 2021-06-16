@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','Grest || DASHBOARD')
+@section('title',' DASHBOARD')
 @section('main-content')
 <section class="container-fluid">
   <div class="row">

@@ -2,7 +2,6 @@
 
 @section('title', "Manage || $profile->name")
     
-
 @section('main-content')
 
 
