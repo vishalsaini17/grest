@@ -203,6 +203,7 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
 
     // Emails
     Route::get('/email', 'MailController@welcome')->name('email');
+    Route::get('/emailTEST', 'MailController@test')->name('emailtest');
 
 
 });

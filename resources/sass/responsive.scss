@@ -520,7 +520,7 @@ Version:1.0
 
       &:hover {
         a {
-          color: $primary;
+          color: $grest-clr;
           background: transparent;
         }
 
@@ -537,7 +537,7 @@ Version:1.0
           background: transparent;
 
           &:hover {
-            color: $primary;
+            color: $grest-clr;
             background: transparent;
           }
         }
@@ -561,13 +561,13 @@ Version:1.0
   }
 
   .slicknav_menu .slicknav_icon-bar {
-    background-color: $primary;
+    background-color: $grest-clr;
     box-shadow: none;
     text-shadow: none;
   }
 
   .slicknav_nav .slicknav_arrow {
-    color: $primary;
+    color: $grest-clr;
   }
 
   .slicknav_menu .slicknav_icon-bar {
@@ -1142,7 +1142,7 @@ Version:1.0
         width: 50%;
         height: 100%;
         border-bottom: 1px solid #e6ebee;
-        background: $primary;
+        background: $grest-clr;
         color: #fff;
         border: none;
       }
@@ -1442,7 +1442,7 @@ Version:1.0
 
       &:hover {
         a {
-          color: $primary;
+          color: $grest-clr;
           background: transparent;
         }
 
@@ -1459,7 +1459,7 @@ Version:1.0
           background: transparent;
 
           &:hover {
-            color: $primary;
+            color: $grest-clr;
             background: transparent;
           }
         }
@@ -1483,13 +1483,13 @@ Version:1.0
   }
 
   .slicknav_menu .slicknav_icon-bar {
-    background-color: $primary;
+    background-color: $grest-clr;
     box-shadow: none;
     text-shadow: none;
   }
 
   .slicknav_nav .slicknav_arrow {
-    color: $primary;
+    color: $grest-clr;
   }
 
   .slicknav_menu .slicknav_icon-bar {

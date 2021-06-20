@@ -52,14 +52,14 @@
                         </ul>
                         <div class="input-group qty d-inline-block">
                           <span class="button minus">
-                            <button type="button" class="btn btn-primary btn-number" {{($cart->quantity == 1)? 'disabled': ''}} data-type="minus" data-field="quant[{{ $key }}]">
+                            <button type="button" class="btn btn-grest btn-number" {{($cart->quantity == 1)? 'disabled': ''}} data-type="minus" data-field="quant[{{ $key }}]">
                               <i class="ti-minus"></i>
                             </button>
                           </span>
                           <input type="text" name="quant[{{ $key }}]" class="input-number text-center" data-min="1" data-max="100" value="{{ $cart->quantity }}">
                           <input type="hidden" name="qty_id[]" value="{{ $cart->id }}">
                           <span class="button plus">
-                            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[{{ $key }}]">
+                            <button type="button" class="btn btn-grest btn-number" data-type="plus" data-field="quant[{{ $key }}]">
                               <i class="ti-plus"></i>
                             </button>
                           </span>
@@ -113,14 +113,14 @@
                         <!-- Input Order -->
                         <div class="input-group">
                           <div class="button minus">
-                            <button type="button" class="btn btn-primary btn-number" {{($cart->quantity == 1)? 'disabled': ''}} data-type="minus" data-field="quant[{{ $key }}]">
+                            <button type="button" class="btn btn-grest btn-number" {{($cart->quantity == 1)? 'disabled': ''}} data-type="minus" data-field="quant[{{ $key }}]">
                               <i class="ti-minus"></i>
                             </button>
                           </div>
                           <input type="text" name="quant[{{ $key }}]" class="input-number" data-min="1" data-max="100" value="{{ $cart->quantity }}">
                           <input type="hidden" name="qty_id[]" value="{{ $cart->id }}">
                           <div class="button plus">
-                            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[{{ $key }}]">
+                            <button type="button" class="btn btn-grest btn-number" data-type="plus" data-field="quant[{{ $key }}]">
                               <i class="ti-plus"></i>
                             </button>
                           </div>
@@ -185,7 +185,7 @@
                     <div class="input-group-append">
                       <button class="btn btn-success" type="submit" id="button-addon2">{{(session()->has('coupon')? 'Update': 'Apply')}}</button>
                     </div>
-                    {{-- <button class="btn btn-primary">Apply</button> --}}
+                    {{-- <button class="btn btn-grest">Apply</button> --}}
                   </form>
                   <h5 class="text-danger d-inline">*</h5>
                   <small>You can Apply only one coupon at a time.</small>
@@ -207,7 +207,7 @@
               @endif
             </ul>
             <div class="button5">
-              <a href="{{ route('checkout') }}" class="btn w-100 {{(Helper::totalCartPrice() == 0)? 'disabled-link' : ''}} btn-primary checkout-btn">Checkout</a>
+              <a href="{{ route('checkout') }}" class="btn w-100 {{(Helper::totalCartPrice() == 0)? 'disabled-link' : ''}} btn-grest checkout-btn">Checkout</a>
               <a href="{{ route('product-grids') }}" class="btn btn-secondary">Continue shopping</a>
             </div>
           </div>
@@ -227,7 +227,7 @@
 									<form action="{{route('coupon-store')}}" method="POST">
 											@csrf
 											<input name="code" placeholder="Enter Your Coupon">
-											<button class="btn btn-primary">Apply</button>
+											<button class="btn btn-grest">Apply</button>
 										</form>
 									</div> --}}
                   {{-- <div class="checkbox">`
@@ -254,7 +254,7 @@
   @include('frontend.layouts.newsletter')
   <!-- End Shop Newsletter -->
 
-  {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  {{-- <button type="button" class="btn btn-grest" data-toggle="modal" data-target="#exampleModal">
 		Launch demo modal
 	</button> --}}
 
@@ -335,13 +335,13 @@
                   <!-- Input Order -->
                   <div class="input-group">
                     <div class="button minus">
-                      <button type="button" class="btn btn-primary btn-number" disabled data-type="minus" data-field="quant[1]">
+                      <button type="button" class="btn btn-grest btn-number" disabled data-type="minus" data-field="quant[1]">
                         <i class="ti-minus"></i>
                       </button>
                     </div>
                     <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
                     <div class="button plus">
-                      <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                      <button type="button" class="btn btn-grest btn-number" data-type="plus" data-field="quant[1]">
                         <i class="ti-plus"></i>
                       </button>
                     </div>
@@ -349,7 +349,7 @@
                   <!--/ End Input Order -->
                 </div>
                 <div class="add-to-cart">
-                  <a href="#" class="btn btn-primary">Add to cart</a>
+                  <a href="#" class="btn btn-grest">Add to cart</a>
                   <a href="#" class="btn min"><i class="ti-heart"></i></a>
                   <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
                 </div>

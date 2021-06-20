@@ -2115,3 +2115,9 @@ embed, iframe, object {
     max-width: 1440px;
   }
 }
+
+@media (min-width: 1680px){
+  .container {
+    max-width: 1590px !important;
+  }
+}

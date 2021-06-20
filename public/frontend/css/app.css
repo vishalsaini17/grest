@@ -1999,6 +1999,12 @@ object {
   }
 }
 
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1590px !important;
+  }
+}
+
 /* =====================================
 Template Name: Eshop
 Author Name: Naimur Rahman
@@ -2038,7 +2044,7 @@ Version:1.0
 21. Footer CSS
 ========================================*/
 
-.btn-primary {
+.btn-grest {
   background-color: #EA2953;
   color: #fff;
   border-radius: 6px;
@@ -4134,6 +4140,18 @@ Version:1.0
   margin-top: 50px;
 }
 
+.single-product .button-head-mobile {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  background: #333;
+  color: #fff;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
 .single-product .product-img {
   position: relative;
   overflow: hidden;
@@ -4409,6 +4427,7 @@ Version:1.0
 
 .single-product .product-content {
   margin-top: 20px;
+  min-height: 6rem;
 }
 
 .single-product .product-img:hover.default-overlay::before {
@@ -4458,6 +4477,16 @@ Version:1.0
   text-decoration: line-through;
   opacity: 0.6;
   margin-right: 2px;
+}
+
+@media screen and (max-width: 567px) {
+  .button-head {
+    display: none !important;
+  }
+
+  .button-head-mobile {
+    display: flex !important;
+  }
 }
 
 /*======================================
@@ -6651,12 +6680,12 @@ Version:1.0
   color: #fff;
 }
 
-.about-us .about-content .button .btn.primary {
+.about-us .about-content .button .btn.grest {
   background: #EA2953;
   color: #fff;
 }
 
-.about-us .about-content .button .btn.primary:hover {
+.about-us .about-content .button .btn.grest:hover {
   background: #333;
   color: #fff;
 }
