@@ -1257,8 +1257,9 @@ embed, iframe, object {
   }
 }
 
-@media only screen and (min-width: 1366px) and (max-width: 1600px) {
-  .modal-dialog {
+// @media only screen and (min-width: 1366px) and (max-width: 1600px) {
+@media only screen and (min-width: 1366px) {
+.modal-dialog {
     width: 1145px;
     max-width: 1145px;
   }
