@@ -53,7 +53,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Your Mobile Number<span>*</span></label>
-                                        <input type="text" name="phone" placeholder="" required="required" value="{{old('phone')}}">
+                                        <input type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" required name="phone" placeholder="" value="{{old('phone')}}">
                                         @error('phone')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror

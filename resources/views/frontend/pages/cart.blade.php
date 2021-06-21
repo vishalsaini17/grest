@@ -18,12 +18,12 @@
   </div>
   <!-- End Breadcrumbs -->
 
-
+{{-- @dd(Auth::user()->email) --}}
   <!-- Shopping Cart -->
   <div class="shopping-cart section">
     <div class="container">
       <div class="row">
-        <div class="col-8 col-md-8 col-sm-12">
+        <div class="col-lg-8 col-md-8 col-sm-12">
           <!-- Shopping Summery -->
           <div class="shopping-summary">
             <div class="row">

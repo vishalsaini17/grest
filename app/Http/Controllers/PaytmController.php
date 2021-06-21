@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Cart;
 use PaytmWallet;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderPlaced;
+use Auth;
+
 
 class PaytmController extends Controller {
   /**
@@ -13,25 +17,25 @@ class PaytmController extends Controller {
    *
    * @return Response
    */
-  // public function getData(){
+  // public function getorder(){
 
   // }
 
 
   public function paytmPayment(Request $req) {
   // dd(session('orderId'));
-    $data = Order::where('id', session('orderId'))->first();
+    $order = Order::where('id', session('orderId'))->first();
 
-    // dd($data);
+    // dd($order);
 
     $payment = PaytmWallet::with('receive');
     // **********Actual***********
     $payment->prepare([
-      'order'         => $data->order_number,
-      'user'          => $data->user_id,
-      'mobile_number' => $data->phone,
-      'email'         => $data->email,
-      'amount'        => $data->total_amount,
+      'order'         => $order->order_number,
+      'user'          => $order->user_id,
+      'mobile_number' => $order->phone,
+      'email'         => $order->email,
+      'amount'        => $order->total_amount,
       'callback_url'  => route('paytm.callback'),
     ]);
 
@@ -56,8 +60,8 @@ class PaytmController extends Controller {
    * @return Object
    */
   public function paytmCallback() {
-    $data = Order::where('id', session('orderId'))->first();
-
+    $order = Order::where('id', session('orderId'))->first();
+    // dd($order);
     $transaction = PaytmWallet::with('receive');
     $response = $transaction->response(); // To get raw response as array
     //Check out response parameters sent by paytm here -> http://paywithpaytm.com/developer/paytm_api_doc?target=interpreting-response-sent-by-paytm
@@ -70,18 +74,16 @@ class PaytmController extends Controller {
       //Transaction Successful
       // dd('transaction sucess');
       request()->session()->flash('success','Your order has been placed.');
-      $cart = Cart::where('user_id', $data->user_id)->get();
-      foreach ($cart as $item) {
-        $item->delete();
-      }
-      $data = new \stdClass();
-      $data->payment_status = 'paid';
+      Cart::where('user_id', $order->user_id)->where('order_id', null)->update(['order_id' => $order->id]);
+      Mail::to($order->email)->send(new OrderPlaced($order));
+      $order = new \stdClass();
+      $order->payment_status = 'paid';
       session()->forget('coupon');
       return redirect('user/');
     } else if ($transaction->isFailed()) {
       //Transaction Failed
-      $data = new \stdClass();
-      $data->payment_status = 'Unpaid';
+      $order = new \stdClass();
+      $order->payment_status = 'Unpaid';
       request()->session()->flash('error','Payment filed, please try again.');
       return redirect('checkout');
     } else if ($transaction->isOpen()) {

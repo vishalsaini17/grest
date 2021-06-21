@@ -417,6 +417,8 @@
 <!-- Modal -->
 @if($product_lists)
 @foreach($product_lists as $key=>$product)
+{{-- @dd($product); --}}
+
 <div class="modal fade quickViewModal" id="{{$product->id}}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -431,7 +433,7 @@
               <div class="quickview-slider-active">
                 @php
                 $photo=explode(',',$product->photo);
-                // dd($photo); 
+                // dd($photo[0]); 
                 @endphp
                 {{-- @foreach($photo as $data) --}}
                 <div class="single-slider">

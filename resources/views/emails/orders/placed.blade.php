@@ -58,9 +58,9 @@
       font-size: 1rem;
       font-weight: 600
     }
-    /* .container{
+    .container{
       max-width: 900px
-    } */
+    }
     .bg-grest{
       background: #ea2953;
       color: #fff
@@ -158,6 +158,8 @@
     <div class="site-address">
       <h4>{{env('APP_NAME')}}: Gadget Restoration</h4>
       <small>{{env('APP_ADDRESS')}}</small>
+      {{-- @dd($order); --}}
+
       @php
               $settings=DB::table('settings')->get();
               // dd($settings[0]->phone);
@@ -195,7 +197,7 @@
           $cart=DB::table('products')->where('id',$cartItem->product_id)->get();
           $photo=explode(',',$cart[0]->photo);
 
-          // dd($order);
+          // dd($cart);
         @endphp
         <ul class="list-group my-2">
           <div class="row mx-auto d-flex list-group-item list-group-item-action">
@@ -307,7 +309,7 @@
   <section class="shop-again mt-5">
     <div class="text-white p-5 text-italic text-center" style="background: #12152E;">
       <h4 class="text-center italic">Thanks for shopping, Save 10% on next order, Use "GrestGet10"</h4>
-      <a href="{{route('product-grids')}}" class="btn mt-3 btn-danger btn-lg"> Shop Now!</a>
+      <a href="{{route('product-grids')}}" class="btn mt-3 text-white btn-danger btn-lg"> Shop Now!</a>
     </div>
   </section>
   {{-- <div class="thanks text-success mt-3">

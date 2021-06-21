@@ -203,9 +203,16 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
 
     // Emails
     Route::get('/email', 'MailController@welcome')->name('email');
-    Route::get('/emailTEST', 'MailController@test')->name('emailtest');
-
-
+    
+    
+});
+Route::get('/emailTEST', function(){
+    $order = App\Models\Order::find(48);
+    return new App\Mail\OrderPlaced($order);
+});
+Route::get('pdfTEST',function(){
+    $order = App\Models\Order::find(49);
+    return view('backend.order.pdf')->with('order', $order);
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

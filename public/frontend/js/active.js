@@ -196,18 +196,18 @@ window.onload = () => {
 		/*===========================
 		  Quick View Slider JS
 		=============================*/ 
-		$('.quickview-slider-active').owlCarousel({
-			items:1,
-			autoplay:true,
-			autoplayTimeout:5000,
-			smartSpeed: 400,
-			autoplayHoverPause:true,
-			nav:true,
-			loop:true,
-			merge:true,
-			dots:false,
-			navText: ['<i class=" ti-arrow-left"></i>', '<i class=" ti-arrow-right"></i>'],
-		});
+		// $('.quickview-slider-active').owlCarousel({
+		// 	items:1,
+		// 	autoplay:true,
+		// 	autoplayTimeout:5000,
+		// 	smartSpeed: 400,
+		// 	autoplayHoverPause:true,
+		// 	nav:true,
+		// 	loop:true,
+		// 	merge:true,
+		// 	dots:false,
+		// 	navText: ['<i class=" ti-arrow-left"></i>', '<i class=" ti-arrow-right"></i>'],
+		// });
 		
 		/*===========================
 		  Home Slider 4 JS

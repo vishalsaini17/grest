@@ -1194,7 +1194,7 @@ object {
   text-align: center;
 }
 
-@media only screen and (min-width: 1366px) and (max-width: 1600px) {
+@media only screen and (min-width: 1366px) {
   .modal-dialog {
     width: 1145px;
     max-width: 1145px;
@@ -5407,6 +5407,14 @@ Version:1.0
 
 .shop.single .review-panel {
   margin-top: 35px;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
 }
 
 /*======================================
