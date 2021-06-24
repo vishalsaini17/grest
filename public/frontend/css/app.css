@@ -2158,6 +2158,19 @@ Version:1.0
   background: #FF1D38;
 }
 
+.red-link {
+  color: #ed1b24;
+}
+
+.policy-nav .btn {
+  opacity: 0.8;
+}
+
+.policy-nav .active {
+  font-size: 1.3rem;
+  opacity: 1;
+}
+
 /* Preloader */
 
 .preloader {
@@ -4651,11 +4664,9 @@ Version:1.0
 
 .shop-sidebar .single-post .image img {
   height: 80px;
-  width: 80px;
   position: absolute;
   left: 0;
   top: 0;
-  border-radius: 100%;
 }
 
 .shop-sidebar .single-post .content {

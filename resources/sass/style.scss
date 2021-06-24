@@ -148,6 +148,20 @@ Version:1.0
   }
 }
 
+.red-link{
+  color: #ed1b24;
+}
+
+.policy-nav{
+  .btn{
+    opacity: 0.8;
+  }
+  .active{
+    font-size: 1.3rem;
+    opacity: 1;
+  }
+}
+
 /* Preloader */
 
 .preloader {
@@ -2825,11 +2839,11 @@ Version:1.0
 
     .image img {
       height: 80px;
-      width: 80px;
+      // width: 80px;
       position: absolute;
       left: 0;
       top: 0;
-      border-radius: 100%;
+      // border-radius: 100%;
     }
 
     .content {

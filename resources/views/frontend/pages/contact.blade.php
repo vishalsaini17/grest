@@ -92,6 +92,13 @@
 									</ul>
 								</div>
 								<div class="single-info">
+									<i class="fa fa-shopping-cart"></i>
+									<h4 class="title">Nearlest Outlet:</h4>
+									<ul>
+										<li>297-A, Ground floor,opposite sec 12-A chowk redlight, Gangavihar,Gurgaon-122001</li>
+									</ul>
+								</div>
+								<div class="single-info">
 									<i class="fa fa-location-arrow"></i>
 									<h4 class="title">Our Address:</h4>
 									<ul>

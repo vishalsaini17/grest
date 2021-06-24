@@ -59,11 +59,14 @@ class ProductController extends Controller
             'status'=>'required|in:active,inactive',
             'condition'=>'required|in:superb,better,good',
             'price'=>'required|numeric',
-            'discount'=>'nullable|numeric'
+            'discount'=>'nullable|numeric',
+            'color'=>'string|required',
+            'amount'=>'numeric|required'
         ]);
         // dd($request);
 
         $data=$request->all();
+        // dd($data);
         $slug=Str::slug($request->title);
         $count=Product::where('slug',$slug)->count();
         if($count>0){
@@ -85,7 +88,7 @@ class ProductController extends Controller
         else{
             $data['ram']='';
         }
-        $request->input('color');
+        // $request->input('color');
         // return $size;
         // return $data;
         $status=Product::create($data);

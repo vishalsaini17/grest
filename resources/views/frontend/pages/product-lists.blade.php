@@ -78,11 +78,11 @@
 												// dd($max);
 											@endphp
 											<div id="slider-range" data-min="0" data-max="{{$max}}"></div>
-											<div class="product_filter">
-											<button type="submit" class="filter_button">Filter</button>
+											<div class="product_filter d-flex flex-row-reverse">
+											<button type="submit" class="btn btn-info mt-3 px-4">Filter</button>
 											<div class="label-input">
 												<span>Range:</span>
-												<input style="" type="text" id="amount" readonly/>
+												<input style="width:100%" type="text" id="amount" readonly/>
 												<input type="hidden" name="price_range" id="price_range" value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
 											</div>
 											</div>

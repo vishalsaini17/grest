@@ -48,9 +48,24 @@ class FrontendController extends Controller
     public function aboutUs(){
         return view('frontend.pages.about-us');
     }
-    public function privatePolicy(){
-        return view('frontend.policies.private-policy');
+    public function privacyPolicy(){
+        return view('frontend.policies.privacy-policy');
     }
+    public function cancellationPolicy(){
+        return view('frontend.policies.cancellation');
+    }
+    public function refundPolicy(){
+            return view('frontend.policies.refund');
+    }
+    public function shippingPolicy(){
+            return view('frontend.policies.shipping');
+    }
+    public function termsCondition(){
+            return view('frontend.policies.terms-condition');
+    }
+
+
+
 
     public function contact(){
         return view('frontend.pages.contact');
@@ -89,6 +104,7 @@ class FrontendController extends Controller
         }
 
         if(!empty($_GET['price'])){
+            // dd($_GET['price']);
             $price=explode('-',$_GET['price']);
             // return $price;
             // if(isset($price[0]) && is_numeric($price[0])) $price[0]=floor(Helper::base_amount($price[0]));
@@ -137,11 +153,13 @@ class FrontendController extends Controller
         }
 
         if(!empty($_GET['price'])){
+            dd($_GET['price']);
+
             $price=explode('-',$_GET['price']);
             // return $price;
             // if(isset($price[0]) && is_numeric($price[0])) $price[0]=floor(Helper::base_amount($price[0]));
             // if(isset($price[1]) && is_numeric($price[1])) $price[1]=ceil(Helper::base_amount($price[1]));
-            
+            $amount;
             $products->whereBetween('price',$price);
         }
 
@@ -160,7 +178,8 @@ class FrontendController extends Controller
     }
     public function productFilter(Request $request){
             $data= $request->all();
-            // return $data;
+            // dd($_GET['price']);
+            // dd($data);   
             $showURL="";
             if(!empty($data['show'])){
                 $showURL .='&show='.$data['show'];

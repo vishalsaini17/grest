@@ -25,10 +25,10 @@
 							<h4>Information</h4>
 							<ul>
 								<li><a href="{{route('about-us')}}">About Us</a></li>
-								<li><a href="#">Faq</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
+								<li><a href="{{route('shipping.policy')}}">Shipping Faq</a></li>
+								<li><a href="{{route('terms.condition')}}">Terms & Conditions</a></li>
 								<li><a href="{{route('contact')}}">Contact Us</a></li>
-								<li><a href="#">Help</a></li>
+								{{-- <li><a href="#">Help</a></li> --}}
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -42,7 +42,7 @@
 								<li><a href="#">Money-back</a></li>
 								<li><a href="#">Returns</a></li>
 								<li><a href="#">Shipping</a></li>
-								<li><a href="{{route('private.policy')}}">Privacy Policy</a></li>
+								<li><a href="{{route('privacy.policy')}}">Privacy Policy</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->

@@ -38,7 +38,13 @@ Route::get('/','FrontendController@home')->name('home');
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
-Route::get('/private-policy','FrontendController@privatePolicy')->name('private.policy');
+//Policies
+Route::get('/privacy-policy','FrontendController@privacyPolicy')->name('privacy.policy');
+Route::get('/cancellation-policy','FrontendController@cancellationPolicy')->name('cancellation.policy');
+Route::get('/refund-policy','FrontendController@refundPolicy')->name('refund.policy');
+Route::get('/shipping-policy','FrontendController@shippingPolicy')->name('shipping.policy');
+Route::get('/terms-condition','FrontendController@termsCondition')->name('terms.condition');
+
 Route::get('/contact','FrontendController@contact')->name('contact');
 Route::post('/contact/message','MessageController@store')->name('contact.store');
 Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');

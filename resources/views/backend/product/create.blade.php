@@ -96,6 +96,13 @@
           @enderror
         </div>
         <div class="col-12 col-md-6 form-group">
+          <label for="amount" class="col-form-label">Effective Price(Rs.)</label>
+          <input id="amount" type="number" name="amount" placeholder="Effective Price"  value="{{old('amount')}}" class="form-control">
+          @error('amount')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+        <div class="col-12 col-md-6 form-group">
           <label for="size" class="col-form-label">Storage</label>
           <select name="size[]" class="form-control selectpicker"  data-live-search="true">
               <option value="">--Select any size--</option>
@@ -199,13 +206,25 @@
       });
     });
 
-    $(document).ready(function() {
       $('#description').summernote({
         placeholder: "Write detail description.....",
           tabsize: 2,
           height: 150
       });
-    });
+
+      $('#price').on('input', function(){
+        var price = $(this).val()
+        var discount = $('#discount').val()
+        var amount = (price-(price*discount)/100).toFixed()
+        $('#amount').val(amount)
+      })
+
+      $('#discount').on('input', function(){
+        var discount = $(this).val()
+        var price = $('#price').val()
+        let amount = (price-(price*discount)/100).toFixed()
+        $('#amount').val(amount)
+      })
     // $('select').selectpicker();
 
 </script>
