@@ -65,8 +65,6 @@ class FrontendController extends Controller
     }
 
 
-
-
     public function contact(){
         return view('frontend.pages.contact');
     }
@@ -153,7 +151,7 @@ class FrontendController extends Controller
         }
 
         if(!empty($_GET['price'])){
-            dd($_GET['price']);
+            // dd($_GET['price']);
 
             $price=explode('-',$_GET['price']);
             // return $price;
