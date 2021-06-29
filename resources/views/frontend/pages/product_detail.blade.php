@@ -40,7 +40,7 @@
 						<div class="row"> 
 							<div class="col-12">
 								<div class="row">
-									<div class="col-lg-6 col-12">
+									<div class="col-lg-6 col-md-6 col-sm-12">
 										<!-- Product Slider -->
 										<div class="product-gallery">
 											<!-- Images slider -->
@@ -63,7 +63,7 @@
 										</div>
 										<!-- End Product slider -->
 									</div>
-									<div class="col-lg-6 col-12">
+									<div class="col-lg-6 col-md-6 col-sm-12">
 										<div class="product-des">
 											<!-- Description -->
 											<div class="short">
@@ -84,12 +84,13 @@
 													</ul>
 													<a href="#" class="total-review">({{$product_detail['getReview']->count()}}) Review</a>
                                                 </div>
-                                                @php 
+                                                {{-- @php 
                                                     $after_discount=($product_detail->price-(($product_detail->price*$product_detail->discount)/100));
-                                                @endphp
+                                                @endphp --}}
 												<p class="price">
-													<span class="discount">Rs. {{number_format($after_discount,2)}}</span>
-													<small>Rs. {{number_format($product_detail->price,2)}}</small>
+													<span class="discount">Rs. {{number_format($product_detail->amount)}}</span>
+													<small>Rs. {{number_format($product_detail->price)}}</small>
+													<p class="green-link">({{number_format($product_detail->discount)}}% off)</p>
 												</p>
 												<p class="description">{!!($product_detail->summary)!!}</p>
 											</div>
@@ -186,7 +187,8 @@
 														<div class="row">
 															<div class="col-12">
 																<div class="single-des">
-																	<p>{!! ($product_detail->description) !!}</p>
+																	<div class="show-read-more overflow-hidden" style="max-height: 50vh">{!! ($product_detail->description) !!}</div>
+																	<div class="center-div readMoreBtn text-center"><a href="javascript: void(0)" onclick="readMore()" class="red-link btn btn-sm btn-secondary text-white">Read More</a></div>
 																</div>
 															</div>
 														</div>
@@ -361,8 +363,8 @@
                                             @php 
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
-                                            <span class="old">Rs. {{number_format($data->price,2)}}</span>
-                                            <span>Rs. {{number_format($after_discount,2)}}</span>
+                                            <span class="old">Rs. {{number_format($data->price)}}</span>
+                                            <span>Rs. {{number_format($data->amount)}}</span>
                                         </div>
                                       
                                     </div>
@@ -539,12 +541,27 @@
 		.star-rating__input:checked ~ .star-rating__ico:before {
 		content: "\F005";
 		}
+		.show-read-more .more-text{
+        display: none;
+    }
+
 
 	</style>
 @endpush
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
+<script>
+		$(document).ready(function(){
+					
+				})
+				
+		function readMore(){
+				$(".show-read-more").css('max-height', '100%')
+				$('.readMoreBtn').hide()
+			}
+</script>
+		
     {{-- <script>
         $('.cart').click(function(){
             var quantity=$('#quantity').val();

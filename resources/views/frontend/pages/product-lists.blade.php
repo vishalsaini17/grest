@@ -32,31 +32,31 @@
                                 <div class="single-widget category">
                                     <h3 class="title">Categories</h3>
                                     <ul class="categor-list">
-										@php
-											// $category = new Category();
-											$menu=App\Models\Category::getAllParentWithChild();
-										@endphp
-										@if($menu)
-										<li>
-											@foreach($menu as $cat_info)
-													@if($cat_info->child_cat->count()>0)
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
-															<ul>
-																@foreach($cat_info->child_cat as $sub_menu)
-																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
-																@endforeach
-															</ul>
-														</li>
-													@else
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-													@endif
-											@endforeach
-										</li>
-										@endif
+																			@php
+																				// $category = new Category();
+																				$menu=App\Models\Category::getAllParentWithChild();
+																			@endphp
+																			@if($menu)
+																			<li>
+																				@foreach($menu as $cat_info)
+																						@if($cat_info->child_cat->count()>0)
+																							<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
+																								<ul>
+																									@foreach($cat_info->child_cat as $sub_menu)
+																										<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
+																									@endforeach
+																								</ul>
+																							</li>
+																						@else
+																							<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
+																						@endif
+																				@endforeach
+																			</li>
+																			@endif
                                         {{-- @foreach(Helper::productCategoryList('products') as $cat)
                                             @if($cat->is_parent==1)
-												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-											@endif
+																					<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+																				@endif
                                         @endforeach --}}
                                     </ul>
                                 </div>
@@ -79,7 +79,7 @@
 											@endphp
 											<div id="slider-range" data-min="0" data-max="{{$max}}"></div>
 											<div class="product_filter d-flex flex-row-reverse">
-											<button type="submit" class="btn btn-info mt-3 px-4">Filter</button>
+											<button type="submit" class="m-3 btn btn-info">Filter</button>
 											<div class="label-input">
 												<span>Range:</span>
 												<input style="width:100%" type="text" id="amount" readonly/>
@@ -368,14 +368,14 @@
 	 .pagination{
         display:inline-flex;
     }
-	.filter_button{
-        /* height:20px; */
+	/* .filter_button{
+        height:20px;
         text-align: center;
         background:#F7941D;
         padding:8px 16px;
         margin-top:10px;
         color: white;
-    }
+    } */
 </style>
 @endpush
 @push('scripts')

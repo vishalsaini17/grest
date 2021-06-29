@@ -35,7 +35,33 @@ Version:1.0
 20. 404 Error CSS
 21. Footer CSS
 ========================================*/
-.btn-grest{background-color: $grest-clr;color: #fff; border-radius: 6px ;}
+.btn-grest{
+  background-color: $grest-clr;
+  color: #fff; 
+  border-radius: 6px;
+  &:hover{
+    color: #fff;
+  }
+}
+.bg-grest{
+  background: $grest-clr;
+  color: #fff;
+}
+.btn-hollow-grest{
+  color: #888a96;
+  padding: 3px 10px;
+  cursor: pointer;
+  width: 100%;
+  background: #f1f3f5;
+  // border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background: $grest-clr;
+    color: #fff;
+  }
+}
 .color-plate {
   position: fixed;
   display: block;
@@ -150,6 +176,9 @@ Version:1.0
 
 .red-link{
   color: #ed1b24;
+}
+.green-link{
+  color: #15C474;
 }
 
 .policy-nav{
@@ -2686,10 +2715,51 @@ Version:1.0
 .shop-sidebar .single-widget {
   margin-top: 30px;
   background: #F6F7FB;
-  padding: 30px;
+  padding: 1.5rem 1rem;
 
   &:first-child {
     margin-top: 0;
+  }
+
+  .filter-btn{
+      margin-bottom: -10px !important;
+    }
+
+  .widget-container{
+    background: #fff;
+    padding: 0.5rem 0.75rem;
+    margin-top: 1rem;
+    &:first-child{
+      // padding-top: 0px;
+      margin-top: 0;
+    }
+    .title{
+      border: none;
+    }
+    .ram-filter, 
+    .storage-filter{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1rem;
+      label{
+        // margin-right: 0.5rem;
+        // width: 100%;
+        cursor: pointer;
+      }
+    }
+    .cosmetic-condition{
+      .condition-filter{
+        // gap:1rem;
+        label{
+          margin:0.25rem 0.5rem;
+        }
+
+        label.checked{
+          background: $grest-clr;
+          color: #fff;
+        }
+      }
+    }
   }
 
   .title {
@@ -2697,10 +2767,10 @@ Version:1.0
     font-size: 18px;
     font-weight: 500;
     text-transform: capitalize;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
     display: block;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
+    padding-bottom: 0.5rem;
   }
 }
 
@@ -2802,10 +2872,19 @@ Version:1.0
     margin-top: 10px;
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
 
       &:last-child {
         margin-bottom: 0px;
+      }
+      &:hover {
+        background-color: #333;
+        border-radius: 5px;
+        & a{
+          color: #fff;
+        }
       }
 
       a {
@@ -2814,10 +2893,10 @@ Version:1.0
         font-weight: 400;
         font-size: 14px;
         text-transform: capitalize;
+        padding: 0.3rem 1rem;
+        width: 100%;
 
-        &:hover {
-          color: $grest-clr;
-        }
+        
       }
     }
   }
@@ -2895,13 +2974,11 @@ Version:1.0
 
 .shop {
   .shop-top {
-    clear: both;
     background: #f6f7fb;
-    padding: 18px 20px 50px 20px;
   }
 
   .shop-shorter {
-    float: left;
+    // float: left;
   }
 
   .single-shorter {
@@ -2914,7 +2991,7 @@ Version:1.0
 
     label {
       display: inline-block;
-      float: left;
+      // float: left;
       margin: 4px 5px 0 0;
       font-weight: 500;
     }
@@ -2955,8 +3032,13 @@ Version:1.0
     }
   }
 
-  .view-mode {
-    float: right;
+  .view-mode-new {
+    i {
+      background: red;
+      color: #fff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 3px;
+    }
 
     li {
       display: inline-block;
