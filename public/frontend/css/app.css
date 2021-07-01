@@ -7915,6 +7915,16 @@ Version:1.0
   color: #3333335c;
 }
 
+.is-default input {
+  width: 20px;
+  height: 20px;
+  margin: 0 0.5rem;
+}
+
+.is-default label {
+  font-size: 1rem;
+}
+
 .floating-Placeholder:focus {
   box-shadow: 0 0 0 0.2rem #ea295369 !important;
   border-color: transparent !important;

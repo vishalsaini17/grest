@@ -25,7 +25,7 @@
               <li><a href="{{route('order.track')}}"><i class="ti-location-pin"></i> Track Order</a></li>
               {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
               @auth
-              {{-- @if(Auth::check()) --}}
+              {{-- @dd(Auth::user()) --}}
               {{-- <li><a href="{{route('admin')}}" target="_blank"><i class="ti-user"></i> Dashboard</a></li> --}}
                 <li>
                   <div class="dropdown show text-black">

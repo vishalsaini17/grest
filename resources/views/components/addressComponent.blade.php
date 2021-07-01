@@ -67,29 +67,34 @@
         <form action="/addAddress" class="row">
           @csrf
           <div class="form-group col-lg-6 col-12">
-            <input type="name" name="name" required placeholder="Enter Name" class="form-control floating-Placeholder">
+            <input type="name" name="fname" data-name="addressName" required placeholder="Enter First Name" class="form-control floating-Placeholder">
           </div>
           <div class="form-group col-lg-6 col-12">
-            <input type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" required placeholder=" Enter Mobile Number" name="phone" class="form-control floating-Placeholder">
+            <input type="name" name="lname" data-name="addressName" required placeholder="Enter Last Name" value="" class="form-control floating-Placeholder">
           </div>
+          <input type="hidden" name="name" data-name="addressSetName">
+          <div class="form-group col-lg-6 col-12">
+            <input type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" required value="" placeholder=" Enter Mobile Number" name="phone" class="form-control floating-Placeholder">
+          </div>
+          <div class="form-group col-lg-6 col-12">
+            {{-- <label for="">Pincode</label> --}}
+            <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control floating-placeholder">
+          </div>
+
           <div class="form-group col-lg-12">
             <textarea type="textarea" name="address" required placeholder="Enter address" class="form-control floating-Placeholder"></textarea>
           </div>
           <div class="col-lg-12 form-group">
-            <div class="d-flex justify-content-around">
-              <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control floating-placeholder">
-              <span class="font-bold w-100 text-right" style="margin: 0.5rem 2rem">Make this Address default?</span>
-              <select type="radio" class="mb-0" name="is_default" >
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+            <div class="is-default">
+              <input type="checkbox" name="is_default" value="1" class="" id="isDefault">
+              <label for="isDefault">Make this Address default?</label>
+              <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             </div>
             
           </div>
-          <div class="form-group col-6 mx-auto text-center">
-            <input type="submit" value="Submit" class="btn btn-lg btn-success mx-3">
-            <input type="reset" value="Reset" class="btn btn-lg btn-secondary mx-3">
+          <div class="form-group col-lg-6 col-md-8 mx-auto text-center">
+            <input type="submit" value="Submit" class="btn btn-success mx-3">
+            <input type="reset" value="Reset" class="btn btn-secondary mx-3">
           </div>
         </form>
       </div>
@@ -112,35 +117,40 @@
         <form action="/updateAddress" class="row">
           @csrf
           <input type="hidden" name="id" value="">
-          <div class="form-group col-lg-6 col-12">
-            <label for="name">Name</label>
+          <div class="form-group col-lg-4 col-md-6 col-12">
+            <label for="name">Full Name</label>
             <input type="text" name="name" required placeholder="Enter Name" class="form-control">
           </div>
-          <div class="form-group col-lg-6 col-12">
+          {{-- <input type="hidden" name="name" data-name="addressSetName"> --}}
+          <div class="form-group col-lg-4 col-md-6 col-12">
             <label for="phone">Mobile Number</label>
             <input type="tel" maxlength="10" required placeholder=" Enter Mobile Number" pattern="[1-9]{1}[0-9]{9}" name="phone" class="form-control">
+          </div>
+          <div class="form-group col-lg-4 col-md-6 col-12">
+            <label for="pincode" class="">Pincode</label>
+            <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control">
           </div>
           <div class="form-group col-lg-12">
             <label for="address">Address</label>
             <textarea type="text" name="address" required placeholder="Enter address" class="form-control"></textarea>
           </div>
           <div class="col-lg-12 form-group">
-            <div class="d-flex justify-content-around">
-              <label for="pincode" class="mt-3">Pincode</label>
-              <input type="text" maxlength="6" required name="pincode" placeholder="Enter 6 digit Pincode" class="form-control">
-              <span class="font-bold w-100 text-right" style="margin: .5rem 2rem;">Make this Address default?</span>
-              <select type="radio" class="mb-0" name="is_default" >
+            <div class="is-default">
+              <input type="checkbox" name="is_default" value="1" class="" id="isDefaultEdit">
+              <label for="isDefaultEdit">Make this Address default?</label>
+              {{-- <span class="text-bold">Make this Address default?</span> --}}
+              {{-- <select type="radio" class="mb-0" name="is_default" >
                 <option value="1">Yes</option>
                 <option value="0">No</option>
-              </select>
+              </select> --}}
                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                 <input type="hidden" name="address_id" value="">
             </div>
             
           </div>
           <div class="form-group col-6 mx-auto text-center">
-            <input type="submit" value="Update" class="btn btn-lg btn-success mx-3">
-            <input type="reset" value="Reset" class="btn btn-lg btn-secondary mx-3">
+            <input type="submit" value="Update" class="btn btn-success mx-3">
+            <input type="reset" value="Reset" class="btn btn-secondary mx-3">
           </div>
         </form>
       </div>
@@ -194,7 +204,7 @@
     return this.clone().find(sel || ">*").remove().end()
   }
 
-  // Custom Code
+  // Insert Values in Edit Modal
   $('.editBtn').click(function () {
     var name = $(this).parents('li').siblings('.aName').find('p').html()
     var phone = $(this).parents('li').siblings('.aPhone').find('p').ignore('span').html()
@@ -214,8 +224,16 @@
     } else {
       modalPincode.val(pincode)
     }
-
   })
+
+  // Set name from Fname & lname
+  $(function () {
+        $("input[data-name=addressName]").change(function(){
+            var fname = $("input[name=fname]").val()
+            var lname = $("input[name=lname]").val()
+            $("input[data-name=addressSetName]").val(`${fname} ${lname}`)
+        })
+    });
   </script>
 
 @endpush

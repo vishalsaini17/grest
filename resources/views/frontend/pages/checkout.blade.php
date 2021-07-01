@@ -403,7 +403,7 @@
                           $total_amount = $total_amount - session('coupon')['value'];
                       }
                     @endphp
-                    <input type="hidden" name="amount" value="{{round($total_amount)}}">
+                    {{-- <input type="hidden" name="amount" value="{{round($total_amount)}}"> --}}
                     @if (session('coupon'))
                       <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount) }}</span></li>
                     @else
@@ -420,7 +420,7 @@
                   <div class="checkbox">
                     {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
                     <form-group>
-                       <label><input name="payment_method" type="radio" value="paytm" data-url="/paytm-payment" checked> Pay Online</label><br>
+                       <label><input name="payment_method" type="radio" value="paytm" data-url="/paytm-payment" checked> Pay Online (PayTm)</label><br>
                        <label><input name="payment_method" type="radio" disabled value="cod" data-url="" > <span class="text-muted">Cash On Delivery (cooming soon!)</span></label>
                     </form-group>
 
@@ -429,11 +429,11 @@
               </div>
               <!--/ End Order Widget -->
               <!-- Payment Method Widget -->
-              <div class="single-widget payement">
+              {{-- <div class="single-widget payement">
                 <div class="content">
                   <img src="{{ 'backend/img/payment-method.png' }}" alt="#">
                 </div>
-              </div>
+              </div> --}}
               <!--/ End Payment Method Widget -->
               <!-- Button Widget -->
               <div class="single-widget get-button">

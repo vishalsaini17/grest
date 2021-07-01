@@ -46,6 +46,7 @@ class HomeController extends Controller
     }
 
     public function addAddress(Request $req){
+        // dd($req);
         $add = new Address;
 
         $add->name = $req->name;

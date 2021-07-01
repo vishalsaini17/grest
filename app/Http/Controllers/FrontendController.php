@@ -462,12 +462,15 @@ class FrontendController extends Controller
         // dd($request);
 
         $this->validate($request,[
+            'first_name'=>'string|required|min:2',
+            'last_name'=>'string|required|min:2',
             'name'=>'string|required|min:2',
             'email'=>'string|required|unique:users,email',
             'phone'=>'string|required|min:10',
             'password'=>'required|min:6|confirmed',
         ]);
         $data=$request->all();
+        // dd($data);
         $user=$this->create($data);
         // dd($user);
         // Session::put('user',$data['email']);
@@ -475,7 +478,7 @@ class FrontendController extends Controller
         // dd(session('user'));
         if($user){
             request()->session()->flash('success','Successfully registered');
-            Mail::to($data['email'])->send(new WelcomeMail());
+            Mail::to($data['email'])->queue(new WelcomeMail());
             Auth::login($user);
             return redirect()->route('home');
             // return redirect()->route('email')->with('emailid', $data['email']);
@@ -487,13 +490,17 @@ class FrontendController extends Controller
     }
     public function create(array $data){
         return User::create([
-            'name'=>$data['name'],
-            'email'=>$data['email'],
-            'phone'=>$data['phone'],
-            'password'=>Hash::make($data['password']),
-            'status'=>'active'
+            'first_name'    =>$data['first_name'],
+            'last_name'     =>$data['last_name'],
+            'name'          =>$data['name'],
+            'email'         =>$data['email'],
+            'phone'         =>$data['phone'],
+            'password'      =>Hash::make($data['password']),
+            'status'        =>'active'
             ]);
         // dd($data);
+        // $user->save();
+        // return $user;
 
     }
     // Reset password

@@ -43,7 +43,6 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){   
-
         // dd($request);
         $validation = $this->validate($request,[
             'first_name'=>'string|required',

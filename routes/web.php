@@ -213,7 +213,7 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     
 });
 Route::get('/emailTEST', function(){
-    $order = App\Models\Order::find(48);
+    $order = App\Models\Order::find(49);
     return new App\Mail\OrderPlaced($order);
 });
 Route::get('pdfTEST',function(){
