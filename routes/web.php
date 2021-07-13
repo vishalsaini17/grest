@@ -26,8 +26,12 @@ Route::get('user/logout','FrontendController@logout')->name('user.logout');
 
 Route::get('user/register','FrontendController@register')->name('register.form');
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
-// Reset password
+// Reset password *************To be done***********
 Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset'); 
+// Route::get('/forgot-password', 'FrontendController@forgorPassword' )->middleware('guest')->name('password.request');
+// Route::get('/reset-password/{token}', function ($token) {
+//     return view('auth.reset-password', ['token' => $token]);
+// })->middleware('guest')->name('password.reset');
 // Socialite 
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
@@ -58,9 +62,7 @@ Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-t
 Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
-Route::get('/cart',function(){
-    return view('frontend.pages.cart');
-})->name('cart')->middleware('user');
+Route::get('/cart','CartController@index')->name('cart')->middleware('user');
 Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user');
 // Wishlist
 Route::get('/wishlist',function(){
@@ -174,7 +176,9 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
 
 // New Profile Manage Pages
-Route::get('/manage', 'HomeController@manage')->name('manage');
+Route::get('/my-profile', 'HomeController@manageProfile')->name('manage.profile');
+Route::get('/my-orders', 'HomeController@manageOrders')->name('manage.orders');
+Route::get('/my-orders/{id}', 'HomeController@searchOrders')->name('search.orders');
 Route::get('/addAddress', 'HomeController@addAddress');
 Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
 Route::get('/set-default-address/{addId}', 'HomeController@setDefaultAddress');
@@ -213,11 +217,11 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     
 });
 Route::get('/emailTEST', function(){
-    $order = App\Models\Order::find(49);
+    $order = App\Models\Order::latest()->first();
     return new App\Mail\OrderPlaced($order);
 });
 Route::get('pdfTEST',function(){
-    $order = App\Models\Order::find(49);
+    $order = App\Models\Order::latest()->first();
     return view('backend.order.pdf')->with('order', $order);
 });
 

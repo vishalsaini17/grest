@@ -2,44 +2,30 @@
 
 @section('manage-content')
 
-<div class="delivery-info">
-  <h4 class="heading">Delivery Address</h4>
-  <div class="address-boxes row">
-    <!-- Fetching Saved addresses -->
-    @foreach ($address as $a)                          
-    <div class="col-md-6">
-      <address class="old-adds add-box" data-address-ID="{{$a->id}}">
-        <ul>
-          <li class="aName"><p>{{$a->name}}</p></li>
-          <li class="aPhone"><p><span>+91 </span>{{$a->phone}}</p></li>
-          <li class="my-2 aAddress"><span>{{$a->address}} <p class="aPin d-inline">{{($a->pincode != null)? $a->pincode : 'No Pincode available' }}</p></span></li>
-          <li>
-            <form action="/set-default-address" method="post" class="d-flex align-items-center">
-              @csrf
-              <input type="hidden" name="address_id" value="{{$a->id}}">
-              <input type="hidden" name="user_id" value="{{$profile->id}}">
-              <input type="checkbox" onclick="this.form.submit()" {{($a->is_default == 1)? 'checked': ''}} name="is_default" class="mr-2">
-              Default Address
-              {{-- <input type="submit" value="Submit"> --}}
-              <a href="#" data-toggle="modal" onclick="updateAddress()" data-target="#editAddressModal" class="ml-auto text-uppercase mx-1 editBtn text-info">Edit</a>
-              {{-- <a href="{{"deleteAdd/".$a->id}}" class="text-danger text-uppercase mx-1">Delete</a> --}}
-              <a href="javascript:;" onclick="delAddress({{$a->id}})" id="deleteMe" class="text-danger text-uppercase mx-1">Delete</a>
-            </form>
-          </li>
-          
-        </ul>
-      </address>
-    </div> 
-    @endforeach
-
-    <!-- Add New address Box -->
-    <div class="col-md-6">
-      <div class="new-add add-box">
-        <a class="" href="" data-toggle="modal" data-target="#addAddressModal" type="button"> <i class="fa fa-plus-circle d-block mb-2"></i> Add a new delivery address</a>           
-      </div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-12 bg-white p-3">
+  <div class="my-profile">
+    <h4>My Account</h4>
+    <div class="image text-center">
+      @if($profile->photo)
+      <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{$profile->photo}}" alt="profile picture">
+      @else
+      <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{asset('backend/img/avatar.png')}}" alt="profile picture">
+      @endif
     </div>
-    <!-- New address Box Ends -->
+    <div class="details">
+      <h5 class="card-title text-left"><small> <i class="fa {{ ($profile->role === 'admin') ? 'fa-user-plus' : 'fa-user' }} "></i> {{$profile->name}}</small></h5>
+      <p class="card-text text-left"><i class="fa fa-envelope"></i> {{$profile->email}}</p>
+      <p class="card-text text-left text-muted"><b>Role: </b> {{$profile->role}}</p>
+      <p class="card-text text-left text-muted"><b>Phone: </b> {{($profile->phone)? $profile->phone : '--N/A--'}}</p>
+      <p class="d-none">ID: {{$profile->id}}</p>
+    </div>
   </div>
+</div>
+<div class="col-lg-9 col-md-9 col-sm-12">
+
+  <!-- *************** Blade Component ************-->
+  <x-addresses title="Delivery Address" type="address"/>
+
 </div>
     
 @endsection

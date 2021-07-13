@@ -76,16 +76,16 @@
       <!-- <div class="container"> -->
     <div class="owl-carousel brand-carousel owl-theme text-center">
       <div class="item">
-        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/mi.svg')}}" alt="Mi Phone"></a></figure>
+        <figure><a href="/product-brand/xaiomi"><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/mi.svg')}}" alt="Mi Phone"></a></figure>
       </div>
       <div class="item">
-        <figure><a hrsef=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/oneplus.svg')}}" alt="One Plus Phone" style="padding-top:2px;width:100%"></a></figure>
+        <figure><a href="/product-brand/oneplus"><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/oneplus.svg')}}" alt="OnePlus Phone" style="padding-top:2px;width:100%"></a></figure>
       </div>
       <div class="item" style="margin-top:5px; margin-left:10px">
-        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/samsung.svg')}}" alt="Samsung Phone"></a></figure>
+        <figure><a href="/product-brand/samsung"><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/samsung.svg')}}" alt="Samsung Phone"></a></figure>
       </div>
       <div class="item">
-        <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/apple.svg')}}" alt="Apple Phone" style="padding-top:5px;"></a></figure>
+        <figure><a href="/product-brand/apple"><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/apple.svg')}}" alt="Apple Phone" style="padding-top:5px;"></a></figure>
       </div>
       <div class="item">
         <figure><a href=""><img class="hover_change_primary_color" src="{{ asset('/storage/photos/1/brands/vivo.svg')}}" alt="Vivo Phone"></a></figure>

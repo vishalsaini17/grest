@@ -15,6 +15,16 @@ class CartController extends Controller
         $this->product=$product;
     }
 
+    public function index()
+    {
+        $cartCount = Helper::getAllProductFromCart()->count();
+        // dd($cart);
+        if($cartCount == 0){
+            return view('frontend.pages.empty-cart');
+        };
+        return view('frontend.pages.cart');
+    }
+
     public function addToCart(Request $request){
         // dd($request->all());
         if (empty($request->slug)) {

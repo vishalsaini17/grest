@@ -12,9 +12,12 @@
       <h6 class="m-0 font-weight-bold text-primary float-left">Order Lists</h6>
     </div>
     <div class="card-body">
-      <div class="table-responsive">
+        
+      <x-ordersComp />
+      
+      {{-- <div class="table-responsive">
         @if(count($orders)>0)
-        <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered table-striped" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>S.N.</th>
@@ -47,13 +50,13 @@
                 $shipping_charge=DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
             @endphp  
                 <tr>
-                    <td>{{$order->id}}</td>
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$order->order_number}}</td>
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>
-                    <td>@foreach($shipping_charge as $data) $ {{number_format($data,2)}} @endforeach</td>
-                    <td>Rs. {{number_format($order->total_amount,2)}}</td>
+                    <td>@foreach($shipping_charge as $data) ₹ {{number_format($data)}} @endforeach</td>
+                    <td>₹ {{number_format($order->total_amount)}}</td>
                     <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">{{$order->status}}</span>
@@ -65,12 +68,12 @@
                           <span class="badge badge-danger">{{$order->status}}</span>
                         @endif
                     </td>
-                    <td>
-                        <a href="{{route('user.order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                    <td class="d-flex justify-content-evenly">
+                        <a href="{{route('user.order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1"  data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
                         <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
                           @csrf 
                           @method('delete')
-                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}}  data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>  
@@ -81,7 +84,7 @@
         @else
           <h6 class="text-center">No orders found!!! Please order some products</h6>
         @endif
-      </div>
+      </div> --}}
     </div>
 </div>
 @endsection
@@ -110,8 +113,9 @@
       $('#order-dataTable').DataTable( {
             "columnDefs":[
                 {
-                    "orderable":false,
-                    "targets":[8]
+                    "orderable":true,
+                    "targets":[8],
+                    "navigation":false
                 }
             ]
         } );

@@ -474,6 +474,10 @@ Version:1.0
       font-size: 28px;
     }
   }
+
+  .profile-page .sub-menu li a{
+    font-size: 1rem !important;
+  }
   // .condition-filter{
   //   flex-wrap: wrap;
   // }
@@ -1424,6 +1428,11 @@ Version:1.0
     }
   }
 
+  
+  .profile-page .sub-menu li a{
+    font-size: 0.75rem !important;
+  }
+
   .ram-filter,
   .storage-filter,
   .brands-filter-mobile{
@@ -2221,6 +2230,23 @@ Version:1.0
     h3 {
       font-size: 15px;
       margin: 10px 0 10px;
+    }
+  }
+
+  .order_details{
+    header{
+      padding: 0.5rem 1rem;
+      
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+    }
+    .center {
+      font-size: 1rem;
+    }
+    .card-title{
+      font-size: 1rem;
     }
   }
 }

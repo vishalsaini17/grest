@@ -2060,10 +2060,11 @@ Version:1.0
   background-color: #EA2953;
   color: #fff;
   border-radius: 6px;
+  transition: all 0.3s cubic-bezier(1, 0, 0, 1);
 }
 
 .btn-grest:hover {
-  color: #fff;
+  transform: scale(1.1);
 }
 
 .bg-grest {
@@ -2085,6 +2086,10 @@ Version:1.0
 .btn-hollow-grest:hover {
   background: #EA2953;
   color: #fff;
+}
+
+.w-5 {
+  width: 5%;
 }
 
 .color-plate {
@@ -4801,6 +4806,17 @@ Version:1.0
 /* Recent Post */
 
 /* Shop Topbar */
+
+.empty-cart {
+  background: #f1f3f5;
+  padding: 25vh 0;
+  text-align: center;
+  min-height: 70vh;
+}
+
+.empty-cart h3 {
+  color: #12152e;
+}
 
 .shop .shop-top {
   background: #f6f7fb;
@@ -7840,6 +7856,73 @@ Version:1.0
   border-color: transparent;
 }
 
+.trHover {
+  transition: all 0.2s ease-in-out;
+}
+
+.trHover:hover {
+  background: whitesmoke;
+}
+
+.order_details header {
+  background: #EEEEEE;
+  color: #718096;
+  font-weight: 800;
+  padding: 1rem 2rem;
+}
+
+.order_details header h4 {
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.order_details .obj-fit-parent {
+  flex: 0 0 13%;
+  height: 80px;
+}
+
+.order_details .totals {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.order_details .totals .total {
+  border: 1px solid #718096;
+  border-left: none;
+  border-right: none;
+  margin-top: 0.2rem;
+}
+
+.order_details .totals .total span {
+  color: #ea2953;
+  font-size: 1.3rem;
+}
+
+.order_details .center {
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: auto;
+}
+
+.order-summary {
+  font-size: large;
+}
+
+.order-summary p {
+  font-weight: bold;
+  display: block;
+  text-transform: capitalize;
+}
+
+.order-summary .key {
+  flex-basis: auto;
+  margin-left: 1.5rem;
+}
+
+.order-summary .key li {
+  list-style: disc;
+}
+
 .profile-page .my-profile-nav ul {
   list-style: none;
   background: #fff;
@@ -7853,10 +7936,11 @@ Version:1.0
 
 .profile-page .my-profile-nav ul li a {
   color: #12152e;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
-.profile-page .my-profile-nav ul li a:active {
+.profile-page .my-profile-nav ul li a.active,
+.profile-page .my-profile-nav ul li a:hover {
   color: #EA2953;
 }
 
@@ -8528,6 +8612,10 @@ Version:1.0
 
   .breadcrumbs h2 {
     font-size: 28px;
+  }
+
+  .profile-page .sub-menu li a {
+    font-size: 1rem !important;
   }
 
   .shop.single {
@@ -9415,6 +9503,10 @@ Version:1.0
     background: #333;
   }
 
+  .profile-page .sub-menu li a {
+    font-size: 0.75rem !important;
+  }
+
   .ram-filter,
   .storage-filter,
   .brands-filter-mobile {
@@ -10158,6 +10250,23 @@ Version:1.0
   .quickview-content h3 {
     font-size: 15px;
     margin: 10px 0 10px;
+  }
+
+  .order_details header {
+    padding: 0.5rem 1rem;
+  }
+
+  .order_details header h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .order_details .center {
+    font-size: 1rem;
+  }
+
+  .order_details .card-title {
+    font-size: 1rem;
   }
 }
 

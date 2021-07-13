@@ -3,7 +3,7 @@
       <h4 class="heading">{{$title}}</h4>
       @if ($type == 'selectAdd')
         <div class="">
-          <a href="{{route('manage')}}" class="btn btn-info text-white">Manage Addresses <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="{{route('manage.profile')}}" class="btn btn-info text-white">Manage Addresses <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       @endif
     </div>

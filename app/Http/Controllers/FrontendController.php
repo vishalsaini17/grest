@@ -508,6 +508,10 @@ class FrontendController extends Controller
         return view('auth.passwords.old-reset');
     }
 
+    public function forgorPassword(){
+        return view('auth.forgot-password');
+    }
+
     public function subscribe(Request $request){
         if(! Newsletter::isSubscribed($request->email)){
                 Newsletter::subscribePending($request->email);

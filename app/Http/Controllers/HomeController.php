@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Order;
+use App\Models\Cart;
 use App\Models\ProductReview;
 use App\Models\PostComment;
 use App\Models\Address;
@@ -35,7 +36,7 @@ class HomeController extends Controller
         return view('user.index');
     }
 
-    public function manage(){
+    public function manageProfile(){
         $profile=Auth()->user();
 
         $address = Address::all()->where('user_id', auth()->user()->id);
@@ -43,6 +44,22 @@ class HomeController extends Controller
         
         return view('frontend.pages.address')->with('profile',$profile)
                                             ->with('address', $address);
+    }
+
+    public function manageOrders(){
+        $profile = Auth()->user();
+        $orders = Order::where('user_id', Auth()->user()->id)->get();
+        
+        return view('frontend.pages.orders')->with('profile',$profile)->with('orders',$orders);
+    }
+
+    public function searchOrders($id){
+        $profile = Auth()->user();
+        $orders = Order::where('user_id', Auth()->user()->id)->get();
+        $searchOrder = Order::where('id', $id)->first();
+        $orderFromCart = Cart::where('order_id', $id)->get();
+
+        return view('frontend.pages.orders')->with('profile',$profile)->with('orders',$orders)->with('searchOrder',$searchOrder)->with('orderFromCart',$orderFromCart);
     }
 
     public function addAddress(Request $req){
@@ -65,7 +82,6 @@ class HomeController extends Controller
             HomeController::updateDefaultAddress($add->id);
         }
             
-        // return redirect('manage');
         return redirect()->back();
 
     }
@@ -87,7 +103,8 @@ class HomeController extends Controller
             HomeController::updateDefaultAddress($add->id);
         }
             
-        return redirect('manage');
+        return redirect()->back();
+        // return redirect('manage.profile');
     } 
 
     static function updateDefaultAddress($addressid){
@@ -104,7 +121,7 @@ class HomeController extends Controller
             $a->is_default = 1;
             $a->save(); 
         }
-        return redirect('manage');
+        return;
 
 
         // dd($updatedAdd);
@@ -118,7 +135,8 @@ class HomeController extends Controller
         // $userid = $req->user_id;
         HomeController::updateDefaultAddress($addID);
 
-        return redirect('manage');
+        return ;
+        // return redirect('manage.profile');
 
     }
 
@@ -126,7 +144,8 @@ class HomeController extends Controller
         
         Address::find($id)->delete();
         
-        return redirect('manage');
+        return ;
+        // return redirect('manage.profile');
     }
 
 

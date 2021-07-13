@@ -35,7 +35,7 @@ class PaytmController extends Controller {
       'user'          => $order->user_id,
       'mobile_number' => $order->phone,
       'email'         => $order->email,
-      'amount'        => $order->total_amount,
+      'amount'        => round($order->total_amount),
       'callback_url'  => route('paytm.callback'),
     ]);
 
@@ -72,7 +72,6 @@ class PaytmController extends Controller {
 
     if ($transaction->isSuccessful()) {
       //Transaction Successful
-      // dd('transaction sucess');
       request()->session()->flash('success','Your order has been placed.');
       Cart::where('user_id', $order->user_id)->where('order_id', null)->update(['order_id' => $order->id]);
       Mail::to($order->email)->send(new OrderPlaced($order));

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  {{-- @dd($order) --}}
   <title>Order @if($order)- {{$order->order_number}} @endif</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style type="text/css">
@@ -24,12 +25,12 @@
     .invoice-right-top h3 {
       padding-right: 20px;
       margin-top: 20px;
-      color: green;
+      color: #5cb85c;
       font-size: 30px!important;
       font-family: serif;
     }
     .invoice-left-top {
-      border-left: 4px solid green;
+      border-left: 4px solid #5cb85c;
       padding-left: 20px;
       padding-top: 20px;
     }
@@ -62,7 +63,7 @@
       max-width: 900px
     } */
     .bg-grest{
-      background: #ea2953;
+      background-color: #ea2953;
       color: #fff
     }
 
@@ -148,7 +149,7 @@
   </style>
 </head>
 <body>
-
+{{-- @dd($order) --}}
 @if($order)
 <div class="container">
   <div class="invoice-header d-flex bg-grest align-items-center">
@@ -184,18 +185,16 @@
       <h4>Order Details #</h4>
       <h4>{{$order->order_number}}</h4>
     </header>
-    <div class="headline row d-none px-3 py-2">
+    {{-- <div class="headline row d-none px-3 py-2">
       <p class="col-7">Product Description</p>
       <p class="col-2 text-center">Quantity</p>
       <p class="col-2 text-center">Amount</p>
-    </div>
+    </div> --}}
     <div class="order-items">
       @foreach($order->cart_info as $cartItem)
         @php
           $cart=DB::table('products')->where('id',$cartItem->product_id)->get();
           $photo=explode(',',$cart[0]->photo);
-
-          // dd($order);
         @endphp
         <ul class="list-group my-2">
           <div class="row mx-auto d-flex list-group-item list-group-item-action">
@@ -237,8 +236,6 @@
         Total Amount: <span class="float-right">Rs. {{number_format($order->total_amount,2)}}</span>
       </div>
     </div>
-
-
 
 
     <table class="table d-none table-bordered table-stripe">

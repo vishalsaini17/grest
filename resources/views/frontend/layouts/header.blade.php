@@ -35,7 +35,8 @@
                     
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item text-capitalize" href="{{(Auth::user()->role=='admin')? route('admin') : route('user')}}">{{Auth::user()->role}} Dashboard</a>
-                      <a class="dropdown-item" href="{{route('manage')}}">Manage</a>
+                      <a class="dropdown-item" href="{{route('manage.profile')}}">My Profile</a>
+                      <a class="dropdown-item" href="{{route('manage.orders')}}">My Orders</a>
                       <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>
                     </div>
                   </div>
