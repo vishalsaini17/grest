@@ -27,11 +27,14 @@ Route::get('user/logout','FrontendController@logout')->name('user.logout');
 Route::get('user/register','FrontendController@register')->name('register.form');
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
 // Reset password *************To be done***********
-Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset'); 
+Route::get('password-reset', 'FrontendController@resetEmailForm')->name('password.reset'); 
 // Route::get('/forgot-password', 'FrontendController@forgorPassword' )->middleware('guest')->name('password.request');
 // Route::get('/reset-password/{token}', function ($token) {
 //     return view('auth.reset-password', ['token' => $token]);
 // })->middleware('guest')->name('password.reset');
+Route::get('password-reset/{token}', 'FrontendController@showResetForm')->name('password.reset.token');
+Route::post('password-reset', 'FrontendController@reset');
+
 // Socialite 
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');

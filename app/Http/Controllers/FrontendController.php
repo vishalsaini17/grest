@@ -503,14 +503,20 @@ class FrontendController extends Controller
         // return $user;
 
     }
-    // Reset password
-    public function showResetForm(){
+    // *************** Reset password ******************
+    public function resetEmailForm(){
         return view('auth.passwords.old-reset');
+    }
+    
+    public function showResetForm($token){
+        return view('auth.passwords.reset' ,  ['token' => $token]);
     }
 
     public function forgorPassword(){
         return view('auth.forgot-password');
     }
+    // *************** Reset password ******************
+
 
     public function subscribe(Request $request){
         if(! Newsletter::isSubscribed($request->email)){
