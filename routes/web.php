@@ -17,8 +17,8 @@ use App\Http\Controllers\PaytmController;
 |
 */
 
-// Auth::routes(['register'=>false, 'verify'=>true]);
-Auth::routes(['register'=>false]);
+Auth::routes(['register'=>false, 'verify'=>true]);
+// Auth::routes(['register'=>false]);
 
 Route::get('user/login','FrontendController@login')->name('login.form');
 Route::post('user/login','FrontendController@loginSubmit')->name('login.submit');
@@ -39,11 +39,11 @@ Route::post('password-reset', 'FrontendController@reset');
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
-Route::get('/','FrontendController@home')->name('home');
+Route::get('/','FrontendController@home')->name('home')->middleware('verified');
 
 
 // Frontend Routes
-Route::get('/home', 'FrontendController@index');
+Route::get('/home', 'FrontendController@index')->middleware('verified');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
 //Policies
 Route::get('/privacy-policy','FrontendController@privacyPolicy')->name('privacy.policy');

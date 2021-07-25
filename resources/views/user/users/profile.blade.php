@@ -90,6 +90,8 @@
                         </div> --}}
 
                         <button type="submit" class="btn btn-success ">Update</button>
+                        <a href="{{route('manage.profile')}}" class="btn btn-dark ml-4">Back to pervious Page</a>
+
                 </form>
             </div>
         </div>

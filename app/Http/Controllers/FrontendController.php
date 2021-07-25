@@ -21,6 +21,7 @@ use Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
 
 class FrontendController extends Controller
 {
@@ -480,6 +481,7 @@ class FrontendController extends Controller
             request()->session()->flash('success','Successfully registered');
             Mail::to($data['email'])->queue(new WelcomeMail());
             Auth::login($user);
+            event (new Registered($user));
             return redirect()->route('home');
             // return redirect()->route('email')->with('emailid', $data['email']);
         }
