@@ -208,6 +208,10 @@
                      </div>
                      <div class="product-action-2">
                        <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                       @php
+                         $url = route('add-to-cart',$product->slug);
+                       @endphp
+                       {{-- <a title="Add to cart" onclick="add2Cart('{{$url}}')" href="javascript: void(0)">Add to cart</a> --}}
                      </div>
                    </div>
                  </div>
@@ -808,6 +812,25 @@ function requestFullScreen(el) {
   }
   return false
 }
+
+$('[data-name="tope-btn"]').click(function(){
+    $('[data-name="tope-btn"]').removeClass('active')
+    $(this).addClass('active')
+})
+
+// function add2Cart(url){
+// 			$.ajax({
+// 				type: "get",
+// 				url: `${url}`,
+// 				success: function (response) {
+					
+// 				},
+// 				error: function (xhr, ajaxOptions, thrownError) {
+// 					alert(xhr.status);
+// 					alert(thrownError);
+// 				}
+// 			});
+// 		}
 
 // $(document).ready(function(){
 //   $(".owl-carousel").owlCarousel();

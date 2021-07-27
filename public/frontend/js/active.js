@@ -353,6 +353,20 @@ window.onload = () => {
 	// 	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
 	// 	  " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 	// } );
+		function add2Cart(url){
+			$.ajax({
+				type: "get",
+				url: `${url}`,
+				success: function (response) {
+					
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(thrownError);
+				}
+			});
+		}
+	// alert('run')
 	
 	/*=====================================
 	  Preloader JS
