@@ -39,11 +39,11 @@ Route::post('password-reset', 'FrontendController@reset');
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
-Route::get('/','FrontendController@home')->name('home')->middleware('verified');
+Route::get('/','FrontendController@home')->name('home');
 
 
 // Frontend Routes
-Route::get('/home', 'FrontendController@index')->middleware('verified');
+Route::get('/home', 'FrontendController@index');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
 //Policies
 Route::get('/privacy-policy','FrontendController@privacyPolicy')->name('privacy.policy');
@@ -66,7 +66,7 @@ Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
 Route::get('/cart','CartController@index')->name('cart')->middleware('user');
-Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user');
+Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user')->middleware('verified');
 // Wishlist
 Route::get('/wishlist',function(){
     return view('frontend.pages.wishlist');
@@ -103,6 +103,7 @@ Route::post('post/{slug}/comment','PostCommentController@store')->name('post-com
 Route::resource('/comment','PostCommentController');
 // Coupon
 Route::post('/coupon-store','CouponController@couponStore')->name('coupon-store');
+Route::post('/coupon-remove','CouponController@couponRemove')->name('coupon-remove');
 // Payment
 // Route::get('payment', 'PayPalController@payment')->name('payment');
 // Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
@@ -187,6 +188,7 @@ Route::get('/deleteAdd/{id}', 'HomeController@deleteAdd');
 Route::get('/set-default-address/{addId}', 'HomeController@setDefaultAddress');
 Route::get('/updateAddress', 'HomeController@updateAddress');
 
+Route::get('/order-complete', 'OrderController@orderComplete')->name('order-complete');
 
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){

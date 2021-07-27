@@ -64,6 +64,9 @@ Version:1.0
   }
 }
 
+.font-large{font-size: large;}
+.font-small{font-size: small;}
+
 .w-5{
   width:5%;
 }
@@ -2233,11 +2236,20 @@ Version:1.0
 
   .btn{
     // box-shadow: none;
+    border: 1px solid gray;
     // margin: 0 1rem;
-
+    &:first-child{
+      background: #444;
+      color: #fff;
+    }
     &:hover{
       border: 1px solid #3333334d;
     }
+  }
+  button.active {
+    background: $grest-clr !important;
+    color: #fff;
+
   }
 
   .nav-item {
@@ -4196,7 +4208,7 @@ Version:1.0
     color: #fff;
     font-weight: 600;
     padding: 0.75rem;
-    transition: color 0.3s, background-color 0.3s ease;
+    transition: all 0.3s, background-color 0.3s ease;
   }
 }
 

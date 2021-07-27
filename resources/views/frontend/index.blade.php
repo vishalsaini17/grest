@@ -160,14 +160,9 @@
               // dd($categories);
               @endphp
               @if($categories)
-              <button class="btn-dark btn mx-lg-3 mx-md-3"  data-filter="*">
-                All Products
-              </button>
+              <button class="btn active btn mx-lg-3 mx-md-3" data-name="tope-btn" data-filter="*">All Products</button>
               @foreach($categories as $key=>$cat)
-
-              <button class="btn btn-outline-secondary mx-lg-3 mx-md-3"  data-filter=".{{$cat->id}}">
-                {{$cat->title}}
-              </button>
+              <button class="btn btn-outline-grest mx-lg-3 mx-md-3" data-name="tope-btn" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
               @endforeach
               @endif
             </ul>
@@ -808,6 +803,11 @@ function requestFullScreen(el) {
   }
   return false
 }
+
+$('[data-name="tope-btn"]').click(function(){
+    $('[data-name="tope-btn"]').removeClass('active')
+    $(this).addClass('active')
+})
 
 // $(document).ready(function(){
 //   $(".owl-carousel").owlCarousel();

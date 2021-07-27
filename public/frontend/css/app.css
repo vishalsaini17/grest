@@ -2088,6 +2088,14 @@ Version:1.0
   color: #fff;
 }
 
+.font-large {
+  font-size: large;
+}
+
+.font-small {
+  font-size: small;
+}
+
 .w-5 {
   width: 5%;
 }
@@ -4102,8 +4110,22 @@ Version:1.0
   transition: all 0.3s ease-in-out;
 }
 
+.product-area .nav-tabs .btn {
+  border: 1px solid gray;
+}
+
+.product-area .nav-tabs .btn:first-child {
+  background: #444;
+  color: #fff;
+}
+
 .product-area .nav-tabs .btn:hover {
   border: 1px solid #3333334d;
+}
+
+.product-area .nav-tabs button.active {
+  background: #EA2953 !important;
+  color: #fff;
 }
 
 .product-area .nav-tabs .nav-item {
@@ -5944,7 +5966,7 @@ Version:1.0
   color: #fff;
   font-weight: 600;
   padding: 0.75rem;
-  transition: color 0.3s, background-color 0.3s ease;
+  transition: all 0.3s, background-color 0.3s ease;
 }
 
 .disabled-link {

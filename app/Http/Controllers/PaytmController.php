@@ -75,10 +75,9 @@ class PaytmController extends Controller {
       request()->session()->flash('success','Your order has been placed.');
       Cart::where('user_id', $order->user_id)->where('order_id', null)->update(['order_id' => $order->id]);
       Mail::to($order->email)->send(new OrderPlaced($order));
-      $order = new \stdClass();
-      $order->payment_status = 'paid';
-      session()->forget('coupon');
-      return redirect('user/');
+
+      return redirect()->route('order-complete')->with('order',$order);
+      
     } else if ($transaction->isFailed()) {
       //Transaction Failed
       $order = new \stdClass();

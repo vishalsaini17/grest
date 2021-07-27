@@ -30,9 +30,6 @@
             <div class="checkout-form">
               <h2>Make Your Checkout Here</h2>
               {{-- ***********Blade Componant************ --}}
-                    @error('last_name')
-                      <span class='text-danger'>{{ $message }}</span>
-                    @enderror
                     @error('post_code')
                       <span class='text-danger'>{{ $message }}</span>
                     @enderror
@@ -369,15 +366,14 @@
 
           
           <div class="col-lg-4 col-12">
-            <form class="form" method="POST" action="{{ route('cart.order') }}" id="checkout-payment">
-              @csrf
+            
             <div class="order-details">
               <!-- Order Widget -->
               <div class="single-widget">
                 <h2>CART TOTALS</h2>
                 <div class="content">
                   <ul>
-                    <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>Rs. {{ number_format(Helper::totalCartPrice()) }}</span></li>
+                    <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span class="font-weight-bold">Rs. {{ number_format(Helper::totalCartPrice()) }}</span></li>
                     {{-- <li class="shipping">
                       Shipping Cost
                       @if (count(Helper::shipping()) > 0 && Helper::cartCount() > 0)
@@ -393,27 +389,51 @@
                     </li> --}}
 
                     {{-- @dd(Helper::totalCartPrice()); --}}
-
+                    @if (! Session::has('coupon'))
+                      <li>
+                        <div class="coupon mb-3">
+                          <form action="{{ route('coupon-store') }}" class="input-group" method="POST">
+                            @csrf
+                            <input name="code" class="form-control" placeholder="Enter Your Coupon">
+                            <div class="input-group-append">
+                              <button class="btn btn-success" type="submit" id="button-addon2">Apply</button>
+                            </div>
+                          </form>
+                          {{-- <h5 class="text-danger d-inline">*</h5>
+                          <small>You can Apply only one coupon at a time.</small> --}}
+                        </div>
+                      </li>
+                    @endif
                     @if (session('coupon'))
-                      <li class="coupon_price" data-price="{{ session('coupon')['value'] }}">You Save<span>Rs. {{ number_format(session('coupon')['value']) }}</span></li>
+                      <li class="coupon_price" data-price="{{ $couponVal }}">
+                        Discount
+                        <form action="{{route('coupon-remove')}}" class="d-inline-block" method="post">
+                          @csrf
+                          {{-- <small class=" ml-1" onclick="this.form.submit()" style="cursor: pointer">Remove</small> --}}
+                          <button type="submit" class="btn font-small">Remove</button>
+                        </form>
+                        <span class="font-weight-bold green-link">- Rs. {{ number_format($couponVal) }}</span>
+                      </li>
                     @endif
                     @php
                       $total_amount = Helper::totalCartPrice();
                       if (session('coupon')) {
-                          $total_amount = $total_amount - session('coupon')['value'];
+                          $total_amount = $total_amount - $couponVal;
                       }
                     @endphp
                     {{-- <input type="hidden" name="amount" value="{{round($total_amount)}}"> --}}
                     @if (session('coupon'))
-                      <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount) }}</span></li>
+                      <li class="last" id="order_total_price">Total<span class="font-weight-bold red-link font-large">Rs. {{ number_format($total_amount) }}</span></li>
                     @else
-                      <li class="last" id="order_total_price">Total<span>Rs. {{ number_format($total_amount) }}</span></li>
+                      <li class="last" id="order_total_price">Total<span class="font-weight-bold red-link font-large">Rs. {{ number_format($total_amount) }}</span></li>
                     @endif
                   </ul>
                 </div>
               </div>
               <!--/ End Order Widget -->
               <!-- Order Widget -->
+              <form class="form" method="POST" action="{{ route('cart.order') }}" id="checkout-payment">
+                @csrf
               <div class="single-widget">
                 <h2>Payments</h2>
                 <div class="content">
@@ -437,24 +457,26 @@
               <!--/ End Payment Method Widget -->
               <!-- Button Widget -->
               <div class="single-widget get-button">
+             
                 <div class="content">
                   <div class="button proceedToCheckoutBtn">
                     <input type="hidden" name="first_name" value="" class="fname">
                     <input type="hidden" name="last_name" value="" class="lname">
                     <input type="hidden" name="address1" value="" class="address">
                     <input type="hidden" name="phone" value="" class="phone">
+                    {{-- <input type="hidden" name="code" value="{{Session::get('coupon')['value']}}" class="code"> --}}
                     <input type="hidden" name="post_code" value="" class="post_code">
                     <input type="hidden" name="address_id" value="" class="address_id">
                     <input type="hidden" name="email" value="{{auth()->user()->email}}" class="email">
                     <button type="submit" onclick="setChckoutValues()" class="btn btn-primary">proceed to checkout</button>
                   </div>
+                </form>
                 </div>
               </div>
               <!--/ End Button Widget -->
             </div>
           </div>
         </div>
-      </form>
     </div>
   </section>
   <!--/ End Checkout -->

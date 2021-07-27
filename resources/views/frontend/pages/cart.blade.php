@@ -18,7 +18,9 @@
   </div>
   <!-- End Breadcrumbs -->
 
-{{-- @dd(Auth::user()->email) --}}
+                {{-- @dd($products) --}}
+                {{-- @dd(Session::get('coupon')) --}}
+                {{-- @dd(Auth::user()->email) --}}
   <!-- Shopping Cart -->
   <div class="shopping-cart section">
     <div class="container">
@@ -31,8 +33,8 @@
                 <h4 class="pt-2 pl-3 pb-1 text-white bg-primary">Cart Items</h4>
                 <form action="{{ route('cart.update') }}" method="POST">
                   @csrf
-                  @foreach (Helper::getAllProductFromCart() as $key => $cart)
                   {{-- @dd(Helper::getAllProductFromCart()) --}}
+                  @foreach (Helper::getAllProductFromCart() as $key => $cart)
                   {{-- @dd($cart->product['summary']) --}}
                   {{-- @dump($product) --}}
                   @php
@@ -66,7 +68,8 @@
                         </div>
                         <a href="{{ route('cart-delete', $cart->id) }}" class="mx-4"><i class="fa fa-trash fa-2x"></i></a>
                         <button class="btn btn-info float-md-right d-inline-block" type="submit">Update</button>
-                        <h5 class="ml-auto my-2">₹ {{ number_format($cart->quantity * $cart['price']) }}</h5>
+                        <h5 class="ml-auto red-link d-inline-block my-2">₹ {{ number_format($cart->quantity * $cart['price']) }}</h5>
+                        <span class="ml-auto my-2"><del>₹ {{ number_format($cart->quantity * $cart->product['price']) }}</del></span>
                       </div>
                     </div>
                   </ul>
@@ -76,8 +79,6 @@
               </form>
             </div>
           </div>
-
-
 
           <table class="table d-none shopping-summery">
             <thead>
@@ -140,7 +141,7 @@
                 @else
                   <tr>
                     <td class="text-center" colspan="6">
-                      There are no any carts available. <a href="{{ route('product-grids') }}" style="color:blue;">Continue shopping</a>
+                      There are no any carts available. <a href="{{ route('product-grids') }}">Continue shopping</a>
 
                     </td>
                   </tr>
@@ -157,7 +158,9 @@
           <h4 class="pt-2 pl-3 pb-1 text-white bg-primary">Cart Totals</h4>
           <div class="right">
             <ul>
-              <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>₹ {{ number_format(Helper::totalCartPrice()) }}</span></li>
+              <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span  class="font-weight-bold">₹ {{ number_format($cartTotal) }}</span></li>
+              <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">You Save<span  class="font-weight-bold green-link">- ₹ {{ number_format($cartTotal - Helper::totalCartPrice()) }}</span></li>
+              <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Total<span  class="font-weight-bold red-link font-large">₹ {{ number_format(Helper::totalCartPrice()) }}</span></li>
               {{-- <div id="shipping" style="display:none;">
                 <li class="shipping">
                   Shipping {{session('shipping_price')}}
@@ -177,38 +180,24 @@
                   @endif
                 </li>
               </div> --}}
-              {{-- {{dd(Session::get('coupon')['value'])}} --}}
-                <div class="coupon mb-3">
-                  <form action="{{ route('coupon-store') }}" class="input-group" method="POST">
-                    @csrf
-                    <input name="code" class="form-control" placeholder="Enter Your Coupon">
-                    <div class="input-group-append">
-                      <button class="btn btn-success" type="submit" id="button-addon2">{{(session()->has('coupon')? 'Update': 'Apply')}}</button>
-                    </div>
-                    {{-- <button class="btn btn-grest">Apply</button> --}}
-                  </form>
-                  <h5 class="text-danger d-inline">*</h5>
-                  <small>You can Apply only one coupon at a time.</small>
-                </div>
-
-              @if (session()->has('coupon'))
-                <li class="coupon_price" data-price="{{ Session::get('coupon')['value'] }}">You Save<span>₹ {{ number_format(Session::get('coupon')['value']) }}</span></li>
+              {{-- @if (session()->has('coupon'))
+                <li class="coupon_price" data-price="{{ $couponVal }}">You Save<span class="green-link">₹ {{ number_format($couponVal) }}</span></li>
               @endif
               @php
                 $total_amount = Helper::totalCartPrice();
                 if (session()->has('coupon')) {
-                    $total_amount = $total_amount - Session::get('coupon')['value'];
+                    $total_amount = $total_amount - $couponVal;
                 }
               @endphp
               @if (session()->has('coupon'))
                 <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 0) }}</span></li>
               @else
                 <li class="last" id="order_total_price">You Pay<span>₹ {{ number_format($total_amount, 0) }}</span></li>
-              @endif
+              @endif --}}
             </ul>
             <div class="button5">
               <a href="{{ route('checkout') }}" class="btn w-100 {{(Helper::totalCartPrice() == 0)? 'disabled-link' : ''}} btn-grest checkout-btn">Checkout</a>
-              <a href="{{ route('product-grids') }}" class="btn btn-secondary">Continue shopping</a>
+              <a href="{{ route('product-grids') }}" class="btn text-dark"><i class="fa fa-angle-double-left"></i> Continue shopping</a>
             </div>
           </div>
           @endif
