@@ -6,10 +6,29 @@ Description: Eshop - eCommerce HTML5 Template.
 Version:1.0
 ========================================*/
 /* Tablet Screen */
+@media only screen and (min-width: 768px){
+  #filters-sidebar{
+    display: block !important;
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .section {
     padding: 50px 0px;
   }
+
+  // .condition-filter{
+  //   flex-wrap: wrap;
+  //   label{
+  //     margin: 0.25rem 0;
+  //   }
+  // }
+    .ram-filter,
+    .storage-filter,
+    .brands-filter-mobile{
+      font-size: large;
+    }
+  
 
   .shop.single {
     padding: 30px 0 50px 0;
@@ -455,6 +474,13 @@ Version:1.0
       font-size: 28px;
     }
   }
+
+  .profile-page .sub-menu li a{
+    font-size: 1rem !important;
+  }
+  // .condition-filter{
+  //   flex-wrap: wrap;
+  // }
 
   .shop.single {
     padding: 0px 0 30px 0;
@@ -1210,10 +1236,6 @@ Version:1.0
     }
   }
 
-  .single-product {
-    margin-top: 30px;
-  }
-
   .error-page {
     .error-inner {
       h2 {
@@ -1378,10 +1400,15 @@ Version:1.0
       }
     }
   }
+  .ram-filter,
+  .storage-filter,
+  .brands-filter-mobile{
+      font-size: large;
+  }
 }
 
 /* Mobile Screen */
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 567px) {
   .site-header {
     &.sticky .header-bottom {
       position: absolute;
@@ -1398,6 +1425,37 @@ Version:1.0
       position: relative;
       padding-bottom: 20px;
       background: #333;
+    }
+  }
+
+  
+  .profile-page .sub-menu li a{
+    font-size: 0.75rem !important;
+  }
+
+  .ram-filter,
+  .storage-filter,
+  .brands-filter-mobile{
+      font-size: large;
+  }
+
+  .single-product {
+    // margin-top: 30px;
+    display: flex;
+    .product-img{
+      flex-basis: 90%;
+    }
+    .product-content{
+      margin-top:0;
+      h3 a{
+        font-size: 1rem;
+      }
+      span{
+        font-size: 1rem;
+      }
+    }
+    .price-dec{
+      display: none;
     }
   }
 
@@ -2172,6 +2230,23 @@ Version:1.0
     h3 {
       font-size: 15px;
       margin: 10px 0 10px;
+    }
+  }
+
+  .order_details{
+    header{
+      padding: 0.5rem 1rem;
+      
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+    }
+    .center {
+      font-size: 1rem;
+    }
+    .card-title{
+      font-size: 1rem;
     }
   }
 }

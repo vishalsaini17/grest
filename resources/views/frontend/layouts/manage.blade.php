@@ -5,52 +5,22 @@
 @section('main-content')
 
 
-<div class="container-fluid profile-page" style="background-color: #F1F3F5">
-  <div class="container py-5">
-      <nav class="my-profile-nav row justify-content-center">
-        <ul class="sub-menu col-9 d-flex">
-          <li><a href="{{route('manage')}}">My Profile</a></li>
-          <li><a href="#">My Orders</a></li>
-        </ul>
-        <ul>
-          <li>
-            {{-- <a href="{{route('user.logout')}}">Logout</a> --}}
-            <a href="#" data-target="#logoutModal" data-toggle="modal">Logout</a>
-          </li>
+<div class="profile-page" style="background-color: #F1F3F5">
+  <div class="container py-5 mx-auto row justify-content-center">
+      <nav class="my-profile-nav col-lg-10 col-12 px-0 ">
+        <ul class="sub-menu d-flex">
+          <li><a href="{{route('manage.profile')}}" class="{{ Request::path()=='my-profile' ? 'active' : '' }}">My Profile</a></li>
+          <li><a href="{{route('manage.orders')}}" class="{{ Request::path()=='my-orders' ? 'active' : '' }}">My Orders</a></li>
+          <li class="ml-auto"><a href="#" data-target="#logoutModal" data-toggle="modal">Logout</a></li>
         </ul>
       </nav>
 
-      <div class="my-profile-details">
-        <div class="container py-5">
-          <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-4 col-sm-10 col-10 bg-white mx-3 p-3">
-              <div class="my-profile">
-                <h4>My Account</h4>
-                <div class="image text-center">
-                  @if($profile->photo)
-                  <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{$profile->photo}}" alt="profile picture">
-                  @else
-                  <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{asset('backend/img/avatar.png')}}" alt="profile picture">
-                  @endif
-                </div>
-                <div class="details">
-                  <h5 class="card-title text-left"><small> <i class="fa {{ ($profile->role === 'admin') ? 'fa-user-plus' : 'fa-user' }} "></i> {{$profile->name}}</small></h5>
-                  <p class="card-text text-left"><i class="fa fa-envelope"></i> {{$profile->email}}</p>
-                  <p class="card-text text-left text-muted"><b>Role: </b> {{$profile->role}}</p>
-                  <p class="card-text text-left text-muted"><b>Phone: </b> {{($profile->phone)? $profile->phone : '--N/A--'}}</p>
-                  <p class="d-none">ID: {{$profile->id}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-7 col-md-6 col-sm-10 col-10">
+      <div class="py-5 my-profile-details col-lg-10 col-12 px-0">
+        <div class="mx-auto">
+          <div class="row justify-content-center ml-1">
 
-              {{-- @yield('manage-content') --}}
+              @yield('manage-content')
 
-              <!-- *************** Blade Component ************-->
-              <x-addresses title="Delivery Address" type="address"/>
-
-
-            </div>
           </div>
         </div>
       </div>

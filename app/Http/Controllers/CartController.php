@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Wishlist;
 use App\Models\Cart;
+use App\Models\Coupon;
 use Illuminate\Support\Str;
 use Helper;
 class CartController extends Controller
@@ -13,6 +14,26 @@ class CartController extends Controller
     protected $product=null;
     public function __construct(Product $product){
         $this->product=$product;
+    }
+
+    public function index()
+    {
+        $cartCount = Helper::getAllProductFromCart()->count();
+        $productsFromCart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->get();
+        $products = [];
+        $cartTotal = [];
+        foreach ($productsFromCart as $key => $cartProduct) {
+            array_push($products, Product::where('id', $cartProduct->product_id)->first());
+            array_push($cartTotal, $products[$key]->price * $cartProduct->quantity);
+        };
+        // dd($cartTotal);
+        $cartTotal = array_sum($cartTotal);
+
+        // $couponVal = $this->getCouponVal;
+        if($cartCount == 0){
+            return view('frontend.pages.empty-cart');
+        };
+        return view('frontend.pages.cart')->with('products' , $products)->with('cartTotal', $cartTotal);
     }
 
     public function addToCart(Request $request){
@@ -250,6 +271,20 @@ class CartController extends Controller
         //     $cart->fill($data);
         //     $cart->save();
         // }
-        return view('frontend.pages.checkout');
+        if(session()->has('coupon')){
+            $couponVal = $this->getCouponVal();
+            return view('frontend.pages.checkout')->with('couponVal', $couponVal);
+        }else{
+            return view('frontend.pages.checkout');
+        }
+    }
+    
+    public function getCouponVal(){
+        if(session()->has('coupon')){
+            $cartTotal = Cart::where('user_id',auth()->user()->id)->where('order_id',null)->sum('price');
+            $couponVal = Coupon::where('id', session()->get('coupon')['id'])->first()->discount($cartTotal);
+            session()->put('coupon.value',$couponVal);
+            return $couponVal;
+        }
     }
 }

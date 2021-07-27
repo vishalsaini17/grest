@@ -4,7 +4,7 @@
 
 @section('main-content')
 <div class="card">
-<h5 class="card-header">Order       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
+<h5 class="card-header">Order<a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
   </h5>
   <div class="card-body">
     @if($order)
@@ -16,7 +16,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Quantity</th>
-            <th>Charge</th>
+            <th>Shipping</th>
             <th>Total Amount</th>
             <th>Status</th>
             <th>Action</th>
@@ -32,8 +32,8 @@
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
-            <td>@foreach($shipping_charge as $data) $ {{number_format($data,2)}} @endforeach</td>
-            <td>Rs. {{number_format($order->total_amount,2)}}</td>
+            <td>@foreach($shipping_charge as $data) ₹ {{number_format($data,2)}} @endforeach</td>
+            <td>₹ {{number_format($order->total_amount,2)}}</td>
             <td>
                 @if($order->status=='new')
                   <span class="badge badge-primary">{{$order->status}}</span>
@@ -85,15 +85,15 @@
                           $shipping_charge=DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
                       @endphp
                         <td>Shipping Charge</td>
-                        <td> : $ {{number_format($shipping_charge[0],2)}}</td>
+                        <td> : ₹ {{number_format($shipping_charge[0],2)}}</td>
                     </tr>
                     <tr>
                         <td>Total Amount</td>
-                        <td> : $ {{number_format($order->total_amount,2)}}</td>
+                        <td> : ₹ {{number_format($order->total_amount,2)}}</td>
                     </tr>
                     <tr>
                       <td>Payment Method</td>
-                      <td> : @if($order->payment_method=='cod') Cash on Delivery @else Paypal @endif</td>
+                      <td> : @if($order->payment_method=='cod') Cash on Delivery @else Paytm @endif</td>
                     </tr>
                     <tr>
                         <td>Payment Status</td>

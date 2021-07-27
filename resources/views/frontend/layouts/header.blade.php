@@ -25,7 +25,7 @@
               <li><a href="{{route('order.track')}}"><i class="ti-location-pin"></i> Track Order</a></li>
               {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
               @auth
-              {{-- @if(Auth::check()) --}}
+              {{-- @dd(Auth::user()) --}}
               {{-- <li><a href="{{route('admin')}}" target="_blank"><i class="ti-user"></i> Dashboard</a></li> --}}
                 <li>
                   <div class="dropdown show text-black">
@@ -35,7 +35,8 @@
                     
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item text-capitalize" href="{{(Auth::user()->role=='admin')? route('admin') : route('user')}}">{{Auth::user()->role}} Dashboard</a>
-                      <a class="dropdown-item" href="{{route('manage')}}">Manage</a>
+                      <a class="dropdown-item" href="{{route('manage.profile')}}">My Profile</a>
+                      <a class="dropdown-item" href="{{route('manage.orders')}}">My Orders</a>
                       <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>
                     </div>
                   </div>

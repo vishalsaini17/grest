@@ -5,8 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\MailResetPasswordNotification as ResetMail;
 
-class User extends Authenticatable //implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -16,7 +17,7 @@ class User extends Authenticatable //implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role','photo','status','provider','provider_id','phone'
+        'name','first_name','last_name','email', 'password','role','photo','status','provider','provider_id','phone'
     ];
 
     /**
@@ -39,5 +40,15 @@ class User extends Authenticatable //implements MustVerifyEmail
 
     public function orders(){
         return $this->hasMany('App\Models\Order');
+    }
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetMail($token));
     }
 }

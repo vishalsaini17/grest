@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Shipping;
 use App\User;
 use PDF;
@@ -43,7 +44,6 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){   
-
         // dd($request);
         $validation = $this->validate($request,[
             'first_name'=>'string|required',
@@ -99,7 +99,7 @@ class OrderController extends Controller
         // return session('coupon')['value'];
         $order_data['sub_total']=Helper::totalCartPrice();
         $order_data['quantity']=Helper::cartCount();
-
+// dd(session('coupon'));
         if(session('coupon')){
             $order_data['coupon']=session('coupon')['value'];
         }
@@ -155,6 +155,21 @@ class OrderController extends Controller
         // dd($users);        
         request()->session()->flash('success','Your product successfully placed in order');
         return redirect()->route('home');
+    }
+
+    public function orderComplete(){
+        // $order = Order::where('id', session('orderId'))->first();
+        $order = Order::find(session('orderId'));
+        $order->update(array('payment_status' => 'paid'));
+        $products = Cart::where('user_id', $order->user_id)->where('order_id',$order->id)->get();
+        // dd($products);
+        foreach ($products as $key => $ord) {
+            $product = Product::where('id', $ord->product_id)->first();
+            $product->update(array('stock' => $product->stock - 1));
+        }
+        session()->forget('coupon');
+        session()->forget('orderId');
+        return view('frontend.pages.order-success-page');
     }
 
     /**

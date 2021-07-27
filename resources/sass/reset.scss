@@ -2108,17 +2108,26 @@ embed, iframe, object {
 @media (min-width: 1360px) {
   .container {
     max-width: 1300px;
+    &-xxl{
+      max-width: 1300px;
+    }
   }
 }
 
 @media (min-width: 1500) {
   .container {
     max-width: 1440px;
+    &-xxl{
+      max-width: 1440px;
+    }
   }
 }
 
 @media (min-width: 1680px){
   .container {
     max-width: 1590px !important;
+    &-xxl{
+      max-width: 1590px !important;
+    }
   }
 }

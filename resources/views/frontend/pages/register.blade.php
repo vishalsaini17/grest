@@ -21,27 +21,35 @@
     <!-- End Breadcrumbs -->
             
     <!-- Shop Login -->
-    <section class="shop login section">
+    <section class="shop login section pt-4">
         <div class="container">
             <div class="row"> 
-                <div class="col-lg-6 offset-lg-3 col-12">
+                <div class="col-lg-8 card mx-auto px-2 py-3 col-12">
                     <div class="login-form">
                         <h2>Register</h2>
-                        <p>Please register in order to checkout more quickly</p>
+                        <p class="mb-0">Please register in order to checkout more quickly</p>
                         <!-- Form -->
-                        <form class="form" method="post" action="{{route('register.submit')}}">
+                        <form class="form card-body" method="post" action="{{route('register.submit')}}">
                             @csrf
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Your Name<span>*</span></label>
-                                        <input type="text" name="name" placeholder="" required="required" value="{{old('name')}}">
-                                        @error('name')
+                                <div class="col-12 d-flex justify-content-between" style="gap: 1rem">
+                                    <div class="form-group w-100">
+                                        <label>First Name<span>*</span></label>
+                                        <input type="text" name="first_name" data-name="registerName" placeholder="" required="required" value="{{old('first_name')}}">
+                                        @error('first_name')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
+                                    <div class="form-group w-100">
+                                        <label>Last Name<span>*</span></label>
+                                        <input type="text" name="last_name" data-name="registerName" placeholder="" required="required" value="{{old('last_name')}}">
+                                        @error('last_name')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    <input type="hidden" name="name" value="">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label>Your Email<span>*</span></label>
                                         <input type="text" name="email" placeholder="" required="required" value="{{old('email')}}">
@@ -50,7 +58,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label>Your Mobile Number<span>*</span></label>
                                         <input type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" required name="phone" placeholder="" value="{{old('phone')}}">
@@ -59,7 +67,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label>Your Password<span>*</span></label>
                                         <input type="password" name="password" placeholder="" required="required" value="{{old('password')}}">
@@ -68,7 +76,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label>Confirm Password<span>*</span></label>
                                         <input type="password" name="password_confirmation" placeholder="" required="required" value="{{old('password_confirmation')}}">
@@ -78,7 +86,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="d-sm-flex justify-content-between align-items-center text-center">
+                                    <div class="d-sm-flex justify-content-around align-items-center text-center">
                                     <button  class="btn btn-info" style="background-color: #007bff;" type="submit">Register</button>
                                     <span class="my-3 d-sm-inline-block" style="font-size: large">OR</span>
                                         <a href="{{route('login.form')}}" class="btn btn-primary">Login</a>
@@ -125,4 +133,16 @@
         background:rgb(243, 26, 26) !important;
     }
 </style>
+@endpush
+@push('scripts')
+<script>
+    $(function () {
+        $("input[data-name=registerName]").change(function(){
+            var fname = $("input[name=first_name]").val()
+            var lname = $("input[name=last_name]").val()
+            $("input[name=name]").val(`${fname} ${lname}`)
+        })
+    });
+    
+</script>
 @endpush
