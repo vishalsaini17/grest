@@ -31,15 +31,21 @@
 		</div>
 			<div class="container mt-5">
 				<div class="row text-center mx-auto">
-					<div class="col-12">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-10 mx-auto">
 						<div class="about-content">
 							{{-- @php
 								$settings=DB::table('settings')->get();
 							@endphp --}}
 							<h3>Welcome To <span>Grest</span></h3>
 							{{-- <p>@foreach($settings as $data) {{$data->description}} @endforeach</p> --}}
-							<p class="pipe-red-text-black text-center mx-auto d-flex"><span>Affordability</span>|<span>Availability</span>|<span>Accountability</span>|<span>Accessibility</span></p>
-							<p class="text-center mx-auto mt-3" style="max-width: 80%;">GREST is an electronics re-commerce company where consumers can buy pre-owned / refurbished certified devices with warranty and after sales services. Our mission is to democratise the refurbished goods as a mainstream category by focusing on <strong>Affordability</strong>, <strong>Availability</strong>, <strong>Accountability</strong> &amp; <strong>Accessibility</strong></p>
+							<p class="pipe-red-text-black d-none text-center mx-auto "><span>Affordability</span>|<span>Availability</span>|<span>Accountability</span>|<span>Accessibility</span></p>
+							<ul class="heading ">
+								<li class="pipe-red-text-black w-100"><span>Affordability</span></li>
+								<li class="pipe-red-text-black w-100"><span>Availability</span></li>
+								<li class="pipe-red-text-black w-100"><span>Accountability</span></li>
+								<li class="pipe-red-text-black w-100"><span>Accessibility</span></li>
+							</ul>
+							<p class="text-justify about-text mx-auto mt-3">GREST is an electronics re-commerce company where consumers can buy pre-owned / refurbished certified devices with warranty and after sales services. Our mission is to democratise the refurbished goods as a mainstream category by focusing on <strong>Affordability</strong>, <strong>Availability</strong>, <strong>Accountability</strong> &amp; <strong>Accessibility</strong></p>
 							<div class="button mt-5">
 								<a href="{{route('blog')}}" class="btn btn-primary">Our Blog</a>
 								<a href="{{route('contact')}}" class="btn primary">Contact Us</a>

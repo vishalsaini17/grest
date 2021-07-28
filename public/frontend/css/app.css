@@ -9535,14 +9535,6 @@ Version:1.0
     font-size: large;
   }
 
-  .single-product {
-    display: flex;
-  }
-
-  .single-product .product-img {
-    flex-basis: 90%;
-  }
-
   .single-product .product-content {
     margin-top: 0;
   }
