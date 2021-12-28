@@ -178,6 +178,11 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 //     echo system($cmd);
 // });
 
+// Route::get('/storage-link', function() {
+//     Artisan::call('storage:link');
+//     /* ----- Run if Images on site do not show or FIle Manager stop working ----- */
+// });
+
 
 // New Profile Manage Pages
 Route::get('/my-profile', 'HomeController@manageProfile')->name('manage.profile');
