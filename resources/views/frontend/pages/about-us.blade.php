@@ -38,8 +38,8 @@
 							@endphp --}}
 							<h3>Welcome To <span>Grest</span></h3>
 							{{-- <p>@foreach($settings as $data) {{$data->description}} @endforeach</p> --}}
-							<p class="pipe-red-text-black d-none text-center mx-auto "><span>Affordability</span>|<span>Availability</span>|<span>Accountability</span>|<span>Accessibility</span></p>
-							<ul class="heading ">
+							<p class="pipe-red-text-black d-none d-md-block w-100 text-center mx-auto "><span>Affordability</span>|<span>Availability</span>|<span>Accountability</span>|<span>Accessibility</span></p>
+							<ul class="heading d-md-none">
 								<li class="pipe-red-text-black w-100"><span>Affordability</span></li>
 								<li class="pipe-red-text-black w-100"><span>Availability</span></li>
 								<li class="pipe-red-text-black w-100"><span>Accountability</span></li>
