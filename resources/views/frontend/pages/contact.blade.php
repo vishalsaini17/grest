@@ -62,7 +62,7 @@
 										</div>
 										<div class="col-12">
 											<div class="form-group message">
-												<label>your message<span>*</span></label>
+												<label>your message <small>(at least 20 characters)</small><span>*</span></label>
 												<textarea name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
 											</div>
 										</div>

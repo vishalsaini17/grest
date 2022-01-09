@@ -53,12 +53,13 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group login-btn d-sm-flex justify-content-around align-items-center">
-                                        <button class="btn btn-primary" type="submit">Login</button>
-                                        <span style="font-size: large">OR</span>
-                                        <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Register</a>
-                                        {{-- <div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true"></div> --}}
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn px-3 btn-facebook"><i class="fa fa-facebook mr-2"></i> Login with Facebook</a>
+                                    <div class="form-group login-btn  justify-content-around align-items-center">
+                                        <button class="btn btn-primary bg-grest d-block px-5 text-center mx-auto mt-5" type="submit">Login</button>
+                                        <span class="text-center d-block my-3" style="font-size: large">OR</span>
+                                        <div class="text-center ">
+                                            <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Register</a>
+                                            <a href="{{route('login.redirect','facebook')}}" class="btn px-3 btn-facebook"><i class="fa fa-facebook mr-2"></i> Login with Facebook</a>
+                                        </div>
                                         {{-- <a href="{{route('login.redirect' ,'github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
                                         {{-- <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a> --}}
                                     </div>

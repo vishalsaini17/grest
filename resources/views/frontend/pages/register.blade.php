@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Your Password<span>*</span></label>
+                                        <label>Your Password<span>*</span> <small>(at least 6 characters long)</small></label>
                                         <input type="password" name="password" placeholder="" required="required" value="{{old('password')}}">
                                         @error('password')
                                             <span class="text-danger">{{$message}}</span>
@@ -86,9 +86,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="d-sm-flex justify-content-around align-items-center text-center">
-                                    <button  class="btn btn-info" style="background-color: #007bff;" type="submit">Register</button>
-                                    <span class="my-3 d-sm-inline-block" style="font-size: large">OR</span>
+                                    <div class=" justify-content-around align-items-center text-center">
+                                    <button  class="btn bg-grest px-5 mx-auto d-block" style="" type="submit">Register</button>
+                                    <span class="my-3 d-block my-3">Already have account? Try</span>
                                         <a href="{{route('login.form')}}" class="btn btn-primary">Login</a>
                                         {{-- <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a> --}}
                                         <a href="{{route('login.redirect','facebook')}}" class="btn px-3 btn-facebook"><i class="fa fa-facebook mr-2"></i> Login with Facebook</a>

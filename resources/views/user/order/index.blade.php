@@ -13,9 +13,9 @@
     </div>
     <div class="card-body">
         
-      <x-ordersComp />
+      {{-- <x-ordersComp /> --}}
       
-      {{-- <div class="table-responsive">
+      <div class="table-responsive">
         @if(count($orders)>0)
         <table class="table table-bordered table-striped" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
@@ -84,7 +84,7 @@
         @else
           <h6 class="text-center">No orders found!!! Please order some products</h6>
         @endif
-      </div> --}}
+      </div>
     </div>
 </div>
 @endsection
@@ -93,10 +93,24 @@
   <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
   <style>
-      div.dataTables_wrapper div.dataTables_paginate{
+      div.dataTables_wrapper div.dataTables_paginate, .dataTables_info{
           display: none;
       }
   </style>
+    <style>
+      .flex.justify-between.flex-1{
+        display: none;
+      }
+      .w-5{
+        width: 5%;
+      }
+      .flex.justify-between.flex-1 + div{
+        text-align: center;
+      }
+      .flex.justify-between.flex-1 + div > div{
+        margin: 0.5rem
+      }
+    </style>
 @endpush
 
 @push('scripts')
@@ -110,13 +124,27 @@
   <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
   <script>
       
-      $('#order-dataTable').DataTable( {
+      // $('#order-dataTable').DataTable( {
+      //       "columnDefs":[
+      //           {
+      //               "orderable":true,
+      //               "targets":[8],
+      //               "navigation":false
+      //           }
+      //       ]
+      //   } );
+
+        $('#order-dataTable').DataTable( {
+          "paging": false,
+          "pagingType": "first_last_numbers"
+          // "target":[8]
+          // "searchable":true,
+          // scrollY: 400
             "columnDefs":[
-                {
-                    "orderable":true,
-                    "targets":[8],
-                    "navigation":false
-                }
+            //     {
+                    "orderable":false,
+            //         "targets":[8],
+            //     }
             ]
         } );
 
