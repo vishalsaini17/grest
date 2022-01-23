@@ -480,6 +480,7 @@ class FrontendController extends Controller
         if($user){
             request()->session()->flash('success','Successfully registered');
             Mail::to($data['email'])->queue(new WelcomeMail());
+            $user->sendEmailVerificationNotification();
             Auth::login($user);
             event (new Registered($user));
             return redirect()->route('home');

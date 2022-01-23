@@ -57,26 +57,28 @@ class LoginController extends Controller
     public function Callback($provider){
         // dd($provider);
         $userSocial =   Socialite::driver($provider)->stateless()->user();
-        $searchUser =   User::where(['email' => $userSocial->getEmail()])->first();
         // dd($userSocial);
+        $searchUser =   User::where(['email' => $userSocial->getEmail()])->first();
         if($searchUser){
-            // dd();
             Auth::login($searchUser);
             session()->put('user', $searchUser['email']);
             return redirect('/')->with('success','You are login from '.$provider);
         }else{
+            $full_name = explode(' ', $userSocial->getName());
+            // dd($full_name);
             $user = User::create([
                 'name'          => $userSocial->getName(),
+                'first_name'    => $full_name[0],
+                'last_name'     => $full_name[1],
                 'email'         => $userSocial->getEmail(),
                 'image'         => $userSocial->getAvatar(),
                 'provider_id'   => $userSocial->getId(),
-                // 'user_id'       => ,
                 'provider'      => $provider,
             ]);
             Auth::login($user);
             session()->put('user', $user['email']);
 
-         return redirect()->route('home');
+        return redirect('/')->with('success','You are login from '.$provider);
         }
     }
 }

@@ -39,44 +39,52 @@
             <div class="col-md-8">
                 <form class="border px-4 pt-2 pb-3" method="POST" action="{{route('user-profile-update',$profile->id)}}">
                     @csrf
-                    <div class="form-group">
-                        <label for="inputTitle" class="col-form-label">Full Name</label>
-                      <input id="inputTitle" type="text" name="name" placeholder="Enter name"  value="{{$profile->name}}" class="form-control">
-                      @error('name')
-                      <span class="text-danger">{{$message}}</span>
-                      @enderror
+
+                    <div class="row">
+                      <div class="form-group col-lg-4 col-md-6 col-6">
+                        <label for="first_name" class="col-form-label">First Name</label>
+                        <input id="first_name" type="text" name="first_name" placeholder="Enter name"  value="{{$profile->first_name}}" class="form-control">
+                        @error('name')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                       </div>
-              
-                      <div class="form-group">
-                          <label for="inputEmail" class="col-form-label">Email</label>
+                      <div class="form-group col-lg-4 col-md-6 col-6">
+                        <label for="last_name" class="col-form-label">Last Name</label>
+                        <input id="last_name" type="text" name="last_name" placeholder="Enter name"  value="{{$profile->last_name}}" class="form-control">
+                        @error('name')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                      </div>
+                      <input type="hidden" name="name" value="">
+                      <div class="form-group col-lg-4 col-md-6 col-6">
+                        <label for="inputEmail" class="col-form-label">Email</label>
                         <input id="inputEmail" disabled type="email" name="email" placeholder="Enter email"  value="{{$profile->email}}" class="form-control">
                         @error('email')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                       </div>
-
-
-                      <div class="form-group">
+                      <div class="form-group col-lg-4 col-md-6 col-6">
                         <label for="phone" class="col-form-label">Contact Number</label>
-                      <input id="phone" disabled type="phone" name="phone" placeholder=""  value="{{$profile->phone}}" class="form-control">
-                      @error('phone')
-                      <span class="text-danger">{{$message}}</span>
-                      @enderror
-                    </div>
-                      <div class="form-group">
-                      <label for="inputPhoto" class="col-form-label">Profile Pic</label>
-                      <div class="input-group">
-                          <span class="input-group-btn">
-                              <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                                <i class="fas fa-images"></i>Choose
-                              </a>
-                          </span>
-                          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$profile->photo}}">
-                      </div>
-                        @error('photo')
+                        <input id="phone" type="tel" maxlength="10" pattern="[1-9]{1}[0-9]{9}" name="phone" placeholder="Enter mobile number"  value="{{$profile->phone}}" class="form-control">
+                        @error('phone')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                       </div>
+                        <div class="form-group col-lg-4 col-md-6 col-6">
+                        <label for="inputPhoto" class="col-form-label">Profile Pic</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                  <i class="fas fa-images"></i>Choose
+                                </a>
+                            </span>
+                            <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$profile->photo}}">
+                        </div>
+                          @error('photo')
+                          <span class="text-danger">{{$message}}</span>
+                          @enderror
+                        </div>
+                    </div>
                       {{-- <div class="form-group">
                           <label for="role" class="col-form-label">Role</label>
                           <select name="role" class="form-control">
@@ -89,8 +97,8 @@
                             @enderror
                         </div> --}}
 
-                        <button type="submit" class="btn btn-success ">Update</button>
-                        <a href="{{route('manage.profile')}}" class="btn btn-dark ml-4">Back to pervious Page</a>
+                        <button type="submit" class="btn btn-success mt-5">Update</button>
+                        <a href="{{route('manage.profile')}}" class="btn btn-dark mt-5 ml-4">Back to pervious Page</a>
 
                 </form>
             </div>
@@ -140,5 +148,18 @@
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
     $('#lfm').filemanager('image');
+
+    const setName = (f,l)=> $('input[name="name"]').val(`${f} ${l}`)
+    var f = $('input[name="first_name"]').val(), l=$('input[name="last_name"]').val()
+    setName(f,l)
+    $('input[name="first_name"]').keyup(function(){
+      f = $(this).val()
+      setName(f,l)
+    })
+    $('input[name="last_name"]').keyup(function(){
+      l = $(this).val()
+      setName(f,l)
+    })
+
 </script>
 @endpush

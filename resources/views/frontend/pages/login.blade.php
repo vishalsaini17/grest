@@ -4,9 +4,9 @@
 
 @section('main-content')
 
-<div id="fb-root"></div>
+{{-- <div id="fb-root"></div> --}}
     <!-- Breadcrumbs -->
-    <div class="breadcrumbs">
+    {{-- <div class="breadcrumbs">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End Breadcrumbs -->
             
     <!-- Shop Login -->
