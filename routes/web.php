@@ -178,10 +178,10 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 //     echo system($cmd);
 // });
 
-// Route::get('/storage-link', function() {
-//     Artisan::call('storage:link');
-//     /* ----- Run if Images on site do not show or FIle Manager stop working ----- */
-// });
+Route::get('/storage-link', function() {
+    Artisan::call('storage:link');
+    /* ----- Run if Images on site do not show or FIle Manager stop working ----- */
+});
 
 
 // New Profile Manage Pages
@@ -226,14 +226,17 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     
     
 });
-Route::get('/emailTEST', function(){
-    $order = App\Models\Order::latest()->first();
-    return new App\Mail\OrderPlaced($order);
-});
-Route::get('pdfTEST',function(){
-    $order = App\Models\Order::latest()->first();
-    return view('backend.order.pdf')->with('order', $order);
-});
+// Route::get('/emailTEST', function(){
+//    $data = ['subject'=>'This is Subject', 'email'=>'email@com', 'name'=>'Shiva','phone'=>'987654320', 'message'=>'This is Message', 'date'=>'22/02/2022'];
+//     return new App\Mail\NewMessage($data);
+// });
+// Route::get('pdfTEST',function(){
+//     $order = App\Models\Order::latest()->first();
+//     return view('backend.order.pdf')->with('order', $order);
+// });
+// Route::get('test',function(){
+//    return dd(App\Models\Settings::first()->email);
+// });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

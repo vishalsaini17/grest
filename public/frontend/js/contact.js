@@ -51,7 +51,7 @@ $(document).ready(function(){
                 },
                 message: {
                     required: "um...yea, you have to write something to send this form.",
-                    minlength: "Your subject must have at least 10 characters"
+                    minlength: "Your message must have at least 10 characters"
                 }
             },
             submitHandler: function(form) {

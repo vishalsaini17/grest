@@ -5,6 +5,9 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\MessageSent;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewMessage;
+use App\Models\Settings;
 class MessageController extends Controller
 {
     /**
@@ -40,14 +43,16 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request,[
             'name'=>'string|required|min:2',
             'email'=>'email|required',
-            'message'=>'required|min:20|max:200',
+            'message'=>'required|min:10|max:500',
             'subject'=>'string|required',
             'phone'=>'numeric|required'
         ]);
         // return $request->all();
+        // dd($request->all());
 
         $message=Message::create($request->all());
             // return $message;
@@ -60,9 +65,13 @@ class MessageController extends Controller
         $data['message']=$message->message;
         $data['subject']=$message->subject;
         $data['photo']=Auth()->user()->photo;
-        // return $data;    
+        
+        $grestMail = Settings::first()->email;
+        Mail::to($grestMail)->send(new NewMessage($data));
+
         event(new MessageSent($data));
-        exit();
+        // exit();
+        return redirect()->route('home');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\Authenticate;
 use App\Mail\WelcomeMail;
+use App\Mail\NewMessage;
 use Illuminate\Support\Facades\Mail;
 use Auth;
 
@@ -12,23 +13,19 @@ use Illuminate\Http\Request;
 class MailController extends Controller
 {
     public function welcome(){
-        // dd('email');
         $data = [
             'name'=>'name',
-            'msg'=>'msg'
+            'msg'=>'msg',
+            'email'=>'email',
         ];
-        Mail::to('shiv@gmail.com')->send(new WelcomeMail());
+        Mail::to(email)->send(new WelcomeMail());
         return new WelcomeMail();
         // return redirect('/');
     }
     public function test(){
         $data = ['name'=>'Shiv','data'=>'Helo Vishal'];
-        $user['to'] = 'shivansh901@gmail.com';
-        // Mail::send('emails.welcome', $data, function($message) use ($user){
-        //     $message->to($user['to']);
-        //     $message->subject('Hello Dev');
-        // });
-        Mail::to('shivansh901@gmail.com')->send(new WelcomeMail());
+        $user['to'] = 'sh901@gmail.com';
+        Mail::to('sh901@gmail.com')->send(new NewMessage());
 
-    }
+    // }
 }

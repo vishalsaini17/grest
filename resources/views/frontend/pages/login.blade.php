@@ -29,7 +29,7 @@
                 <div class="col-lg-6 offset-lg-3 col-12">
                     <div class="login-form center-div">
                         <h2>Login</h2>
-                        <p>Please register in order to checkout more quickly</p>
+                        <p>Please login in order to checkout more quickly</p>
                         <!-- Form -->
                         <form class="form" method="post" action="{{route('login.submit')}}">
                             @csrf
@@ -68,7 +68,7 @@
                                     </div>
                                     @if (Route::has('password.request'))
                                         <a class="lost-pass" href="{{ route('password.reset') }}">
-                                            Lost your password?
+                                            Forget your password?
                                         </a>
                                     @endif
                                 </div>

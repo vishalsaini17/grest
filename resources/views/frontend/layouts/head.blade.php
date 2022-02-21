@@ -35,6 +35,13 @@
 <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.css')}}">
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="V6HOjG19"></script>
 
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NJKXKBZ');</script>
+    <!-- End Google Tag Manager -->
 
 <!-- Eshop StyleSheet -->
 <!-- <link rel="stylesheet" href="{{asset('frontend/css/reset.css')}}">

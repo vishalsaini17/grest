@@ -33,7 +33,7 @@
                             <input type="text" class="form-control p-2"  name="order_number" placeholder="Enter your order number">
                         </div>
                         <div class="col-12 text-center mt-5 form-group">
-                            <button type="submit" value="Track Order" class="btn btn-secondary">Track Orders</button>
+                            <button type="submit" value="Track Order" class="btn btn-secondary">Track Order</button>
                         </div>
                     </form>
                 </div>

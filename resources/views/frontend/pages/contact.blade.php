@@ -62,7 +62,7 @@
 										</div>
 										<div class="col-12">
 											<div class="form-group message">
-												<label>your message <small>(at least 20 characters)</small><span>*</span></label>
+												<label>your message <small>(at least 10 characters)</small><span>*</span></label>
 												<textarea name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
 											</div>
 										</div>
@@ -88,7 +88,7 @@
 									<i class="fa fa-envelope-open"></i>
 									<h4 class="title">Email:</h4>
 									<ul>
-										<li><a href="mailto:info@yourwebsite.com">@foreach($settings as $data) {{$data->email}} @endforeach</a></li>
+										<li><a href="mailto:@foreach($settings as $data) {{$data->email}} @endforeach">@foreach($settings as $data) {{$data->email}} @endforeach</a></li>
 									</ul>
 								</div>
 								<div class="single-info">

@@ -8,7 +8,7 @@
           <div class="single-service">
             <i class="ti-rocket"></i>
             <h4>Free shiping</h4>
-            <p>Orders over Rs. 5000</p>
+            <p>Orders over Rs. 5000/-</p>
           </div>
           <!-- End Single Service -->
         </div>
@@ -34,8 +34,8 @@
           <!-- Start Single Service -->
           <div class="single-service">
             <i class="ti-tag"></i>
-            <h4>Best Peice</h4>
-            <p>Guaranteed price</p>
+            <h4>Best Price</h4>
+            <p>Guaranteed best price</p>
           </div>
           <!-- End Single Service -->
         </div>
