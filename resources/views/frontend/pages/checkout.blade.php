@@ -492,7 +492,7 @@
             <!-- Start Newsletter Inner -->
             <div class="inner">
               <h4>Newsletter</h4>
-              <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+              <p> Subscribe to our newsletter and get <span>10%</span> off on your first purchase</p>
               <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
                 <input name="EMAIL" placeholder="Your email address" required="" type="email">
                 <button class="btn btn-primary">Subscribe</button>

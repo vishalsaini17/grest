@@ -44,7 +44,7 @@
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Subjects<span>*</span></label>
+												<label>Your Subject<span>*</span></label>
 												<input name="subject" type="text" id="subject" placeholder="Enter Subject">
 											</div>
 										</div>
@@ -62,7 +62,7 @@
 										</div>
 										<div class="col-12">
 											<div class="form-group message">
-												<label>your message <small>(at least 10 characters)</small><span>*</span></label>
+												<label>Your message <small>(at least 10 characters)</small><span>*</span></label>
 												<textarea name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
 											</div>
 										</div>
@@ -93,7 +93,7 @@
 								</div>
 								<div class="single-info">
 									<i class="fa fa-shopping-cart"></i>
-									<h4 class="title">Nearlest Outlet:</h4>
+									<h4 class="title">Nearest Outlet:</h4>
 									<ul>
 										<li>297-A, Ground floor,opposite sec 12-A chowk redlight, Gangavihar,Gurgaon-122001</li>
 									</ul>

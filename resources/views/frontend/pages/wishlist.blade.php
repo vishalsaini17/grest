@@ -24,6 +24,7 @@
 			<div class="row">
 				<div class="col-12">
 					<!-- Shopping Summery -->
+					
 					<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
@@ -35,7 +36,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							@if(Helper::getAllProductFromWishlist())
+							@if(count(Helper::getAllProductFromWishlist()) > 0)
+							{{-- @if(Helper::getAllProductFromWishlist()) --}}
 								@foreach(Helper::getAllProductFromWishlist() as $key=>$wishlist)
 									<tr>
 										@php 
@@ -53,8 +55,8 @@
 								@endforeach
 							@else 
 								<tr>
-									<td class="text-center">
-										There are no any wishlist available. <a href="{{route('product-grids')}}" style="color:blue;">Continue shopping</a>
+									<td colspan="5" align="center" class="text-center">
+										There is no wishlist available. <a href="{{route('product-grids')}}" style="color:blue;">Continue shopping</a>
 
 									</td>
 								</tr>
@@ -105,7 +107,7 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
+						<h4>Best Price</h4>
 						<p>Guaranteed price</p>
 					</div>
 					<!-- End Single Service -->

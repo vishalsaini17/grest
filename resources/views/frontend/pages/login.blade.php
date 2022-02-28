@@ -29,7 +29,7 @@
                 <div class="col-lg-6 offset-lg-3 col-12">
                     <div class="login-form center-div">
                         <h2>Login</h2>
-                        <p>Please login in order to checkout more quickly</p>
+                        <p>Please login in order to checkout quickly</p>
                         <!-- Form -->
                         <form class="form" method="post" action="{{route('login.submit')}}">
                             @csrf
@@ -57,7 +57,7 @@
                                         <button class="btn btn-primary bg-grest d-block px-5 text-center mx-auto mt-5" type="submit">Login</button>
                                         <span class="text-center d-block my-3" style="font-size: large">OR</span>
                                         <div class="text-center ">
-                                            <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Register</a>
+                                            <a href="{{route('register.form')}}" class="btn" style="background-color: #007bff;">Sign Up</a>
                                             <a href="{{route('login.redirect','facebook')}}" class="btn px-3 btn-facebook"><i class="fa fa-facebook mr-2"></i> Login with Facebook</a>
                                         </div>
                                         {{-- <a href="{{route('login.redirect' ,'github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
@@ -68,7 +68,7 @@
                                     </div>
                                     @if (Route::has('password.request'))
                                         <a class="lost-pass" href="{{ route('password.reset') }}">
-                                            Forget your password?
+                                            Forgot your password?
                                         </a>
                                     @endif
                                 </div>

@@ -25,8 +25,8 @@
             <div class="col-lg-6 offset-lg-3 col-12">
                 <div class="tracking_box_inner center-div">
                     <h2>Track Your Order</h2>
-                    <p>To track your order please enter your Order ID in the box below and press the "Track" button. This was given
-                        to you on your receipt and in the confirmation email you should have received.</p>
+                    <p>To track your order please enter your Order ID from the receipt or the confirmation email received. Click on the track button after entering the ID in the box below.
+                        </p>
                     <form class="row form-group tracking_form my-4" action="{{route('product.track.order')}}" method="post" novalidate="novalidate">
                       @csrf
                         <div class="col-12 form-group">

@@ -141,7 +141,7 @@
                 @else
                   <tr>
                     <td class="text-center" colspan="6">
-                      There are no any carts available. <a href="{{ route('product-grids') }}">Continue shopping</a>
+                      There are no items in the cart. <a href="{{ route('product-grids') }}">Continue shopping</a>
 
                     </td>
                   </tr>

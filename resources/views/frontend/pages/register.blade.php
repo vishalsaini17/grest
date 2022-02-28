@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class=" justify-content-around align-items-center text-center">
-                                    <button  class="btn bg-grest px-5 mx-auto d-block" style="" type="submit">Register</button>
+                                    <button  class="btn bg-grest px-5 mx-auto d-block" style="" type="submit">Sign up</button>
                                     <span class="my-3 d-block my-3">Already have account? Try</span>
                                         <a href="{{route('login.form')}}" class="btn btn-primary">Login</a>
                                         {{-- <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a> --}}
